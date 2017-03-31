@@ -120,10 +120,10 @@
             </objects>
             <point key="canvasLocation" x="-7.2000000000000002" y="-166.8665667166417"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Feed Table View Controller-->
         <scene sceneID="p0u-84-edT">
             <objects>
-                <tableViewController id="1S1-OT-H4j" sceneMemberID="viewController">
+                <tableViewController id="1S1-OT-H4j" customClass="FeedTableViewController" customModule="Hitchhikers" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="zt3-gv-i0b">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
