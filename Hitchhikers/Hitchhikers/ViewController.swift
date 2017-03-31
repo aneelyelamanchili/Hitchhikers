@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SocketRocket
 
 class ViewController: UIViewController {
 
