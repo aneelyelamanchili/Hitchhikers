@@ -19,6 +19,11 @@
 			<key>orderHint</key>
 			<integer>3</integer>
 		</dict>
+		<key>Socket.IO-Client-Swift.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>5</integer>
+		</dict>
 		<key>SocketRocket.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -42,7 +47,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>49F0383064C7B0B0337FB4DE3219B3C8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>A9C26D70CC82CB380D60B7B1D8D133F4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D5CB98C914BFF8F521417D97EB0328F4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
