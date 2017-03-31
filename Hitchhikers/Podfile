@@ -6,7 +6,7 @@ target 'Hitchhikers' do
   use_frameworks!
 
   # Pods for Hitchhikers
-  pod 'SocketRocket'
+   pod 'Socket.IO-Client-Swift'
 
   target 'HitchhikersTests' do
     inherit! :search_paths
