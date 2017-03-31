@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F959DC2A77D48CD9C01830D /* Pods_Hitchhikers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1892EB6D4B294B6253EBBFDD /* Pods_Hitchhikers.framework */; };
+		7755C0185E6452AFD2C8710A /* Pods_HitchhikersTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 469962EC67B5D23BCE188CD4 /* Pods_HitchhikersTests.framework */; };
 		B92989F01E8DCA9800CF8287 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92989EF1E8DCA9800CF8287 /* AppDelegate.swift */; };
 		B92989F21E8DCA9800CF8287 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92989F11E8DCA9800CF8287 /* ViewController.swift */; };
 		B92989F51E8DCA9800CF8287 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B92989F31E8DCA9800CF8287 /* Main.storyboard */; };
@@ -15,6 +17,7 @@
 		B92989FD1E8DCA9800CF8287 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B92989FB1E8DCA9800CF8287 /* LaunchScreen.storyboard */; };
 		B9298A081E8DCA9900CF8287 /* HitchhikersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9298A071E8DCA9900CF8287 /* HitchhikersTests.swift */; };
 		B9298A131E8DCA9900CF8287 /* HitchhikersUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9298A121E8DCA9900CF8287 /* HitchhikersUITests.swift */; };
+		C0811622FEB689CEC8F6A796 /* Pods_HitchhikersUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95EECFE92C501098AAB66E61 /* Pods_HitchhikersUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +38,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0B20C2CE7461E8A91A41C4D4 /* Pods-HitchhikersTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HitchhikersTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HitchhikersTests/Pods-HitchhikersTests.release.xcconfig"; sourceTree = "<group>"; };
+		1892EB6D4B294B6253EBBFDD /* Pods_Hitchhikers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hitchhikers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		30EABE6987A56A6969E73E96 /* Pods-Hitchhikers.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hitchhikers.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hitchhikers/Pods-Hitchhikers.debug.xcconfig"; sourceTree = "<group>"; };
+		469962EC67B5D23BCE188CD4 /* Pods_HitchhikersTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HitchhikersTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7DC22BC6AC1F3DFAF594E519 /* Pods-HitchhikersUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HitchhikersUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HitchhikersUITests/Pods-HitchhikersUITests.release.xcconfig"; sourceTree = "<group>"; };
+		87317CEC1E2AD2F8D06FA52F /* Pods-HitchhikersTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HitchhikersTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HitchhikersTests/Pods-HitchhikersTests.debug.xcconfig"; sourceTree = "<group>"; };
+		92C0871AD102DBC05FE09FFE /* Pods-Hitchhikers.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hitchhikers.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hitchhikers/Pods-Hitchhikers.release.xcconfig"; sourceTree = "<group>"; };
+		95EECFE92C501098AAB66E61 /* Pods_HitchhikersUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HitchhikersUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B92989EC1E8DCA9800CF8287 /* Hitchhikers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hitchhikers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B92989EF1E8DCA9800CF8287 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B92989F11E8DCA9800CF8287 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +60,7 @@
 		B9298A0E1E8DCA9900CF8287 /* HitchhikersUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HitchhikersUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9298A121E8DCA9900CF8287 /* HitchhikersUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitchhikersUITests.swift; sourceTree = "<group>"; };
 		B9298A141E8DCA9900CF8287 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BED6C55008737DF9FE444FFA /* Pods-HitchhikersUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HitchhikersUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HitchhikersUITests/Pods-HitchhikersUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F959DC2A77D48CD9C01830D /* Pods_Hitchhikers.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7755C0185E6452AFD2C8710A /* Pods_HitchhikersTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,12 +84,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0811622FEB689CEC8F6A796 /* Pods_HitchhikersUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		40EF58BBFE7746318610E656 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1892EB6D4B294B6253EBBFDD /* Pods_Hitchhikers.framework */,
+				469962EC67B5D23BCE188CD4 /* Pods_HitchhikersTests.framework */,
+				95EECFE92C501098AAB66E61 /* Pods_HitchhikersUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		50686AA10A46B5CD747C4353 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				30EABE6987A56A6969E73E96 /* Pods-Hitchhikers.debug.xcconfig */,
+				92C0871AD102DBC05FE09FFE /* Pods-Hitchhikers.release.xcconfig */,
+				87317CEC1E2AD2F8D06FA52F /* Pods-HitchhikersTests.debug.xcconfig */,
+				0B20C2CE7461E8A91A41C4D4 /* Pods-HitchhikersTests.release.xcconfig */,
+				BED6C55008737DF9FE444FFA /* Pods-HitchhikersUITests.debug.xcconfig */,
+				7DC22BC6AC1F3DFAF594E519 /* Pods-HitchhikersUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		B92989E31E8DCA9800CF8287 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +121,8 @@
 				B9298A061E8DCA9900CF8287 /* HitchhikersTests */,
 				B9298A111E8DCA9900CF8287 /* HitchhikersUITests */,
 				B92989ED1E8DCA9800CF8287 /* Products */,
+				50686AA10A46B5CD747C4353 /* Pods */,
+				40EF58BBFE7746318610E656 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -135,9 +175,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B9298A171E8DCA9900CF8287 /* Build configuration list for PBXNativeTarget "Hitchhikers" */;
 			buildPhases = (
+				5F3A40CF0CA8C55A16B6CCC2 /* [CP] Check Pods Manifest.lock */,
 				B92989E81E8DCA9800CF8287 /* Sources */,
 				B92989E91E8DCA9800CF8287 /* Frameworks */,
 				B92989EA1E8DCA9800CF8287 /* Resources */,
+				5865FC405D4C7D48B7676192 /* [CP] Embed Pods Frameworks */,
+				5182E867C3FDEA758DDF856F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -152,9 +195,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B9298A1A1E8DCA9900CF8287 /* Build configuration list for PBXNativeTarget "HitchhikersTests" */;
 			buildPhases = (
+				C25E8E6781E16962C45CCED6 /* [CP] Check Pods Manifest.lock */,
 				B92989FF1E8DCA9900CF8287 /* Sources */,
 				B9298A001E8DCA9900CF8287 /* Frameworks */,
 				B9298A011E8DCA9900CF8287 /* Resources */,
+				DFAB2973A259E8C032E1BB4B /* [CP] Embed Pods Frameworks */,
+				371202481C86583290182EE7 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -170,9 +216,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B9298A1D1E8DCA9900CF8287 /* Build configuration list for PBXNativeTarget "HitchhikersUITests" */;
 			buildPhases = (
+				2F3D5BA17A69FC8A74B97995 /* [CP] Check Pods Manifest.lock */,
 				B9298A0A1E8DCA9900CF8287 /* Sources */,
 				B9298A0B1E8DCA9900CF8287 /* Frameworks */,
 				B9298A0C1E8DCA9900CF8287 /* Resources */,
+				FB1446B42F42F54B2A97650D /* [CP] Embed Pods Frameworks */,
+				700143E04A1DDAD969D00146 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -256,6 +305,144 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2F3D5BA17A69FC8A74B97995 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		371202481C86583290182EE7 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HitchhikersTests/Pods-HitchhikersTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5182E867C3FDEA758DDF856F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Hitchhikers/Pods-Hitchhikers-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5865FC405D4C7D48B7676192 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Hitchhikers/Pods-Hitchhikers-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5F3A40CF0CA8C55A16B6CCC2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		700143E04A1DDAD969D00146 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HitchhikersUITests/Pods-HitchhikersUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C25E8E6781E16962C45CCED6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		DFAB2973A259E8C032E1BB4B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HitchhikersTests/Pods-HitchhikersTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FB1446B42F42F54B2A97650D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HitchhikersUITests/Pods-HitchhikersUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B92989E81E8DCA9800CF8287 /* Sources */ = {
@@ -414,6 +601,7 @@
 		};
 		B9298A181E8DCA9900CF8287 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 30EABE6987A56A6969E73E96 /* Pods-Hitchhikers.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Hitchhikers/Info.plist;
@@ -426,6 +614,7 @@
 		};
 		B9298A191E8DCA9900CF8287 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 92C0871AD102DBC05FE09FFE /* Pods-Hitchhikers.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Hitchhikers/Info.plist;
@@ -438,6 +627,7 @@
 		};
 		B9298A1B1E8DCA9900CF8287 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 87317CEC1E2AD2F8D06FA52F /* Pods-HitchhikersTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -452,6 +642,7 @@
 		};
 		B9298A1C1E8DCA9900CF8287 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0B20C2CE7461E8A91A41C4D4 /* Pods-HitchhikersTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -466,6 +657,7 @@
 		};
 		B9298A1E1E8DCA9900CF8287 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BED6C55008737DF9FE444FFA /* Pods-HitchhikersUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = HitchhikersUITests/Info.plist;
@@ -479,6 +671,7 @@
 		};
 		B9298A1F1E8DCA9900CF8287 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7DC22BC6AC1F3DFAF594E519 /* Pods-HitchhikersUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = HitchhikersUITests/Info.plist;
