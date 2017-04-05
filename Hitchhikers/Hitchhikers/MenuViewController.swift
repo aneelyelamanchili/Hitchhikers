@@ -21,7 +21,7 @@ protocol LeftMenuProtocol: class {
 class MenuViewController: UIViewController, LeftMenuProtocol {
     
     var tableView = UITableView()
-    var menus = ["Main", "Profile", "Logout"]
+    var menus = ["Main", "Payment", "Logout"]
     var mainViewController: UIViewController!
     var profileViewController: UIViewController!
     
@@ -32,12 +32,32 @@ class MenuViewController: UIViewController, LeftMenuProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = UIColor(red:0.15, green:0.27, blue:0.36, alpha:1.0)
+        //self.view.backgroundColor = UIColor(red:0.15, green:0.27, blue:0.36, alpha:1.0)
         
         let viewSize:CGSize = self.view.frame.size;
+        let newView = UIView(frame: CGRect(x: 0, y: 0, width: viewSize.width-105, height: 150))
+        newView.backgroundColor = UIColor(red:0.19, green:0.27, blue:0.31, alpha:1.0)
+        let image = UIImage(named: "jeffrey_miller.jpg")
+        let imageView = UIImageView(image: image!)
+        imageView.frame = CGRect(x: 15, y: 20, width: 100, height: 100)
+        imageView.layer.borderWidth = 0.1
+        imageView.layer.masksToBounds = false
+        imageView.layer.borderColor = UIColor.black.cgColor
+        imageView.layer.cornerRadius = imageView.frame.height/2
+        imageView.clipsToBounds = true
+        newView.addSubview(imageView)
         
-        self.tableView.frame = CGRect(x: 0, y: 0, width: viewSize.width-105, height: viewSize.height)
-        self.tableView.separatorColor = UIColor.clear
+        let label = UILabel(frame: CGRect(x: 190, y: 75, width: 200, height: 21))
+        label.center = CGPoint(x: 190, y: 75)
+        label.textAlignment = .center
+        label.text = "Jeffrey Miller, Ph.D"
+        label.textColor = UIColor.white
+        newView.addSubview(label)
+        
+        self.tableView.frame = CGRect(x: 0, y: 150, width: viewSize.width-105, height: viewSize.height)
+        //self.tableView.separatorColor = UIColor.clear
+        self.tableView.separatorInset = UIEdgeInsetsMake(0, 25, 0, 80);
+        self.tableView.tableFooterView = UIView()
         self.tableView.dataSource = self
         self.tableView.delegate = self
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -46,6 +66,10 @@ class MenuViewController: UIViewController, LeftMenuProtocol {
         
         self.tableView.register(BaseTableViewCell.self, forCellReuseIdentifier: "BaseTableViewCell")
         self.view.addSubview(self.tableView)
+        self.view.addSubview(newView);
+
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(MenuViewController.handleTap(sender:)))
+        newView.addGestureRecognizer(gesture)
     }
     
     override func didReceiveMemoryWarning() {
@@ -57,9 +81,9 @@ class MenuViewController: UIViewController, LeftMenuProtocol {
         super.viewDidAppear(animated)
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        dismiss(animated: true, completion: nil)
-    }
+//    override func viewWillDisappear(_ animated: Bool) {
+//        dismiss(animated: true, completion: nil)
+//    }
     
     func changeViewController(_ menu: LeftMenu) {
         switch menu {
@@ -73,13 +97,19 @@ class MenuViewController: UIViewController, LeftMenuProtocol {
         case .profile:
             self.slideMenuController()?.changeMainViewController(self.profileViewController, close: true)
         case .logout:
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            // vc is the Storyboard ID that you added
-            // as! ... Add your ViewController class name that you want to navigate to
-            let controller = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
-            self.present(controller, animated: true, completion: { () -> Void in
-            })
+//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//            // vc is the Storyboard ID that you added
+//            // as! ... Add your ViewController class name that you want to navigate to
+//            let controller = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+//            self.present(controller, animated: true, completion: { () -> Void in
+//            })
+            navigationController?.popViewController(animated: true)
+            dismiss(animated: true, completion: nil)
         }
+    }
+    
+    func handleTap(sender: UITapGestureRecognizer? = nil) {
+        self.slideMenuController()?.changeMainViewController(self.profileViewController, close: true)
     }
 }
 
