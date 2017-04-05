@@ -7,17 +7,41 @@
 //
 
 import UIKit
+import SwiftIconFont
 
 class FeedTableViewController: UITableViewController {
+    @IBOutlet weak var innerBarButtonItem: UIBarButtonItem?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let logo = UIImage(named: "mountain_icon.png")
+        let imageView = UIImageView(image:logo)
+        self.navigationItem.titleView = imageView
+        
+        self.navigationController?.navigationBar.barTintColor = UIColor(red:0.19, green:0.27, blue:0.31, alpha:1.0)
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = false;
+        
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        self.innerBarButtonItem?.icon(from: .Themify, code: "plus", ofSize: 25)
+        self.navigationItem.rightBarButtonItem?.icon(from: .Themify, code: "search", ofSize: 25)
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.setNavigationBarItem()
     }
 
     override func didReceiveMemoryWarning() {

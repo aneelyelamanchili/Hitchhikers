@@ -29,6 +29,15 @@ class LoginViewController: UIViewController {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
     }
+    
+    @IBAction func loginButton(_ sender: Any) {
+        let mainViewController = storyboard?.instantiateViewController(withIdentifier: "FeedTableViewController") as! FeedTableViewController
+        let leftViewController = storyboard?.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
+        let nvc: UINavigationController = UINavigationController(rootViewController: mainViewController)
+        
+        let slideMenuController = SlideController(mainViewController: nvc, leftMenuViewController: leftViewController)
+        UIApplication.shared.delegate?.window??.rootViewController = slideMenuController
+    }
 
     /*
     // MARK: - Navigation

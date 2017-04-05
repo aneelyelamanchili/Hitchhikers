@@ -1,12 +1,18 @@
 PODS:
+  - SlideMenuControllerSwift (3.0.1)
   - Socket.IO-Client-Swift (8.3.0)
+  - SwiftIconFont (2.6.0)
 
 DEPENDENCIES:
+  - SlideMenuControllerSwift
   - Socket.IO-Client-Swift
+  - SwiftIconFont
 
 SPEC CHECKSUMS:
+  SlideMenuControllerSwift: 9a163b16d54afab734add42858cba7ef7c307755
   Socket.IO-Client-Swift: 7ad3aded3c0f74d99555e950ac3aa82ca3eefbaf
+  SwiftIconFont: bbe1f32e1e16bac87dad8566afc80132cb8d072c
 
-PODFILE CHECKSUM: edd60827ddecd116fb21df372fa72a173ea85901
+PODFILE CHECKSUM: fd9a165663105132ac0fcef8d5e56672c5e1a9fe
 
 COCOAPODS: 1.2.0

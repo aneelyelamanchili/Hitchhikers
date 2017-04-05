@@ -8,15 +8,38 @@
 
 import UIKit
 import CoreData
+import SlideMenuControllerSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
+    func showMainView() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+//        let mainViewController = storyboard.instantiateViewController(withIdentifier: "FeedTableViewController") as! FeedTableViewController
+//        let leftViewController = storyboard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
+//        
+//        let nvc: UINavigationController = UINavigationController(rootViewController: mainViewController)
+        
+        //UINavigationBar.appearance().tintColor = UIColor(red:0.50, green:0.74, blue:0.00, alpha:1.00)
+        
+        //leftViewController.mainViewController = nvc
+        
+//        let slideMenuController = SlideController(mainViewController:nvc, leftMenuViewController: leftViewController)
+//        
+//        slideMenuController.automaticallyAdjustsScrollViewInsets = true
+        
+        let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+        self.window?.backgroundColor = UIColor(red: 236.0, green: 238.0, blue: 241.0, alpha: 1.0)
+        self.window?.rootViewController = loginViewController
+        self.window?.makeKeyAndVisible()
+    }
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        self.showMainView()
         return true
     }
 
