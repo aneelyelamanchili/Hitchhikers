@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="Hitchhikers" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="BYZ-38-t0r" customClass="LoginViewController" customModule="Hitchhikers" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -72,9 +73,8 @@
                                 <rect key="frame" x="65" y="395" width="243" height="30"/>
                                 <state key="normal" backgroundImage="login.png"/>
                                 <connections>
-                                    <segue destination="1S1-OT-H4j" kind="popoverPresentation" popoverAnchorView="HQ6-wn-Rio" id="CYq-WA-YAc">
-                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                    </segue>
+                                    <action selector="loginButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jwi-Po-sbd"/>
+                                    <segue destination="gM0-AA-z6p" kind="show" id="zXk-37-Icg"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="znx-yY-N8k">
@@ -120,37 +120,104 @@
             </objects>
             <point key="canvasLocation" x="-7.2000000000000002" y="-166.8665667166417"/>
         </scene>
-        <!--Feed Table View Controller-->
-        <scene sceneID="p0u-84-edT">
+        <!--Title-->
+        <scene sceneID="9Gv-uk-tH4">
             <objects>
-                <tableViewController id="1S1-OT-H4j" customClass="FeedTableViewController" customModule="Hitchhikers" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="zt3-gv-i0b">
+                <tableViewController storyboardIdentifier="FeedTableViewController" id="Q1u-tU-XBF" customClass="FeedTableViewController" customModule="Hitchhikers" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="qvl-95-fN0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="aeS-AY-vfw">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="up9-xg-fxb">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aeS-AY-vfw" id="6Hj-Ay-J1j">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="up9-xg-fxb" id="Xuu-eh-xo6">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="1S1-OT-H4j" id="oca-ht-Ynw"/>
-                            <outlet property="delegate" destination="1S1-OT-H4j" id="ZWf-IR-h43"/>
+                            <outlet property="dataSource" destination="Q1u-tU-XBF" id="ASX-mB-6EX"/>
+                            <outlet property="delegate" destination="Q1u-tU-XBF" id="HtG-XU-r1z"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Title" id="Sw6-8q-tYW">
+                        <barButtonItem key="leftBarButtonItem" image="hamburger_menu.png" id="cmA-ZY-Ag7"/>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Item" id="TGu-i1-K1z">
+                                <inset key="imageInsets" minX="0.0" minY="50" maxX="0.0" maxY="0.0"/>
+                            </barButtonItem>
+                            <barButtonItem title="Item" id="YmB-pV-MHU">
+                                <inset key="imageInsets" minX="0.0" minY="50" maxX="0.0" maxY="0.0"/>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="innerBarButtonItem" destination="YmB-pV-MHU" id="fmE-3m-WoG"/>
+                    </connections>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="14w-Vx-Wvs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BAk-1M-5fN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="901" y="-165"/>
+            <point key="canvasLocation" x="1669" y="-164"/>
+        </scene>
+        <!--Menu View Controller-->
+        <scene sceneID="4Fp-K5-SZW">
+            <objects>
+                <viewController storyboardIdentifier="MenuViewController" id="qhg-50-jLK" customClass="MenuViewController" customModule="Hitchhikers" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="TTH-lC-edl"/>
+                        <viewControllerLayoutGuide type="bottom" id="twZ-hx-xFJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="NG0-Ew-cJf">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5ah-V1-jRl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="889" y="509"/>
+        </scene>
+        <!--Profile View Controller-->
+        <scene sceneID="AMn-6k-xIZ">
+            <objects>
+                <viewController storyboardIdentifier="ProfileViewController" id="ZKX-Qa-9YE" customClass="ProfileViewController" customModule="Hitchhikers" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ls2-kU-mRx"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ps2-9g-FJ9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="j0k-qi-JTz">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GBS-3j-F4w" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1774" y="515"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="0Hy-rg-2NR">
+            <objects>
+                <navigationController id="gM0-AA-z6p" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="NTH-pC-CgG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Q1u-tU-XBF" kind="relationship" relationship="rootViewController" id="pzj-RY-7um"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uph-ma-NO3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="718" y="-164"/>
         </scene>
     </scenes>
     <resources>
         <image name="3_people.png" width="353" height="179"/>
+        <image name="hamburger_menu.png" width="24" height="18"/>
         <image name="login.png" width="243" height="32"/>
         <image name="login_fb.png" width="257" height="32"/>
         <image name="login_gplus.png" width="257" height="32"/>
