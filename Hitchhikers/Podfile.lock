@@ -1,15 +1,18 @@
 PODS:
   - SlideMenuControllerSwift (3.0.1)
+  - Starscream (2.0.3)
   - SwiftIconFont (2.6.0)
 
 DEPENDENCIES:
   - SlideMenuControllerSwift
+  - Starscream
   - SwiftIconFont
 
 SPEC CHECKSUMS:
   SlideMenuControllerSwift: 9a163b16d54afab734add42858cba7ef7c307755
+  Starscream: 3fdd5c277e57cca6b5c406d274e3f34a7c88f2ce
   SwiftIconFont: bbe1f32e1e16bac87dad8566afc80132cb8d072c
 
-PODFILE CHECKSUM: 90ba0020fdcf8367cdb225955233670e81dc1dde
+PODFILE CHECKSUM: 4519418bece3a88f92dbbf252503735f95c409aa
 
 COCOAPODS: 1.2.0

@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'CB7079142EFE9CCE3D130E59DB1C1AC9'
-               BlueprintName = 'SwiftIconFont'
+               BlueprintIdentifier = 'C5A87FB0641F53E426780BCA6F5CB752'
+               BlueprintName = 'Starscream'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'SwiftIconFont.framework'>
+               BuildableName = 'Starscream.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

@@ -11,6 +11,8 @@ import UIKit
 class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
+        let sharedModel = Client.sharedInstance
+        
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
@@ -18,6 +20,8 @@ class LoginViewController: UIViewController {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboard))
         
         view.addGestureRecognizer(tap)
+        
+        sharedModel.connect()
     }
 
     override func didReceiveMemoryWarning() {
