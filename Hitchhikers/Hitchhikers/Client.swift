@@ -11,23 +11,6 @@ import SocketIO
 
 class Client: NSObject {
     static let sharedInstance = Client()
-    var socket = SocketIOClient(socketURL: URL(string: "http://94a43d5f.ngrok.io")!, config: [.log(true), .forcePolling(true)])
 
-    override init() {
-        super.init()
-        
-        socket.on("test") { dataArray, ack in
-            print(dataArray)
-        }
-        
-    }
-    
-    func establishConnection() {
-        socket.connect()
-    }
-    
-    func closeConnection() {
-        socket.disconnect()
-    }
 
 }

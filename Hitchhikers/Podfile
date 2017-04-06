@@ -6,7 +6,6 @@ target 'Hitchhikers' do
   use_frameworks!
 
   # Pods for Hitchhikers
-   pod 'Socket.IO-Client-Swift'
    pod 'SwiftIconFont'
    pod 'SlideMenuControllerSwift'
 
