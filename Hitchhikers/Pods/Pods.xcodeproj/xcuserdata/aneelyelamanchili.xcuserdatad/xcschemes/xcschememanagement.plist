@@ -24,11 +24,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Socket.IO-Client-Swift.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>SwiftIconFont.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -37,32 +32,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>14EB539874D475D7120048631527E484</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>4133EF401C87E5A983ED105883342127</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>49F0383064C7B0B0337FB4DE3219B3C8</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>54097CC40951A9C94CA7CB92317DF2A8</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>5EE2BCF3C783AD598580346DFDEB12C0</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>9E840259CB5A870BAA116AAC48A6524E</key>
+		<key>9B27AB01A5261A0944571FB08D672830</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -72,7 +47,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D5CB98C914BFF8F521417D97EB0328F4</key>
+		<key>B8356FA286CDE00E9F619BA60B6C654D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C57A2A2AFB773ABC04CE0A75297EBE58</key>
 		<dict>
 			<key>primary</key>
 			<true/>
