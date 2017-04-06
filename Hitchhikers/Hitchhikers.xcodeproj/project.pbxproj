@@ -16,6 +16,7 @@
 		11BF99A01E95188C000E393C /* jeffrey_miller.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 11BF999F1E95188C000E393C /* jeffrey_miller.jpg */; };
 		3F959DC2A77D48CD9C01830D /* Pods_Hitchhikers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1892EB6D4B294B6253EBBFDD /* Pods_Hitchhikers.framework */; };
 		7755C0185E6452AFD2C8710A /* Pods_HitchhikersTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 469962EC67B5D23BCE188CD4 /* Pods_HitchhikersTests.framework */; };
+		B9143A3B1E95BF860081D002 /* AddRideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9143A3A1E95BF860081D002 /* AddRideViewController.swift */; };
 		B918278F1E8DFF5500FFE83E /* FeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B918278E1E8DFF5500FFE83E /* FeedTableViewController.swift */; };
 		B91FF28D1E8DD8C700A7E766 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91FF28C1E8DD8C700A7E766 /* LoginViewController.swift */; };
 		B91FF2AA1E8DDA8800A7E766 /* building_small.png in Resources */ = {isa = PBXBuildFile; fileRef = B91FF28F1E8DDA8800A7E766 /* building_small.png */; };
@@ -89,6 +90,7 @@
 		87317CEC1E2AD2F8D06FA52F /* Pods-HitchhikersTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HitchhikersTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HitchhikersTests/Pods-HitchhikersTests.debug.xcconfig"; sourceTree = "<group>"; };
 		92C0871AD102DBC05FE09FFE /* Pods-Hitchhikers.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hitchhikers.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hitchhikers/Pods-Hitchhikers.release.xcconfig"; sourceTree = "<group>"; };
 		95EECFE92C501098AAB66E61 /* Pods_HitchhikersUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HitchhikersUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B9143A3A1E95BF860081D002 /* AddRideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRideViewController.swift; sourceTree = "<group>"; };
 		B918278E1E8DFF5500FFE83E /* FeedTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedTableViewController.swift; sourceTree = "<group>"; };
 		B91FF28C1E8DD8C700A7E766 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		B91FF28F1E8DDA8800A7E766 /* building_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = building_small.png; sourceTree = "<group>"; };
@@ -262,6 +264,7 @@
 				11BF99951E94E8F2000E393C /* UIViewController.swift */,
 				11BF99971E94E981000E393C /* SlideController.swift */,
 				11BF99991E94E9AB000E393C /* ProfileViewController.swift */,
+				B9143A3A1E95BF860081D002 /* AddRideViewController.swift */,
 			);
 			path = Hitchhikers;
 			sourceTree = "<group>";
@@ -596,6 +599,7 @@
 			files = (
 				B91FF28D1E8DD8C700A7E766 /* LoginViewController.swift in Sources */,
 				B918278F1E8DFF5500FFE83E /* FeedTableViewController.swift in Sources */,
+				B9143A3B1E95BF860081D002 /* AddRideViewController.swift in Sources */,
 				11BF999A1E94E9AB000E393C /* ProfileViewController.swift in Sources */,
 				B92989F21E8DCA9800CF8287 /* ViewController.swift in Sources */,
 				11BF99921E94E810000E393C /* MenuViewController.swift in Sources */,
