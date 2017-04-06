@@ -14,6 +14,8 @@ class Client: NSObject, WebSocketDelegate {
 
     var socket = WebSocket(url: URL(string: "ws://192.241.211.78:1234/")!)
     
+    // MARK: Websocket Delegate Methods.
+    
     func websocketDidConnect(socket: WebSocket) {
         print("websocket is connected")
     }
@@ -38,5 +40,6 @@ class Client: NSObject, WebSocketDelegate {
         socket.delegate = self
         socket.connect()
     }
-    
+
+
 }

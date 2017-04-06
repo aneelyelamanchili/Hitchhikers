@@ -10,6 +10,8 @@ import UIKit
 import SwiftIconFont
 
 class AddRideViewController: UIViewController {
+    
+    let sharedModel = Client.sharedInstance
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +34,24 @@ class AddRideViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    // MARK: Write Text Action
+    
+    @IBAction func writeText(_ sender: UIButton) {
+        sharedModel.socket.write(string: "hello there!")
+    }
+    
+    // MARK: Disconnect Action
+    
+    @IBAction func disconnect(_ sender: UIButton) {
+        if sharedModel.socket.isConnected {
+            //sender.currentTitle = "Connect"
+            sharedModel.socket.disconnect()
+        } else {
+            //sender.currentTitle = "Disconnect"
+            sharedModel.socket.connect()
+        }
     }
     
 
