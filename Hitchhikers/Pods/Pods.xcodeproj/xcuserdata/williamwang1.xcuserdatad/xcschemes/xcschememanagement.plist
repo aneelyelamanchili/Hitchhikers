@@ -34,6 +34,11 @@
 			<key>orderHint</key>
 			<integer>4</integer>
 		</dict>
+		<key>Starscream.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>8</integer>
+		</dict>
 		<key>SwiftIconFont.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -77,12 +82,47 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>7658C070930D9BCCBCE238A6C77AAECE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9B27AB01A5261A0944571FB08D672830</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>9E840259CB5A870BAA116AAC48A6524E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>A9C26D70CC82CB380D60B7B1D8D133F4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B8356FA286CDE00E9F619BA60B6C654D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BB58EA727DB8A19BC22839A1345D14CD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C57A2A2AFB773ABC04CE0A75297EBE58</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C5A87FB0641F53E426780BCA6F5CB752</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CB7079142EFE9CCE3D130E59DB1C1AC9</key>
 		<dict>
 			<key>primary</key>
 			<true/>

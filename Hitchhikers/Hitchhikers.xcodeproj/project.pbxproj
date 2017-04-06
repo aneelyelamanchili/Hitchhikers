@@ -18,6 +18,8 @@
 		7755C0185E6452AFD2C8710A /* Pods_HitchhikersTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 469962EC67B5D23BCE188CD4 /* Pods_HitchhikersTests.framework */; };
 		B9143A3B1E95BF860081D002 /* AddRideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9143A3A1E95BF860081D002 /* AddRideViewController.swift */; };
 		B9143A3D1E95D8CF0081D002 /* SearchRidesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9143A3C1E95D8CF0081D002 /* SearchRidesViewController.swift */; };
+		B9143A3F1E95F0E10081D002 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9143A3E1E95F0E10081D002 /* SignUpViewController.swift */; };
+		B9143A411E95F40A0081D002 /* welcome.png in Resources */ = {isa = PBXBuildFile; fileRef = B9143A401E95F40A0081D002 /* welcome.png */; };
 		B918278F1E8DFF5500FFE83E /* FeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B918278E1E8DFF5500FFE83E /* FeedTableViewController.swift */; };
 		B91FF28D1E8DD8C700A7E766 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91FF28C1E8DD8C700A7E766 /* LoginViewController.swift */; };
 		B91FF2AA1E8DDA8800A7E766 /* building_small.png in Resources */ = {isa = PBXBuildFile; fileRef = B91FF28F1E8DDA8800A7E766 /* building_small.png */; };
@@ -93,6 +95,8 @@
 		95EECFE92C501098AAB66E61 /* Pods_HitchhikersUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HitchhikersUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9143A3A1E95BF860081D002 /* AddRideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRideViewController.swift; sourceTree = "<group>"; };
 		B9143A3C1E95D8CF0081D002 /* SearchRidesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchRidesViewController.swift; sourceTree = "<group>"; };
+		B9143A3E1E95F0E10081D002 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		B9143A401E95F40A0081D002 /* welcome.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcome.png; sourceTree = "<group>"; };
 		B918278E1E8DFF5500FFE83E /* FeedTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedTableViewController.swift; sourceTree = "<group>"; };
 		B91FF28C1E8DD8C700A7E766 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		B91FF28F1E8DDA8800A7E766 /* building_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = building_small.png; sourceTree = "<group>"; };
@@ -193,6 +197,7 @@
 		B91FF28E1E8DD93B00A7E766 /* img */ = {
 			isa = PBXGroup;
 			children = (
+				B9143A401E95F40A0081D002 /* welcome.png */,
 				11BF999F1E95188C000E393C /* jeffrey_miller.jpg */,
 				B91FF28F1E8DDA8800A7E766 /* building_small.png */,
 				B91FF2901E8DDA8800A7E766 /* credit_card.png */,
@@ -255,6 +260,7 @@
 				117EAC601E8DD9FE008BEE42 /* Client.swift */,
 				B92989F11E8DCA9800CF8287 /* ViewController.swift */,
 				B92989F31E8DCA9800CF8287 /* Main.storyboard */,
+				B9143A3E1E95F0E10081D002 /* SignUpViewController.swift */,
 				B92989F91E8DCA9800CF8287 /* Assets.xcassets */,
 				B92989FB1E8DCA9800CF8287 /* LaunchScreen.storyboard */,
 				B92989FE1E8DCA9800CF8287 /* Info.plist */,
@@ -417,6 +423,7 @@
 				B91FF2BD1E8DDA8800A7E766 /* crossroads.png in Resources */,
 				B91FF2BF1E8DDA8800A7E766 /* suitcase_icon.png in Resources */,
 				B91FF2AE1E8DDA8800A7E766 /* nice_car_trunk.png in Resources */,
+				B9143A411E95F40A0081D002 /* welcome.png in Resources */,
 				B91FF2B61E8DDA8800A7E766 /* adventure_girl.png in Resources */,
 				B91FF2B81E8DDA8800A7E766 /* world.png in Resources */,
 				B91FF2B31E8DDA8800A7E766 /* contact_user.png in Resources */,
@@ -608,6 +615,7 @@
 				B92989F21E8DCA9800CF8287 /* ViewController.swift in Sources */,
 				11BF99921E94E810000E393C /* MenuViewController.swift in Sources */,
 				11BF999C1E94ED6F000E393C /* BaseTableViewCell.swift in Sources */,
+				B9143A3F1E95F0E10081D002 /* SignUpViewController.swift in Sources */,
 				B92989F81E8DCA9800CF8287 /* Hitchhikers.xcdatamodeld in Sources */,
 				117EAC611E8DD9FE008BEE42 /* Client.swift in Sources */,
 				11BF99961E94E8F2000E393C /* UIViewController.swift in Sources */,
