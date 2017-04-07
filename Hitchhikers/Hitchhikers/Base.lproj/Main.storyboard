@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -136,7 +136,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="244"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="up9-xg-fxb" id="Xuu-eh-xo6">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="243"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="243.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xge-0x-Lrq">
@@ -220,6 +220,7 @@
                                     <outlet property="destinationLabel" destination="L69-RM-yiQ" id="uwM-D2-mRQ"/>
                                     <outlet property="mapView" destination="JsA-ba-rUl" id="NSC-3C-PUq"/>
                                     <outlet property="profileImage" destination="mVu-0D-Yt8" id="aFH-U5-bds"/>
+                                    <segue destination="ktG-xx-3su" kind="show" identifier="showRide" id="RRe-hJ-gdW"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -484,7 +485,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tax-Wh-bjm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2660" y="-164"/>
+            <point key="canvasLocation" x="2660" y="-472"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Zat-zj-Udx">
@@ -635,7 +636,37 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OIJ-2F-TSm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1543" y="589"/>
+            <point key="canvasLocation" x="1399" y="624"/>
+        </scene>
+        <!--Ride View Controller-->
+        <scene sceneID="kSc-Ze-piH">
+            <objects>
+                <viewController id="ktG-xx-3su" customClass="RideViewController" customModule="Hitchhikers" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="c31-k4-iO3"/>
+                        <viewControllerLayoutGuide type="bottom" id="7js-aN-8Iw"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="A7S-o1-x3L">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="taT-CP-51Y">
+                                <rect key="frame" x="182" y="139" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="testLabel" destination="taT-CP-51Y" id="awN-ce-bqe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IOi-tB-VOg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2660" y="240.62968515742131"/>
         </scene>
         <!--Menu View Controller-->
         <scene sceneID="4Fp-K5-SZW">
@@ -653,7 +684,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5ah-V1-jRl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2409" y="842"/>
+            <point key="canvasLocation" x="2124" y="814"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="0Hy-rg-2NR">
@@ -715,7 +746,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="w3a-xD-4nl" id="OzR-3F-dDJ">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -740,7 +771,24 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wVE-6u-NVM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3524" y="-806.44677661169419"/>
+            <point key="canvasLocation" x="2660" y="-1209"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Fqh-QH-TvR">
+            <objects>
+                <viewController id="bZI-TF-cOz" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ScF-Xj-cJ6"/>
+                        <viewControllerLayoutGuide type="bottom" id="ukh-ye-4lv"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5ll-ci-5Fe">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="beJ-5O-awl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
         </scene>
     </scenes>
     <resources>

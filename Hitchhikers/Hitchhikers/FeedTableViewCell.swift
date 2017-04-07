@@ -34,9 +34,20 @@ class FeedTableViewCell: UITableViewCell {
         profileImage.layer.masksToBounds = true;
         destinationLabel.text = "University California, Berkley, Berkley CA 94720";
         departureTimeLabel.text = "April 8, 2017 11:00 am"
+        
+        let initialLocation = CLLocation(latitude: 21.282778, longitude: -157.829444)
+        
+        let regionRadius: CLLocationDistance = 1000
+        let coordinateRegion = MKCoordinateRegionMakeWithDistance(initialLocation.coordinate,
+                                                                      regionRadius * 2.0, regionRadius * 2.0)
+        let annotation = MKPointAnnotation();
+        annotation.coordinate = CLLocationCoordinate2D(latitude: 21.282778, longitude: -157.829444)
+        mapView.addAnnotation(annotation)
+        mapView.setRegion(coordinateRegion, animated: true)
         mapView.isZoomEnabled = false;
         mapView.isScrollEnabled = false;
         mapView.isUserInteractionEnabled = false;
+        
     }
     
 }

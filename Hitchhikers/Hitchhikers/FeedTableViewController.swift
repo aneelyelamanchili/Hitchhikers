@@ -39,6 +39,17 @@ class FeedTableViewController: UITableViewController {
         
     }
     
+    func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if  segue.identifier == "showRide",
+            let destination = segue.destination as? RideViewController
+//            let rowIndex = tableView.indexPathForSelectedRow?.row
+        {
+            print("GOT HERE");
+//            print(rowIndex);
+            destination.words = "This row is: ";
+        }
+    }
+    
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
     }
