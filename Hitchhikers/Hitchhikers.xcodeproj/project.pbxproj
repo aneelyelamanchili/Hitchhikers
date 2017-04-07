@@ -57,6 +57,8 @@
 		B92989FD1E8DCA9800CF8287 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B92989FB1E8DCA9800CF8287 /* LaunchScreen.storyboard */; };
 		B9298A081E8DCA9900CF8287 /* HitchhikersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9298A071E8DCA9900CF8287 /* HitchhikersTests.swift */; };
 		B9298A131E8DCA9900CF8287 /* HitchhikersUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9298A121E8DCA9900CF8287 /* HitchhikersUITests.swift */; };
+		B9C349F21E9716F6008B85CC /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C349F11E9716F6008B85CC /* FeedTableViewCell.swift */; };
+		B9C349F41E971AC4008B85CC /* dude_pic.png in Resources */ = {isa = PBXBuildFile; fileRef = B9C349F31E971AC4008B85CC /* dude_pic.png */; };
 		C0811622FEB689CEC8F6A796 /* Pods_HitchhikersUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95EECFE92C501098AAB66E61 /* Pods_HitchhikersUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -140,6 +142,8 @@
 		B9298A0E1E8DCA9900CF8287 /* HitchhikersUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HitchhikersUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9298A121E8DCA9900CF8287 /* HitchhikersUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitchhikersUITests.swift; sourceTree = "<group>"; };
 		B9298A141E8DCA9900CF8287 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B9C349F11E9716F6008B85CC /* FeedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell.swift; sourceTree = "<group>"; };
+		B9C349F31E971AC4008B85CC /* dude_pic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dude_pic.png; sourceTree = "<group>"; };
 		BED6C55008737DF9FE444FFA /* Pods-HitchhikersUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HitchhikersUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HitchhikersUITests/Pods-HitchhikersUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -197,6 +201,7 @@
 		B91FF28E1E8DD93B00A7E766 /* img */ = {
 			isa = PBXGroup;
 			children = (
+				B9C349F31E971AC4008B85CC /* dude_pic.png */,
 				B9143A401E95F40A0081D002 /* welcome.png */,
 				11BF999F1E95188C000E393C /* jeffrey_miller.jpg */,
 				B91FF28F1E8DDA8800A7E766 /* building_small.png */,
@@ -274,6 +279,7 @@
 				11BF99991E94E9AB000E393C /* ProfileViewController.swift */,
 				B9143A3A1E95BF860081D002 /* AddRideViewController.swift */,
 				B9143A3C1E95D8CF0081D002 /* SearchRidesViewController.swift */,
+				B9C349F11E9716F6008B85CC /* FeedTableViewCell.swift */,
 			);
 			path = Hitchhikers;
 			sourceTree = "<group>";
@@ -424,6 +430,7 @@
 				B91FF2BF1E8DDA8800A7E766 /* suitcase_icon.png in Resources */,
 				B91FF2AE1E8DDA8800A7E766 /* nice_car_trunk.png in Resources */,
 				B9143A411E95F40A0081D002 /* welcome.png in Resources */,
+				B9C349F41E971AC4008B85CC /* dude_pic.png in Resources */,
 				B91FF2B61E8DDA8800A7E766 /* adventure_girl.png in Resources */,
 				B91FF2B81E8DDA8800A7E766 /* world.png in Resources */,
 				B91FF2B31E8DDA8800A7E766 /* contact_user.png in Resources */,
@@ -617,6 +624,7 @@
 				11BF999C1E94ED6F000E393C /* BaseTableViewCell.swift in Sources */,
 				B9143A3F1E95F0E10081D002 /* SignUpViewController.swift in Sources */,
 				B92989F81E8DCA9800CF8287 /* Hitchhikers.xcdatamodeld in Sources */,
+				B9C349F21E9716F6008B85CC /* FeedTableViewCell.swift in Sources */,
 				117EAC611E8DD9FE008BEE42 /* Client.swift in Sources */,
 				11BF99961E94E8F2000E393C /* UIViewController.swift in Sources */,
 				11BF99981E94E981000E393C /* SlideController.swift in Sources */,
