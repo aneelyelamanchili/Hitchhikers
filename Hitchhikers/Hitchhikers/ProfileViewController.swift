@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import SwiftIconFont
+import SlideMenuControllerSwift
 
 class ProfileViewController: UIViewController {
     
@@ -17,13 +19,16 @@ class ProfileViewController: UIViewController {
         let imageView = UIImageView(image:logo)
         self.navigationItem.titleView = imageView
         
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(dismissView))
+        self.navigationItem.leftBarButtonItem?.icon(from: .Themify, code: "close", ofSize: 25)
+        
         self.navigationController?.navigationBar.barTintColor = UIColor(red:0.19, green:0.27, blue:0.31, alpha:1.0)
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = false;
         
         self.navigationController?.navigationBar.tintColor = UIColor.white
-        self.navigationItem.leftBarButtonItem?.icon(from: .Themify, code: "close", ofSize: 25)
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -36,7 +41,15 @@ class ProfileViewController: UIViewController {
         //self.setNavigationBarItem()
     }
     
+    func dismissView(_ sender: UIBarButtonItem) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let mainViewController = storyboard.instantiateViewController(withIdentifier: "FeedTableViewController") as! FeedTableViewController
+        let leftViewController = storyboard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
+        let nvc: UINavigationController = UINavigationController(rootViewController: mainViewController)
+        let slideMenuController = SlideController(mainViewController: nvc, leftMenuViewController: leftViewController)
+        self.slideMenuController()?.changeMainViewController(slideMenuController, close: true)
     
+    }
     
     
 }

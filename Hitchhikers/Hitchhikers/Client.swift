@@ -12,7 +12,7 @@ import Starscream
 class Client: NSObject, WebSocketDelegate {
     static let sharedInstance = Client()
 
-    var socket = WebSocket(url: URL(string: "ws://192.241.211.78:1234/")!)
+    var socket = WebSocket(url: URL(string: "ws://52a2a0f1.ngrok.io/Server/ws")!)
     
     // MARK: Websocket Delegate Methods.
     
@@ -36,10 +36,16 @@ class Client: NSObject, WebSocketDelegate {
         print("Received data: \(data.count)")
     }
     
-    func connect() {
+    func establishConnection(completion: @escaping ()->Void) {
         socket.delegate = self
         socket.connect()
+        socket.onConnect = {
+            completion()
+        }
     }
 
+    func closeConnection() {
+        socket.disconnect()
+    }
 
 }

@@ -9,10 +9,10 @@
 import UIKit
 
 class LoginViewController: UIViewController {
+    
+    let sharedModel = Client.sharedInstance
 
     override func viewDidLoad() {
-        let sharedModel = Client.sharedInstance
-        
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
@@ -21,7 +21,13 @@ class LoginViewController: UIViewController {
         
         view.addGestureRecognizer(tap)
         
-        sharedModel.connect()
+        if(self.sharedModel.socket.isConnected) {
+            print("Success")
+        } else {
+            print("Failure")
+        }
+        
+
     }
 
     override func didReceiveMemoryWarning() {
