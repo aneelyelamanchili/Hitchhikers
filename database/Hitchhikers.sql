@@ -30,8 +30,21 @@ CREATE TABLE `TotalPreviousTrips` (
     FOREIGN KEY(`userID`) REFERENCES `TotalUsers`(`userID`)
 );
 
+CREATE TABLE `CurrentTrips` (
+	`userID` INT(11) NOT NULL,
+    `StartingPoint` VARCHAR(50) NOT NULL,
+    `DestinationPoint` VARCHAR(50) NOT NULL, 
+    `CarModel` VARCHAR(50) NOT NULL,
+    `LicensePlate` VARCHAR(50) NOT NULL,
+    `Cost` INT(11) NOT NULL, 
+    `Date/Time` VARCHAR(50) NOT NULL,
+    FOREIGN KEY(`userID`) REFERENCES `TotalUsers`(`userID`)
+);
+
 INSERT INTO `TotalUsers`( Username, Password, Email, `Age` ,`PhoneNumber`, `Picture` ) VALUES  ('Adam', 'mypassword', 'adamespi@usc.edu', 20, '6267560235', 'swag.com');
 INSERT INTO `TotalPreviousTrips`( userID,StartingPoint, DestinationPoint, CarModel, LicensePlate, Cost, `Date/Time`) VALUES (1,'San Fracisco,CA', 'Los Angeles', 'Honda Civic' , '64j74k', 25, 'jlksjdf');
+INSERT INTO `CurrentTrips`( userID,StartingPoint, DestinationPoint, CarModel, LicensePlate, Cost, `Date/Time`) VALUES (1,'1816 NW 127th Pl, Portland, OR', 'Voodoo Doughnut', 'Bugatti Veyron' , '309EAK', 10, '4:20AM');
+INSERT INTO `CurrentTrips`( userID,StartingPoint, DestinationPoint, CarModel, LicensePlate, Cost, `Date/Time`) VALUES (1,'1816 NW 127th Pl, Portland, OR', 'Voodoo Doughnut', 'Bugatti Veyron' , '309EAK', 10, '4:20AM');
 
 /*SELECT u.Username FROM `TotalPreviousTrips` t, `TotalUsers` u 
 WHERE t.userID = u.userID */

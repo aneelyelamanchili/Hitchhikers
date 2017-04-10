@@ -124,7 +124,11 @@ public class Application {
 				//User details for front-end.
 				JSONObject userDetails = addUserToJSON(signupusername, st, rs);
 				for (String key : JSONObject.getNames(userDetails)) {
-				  response.put(key, userDetails.get(key));
+					response.put(key, userDetails.get(key));
+				}
+				JSONObject feedDetails = addFeedToJSON(st, rs);
+				for (String key : JSONObject.getNames(feedDetails)) {
+					response.put(key, feedDetails.get(key));
 				}
 				
 				//return all of the details of user and whatever is needed on frontend
@@ -217,11 +221,11 @@ public class Application {
 		try {
 			rs = st.executeQuery("SELECT * from TotalUsers WHERE username='" + username + "';");
 			if (rs.next()) {
-				user.put("Username", rs.getString("Username"));
-				user.put("Password", rs.getString("Password"));
-				user.put("Age", rs.getString("Age"));
-				user.put("Picture", rs.getString("Picture"));
-				user.put("Email", rs.getString("Email"));
+				user.put("username", rs.getString("Username"));
+				user.put("password", rs.getString("Password"));
+				user.put("age", rs.getString("Age"));
+				user.put("picture", rs.getString("Picture"));
+				user.put("email", rs.getString("Email"));
 				if (rs.getBoolean("isDriver")) {
 					user.put("isDriver", "yes");
 				}
@@ -238,8 +242,25 @@ public class Application {
 		return user;
 	}
 	
-	public JSONObject addFeed() {
-		return null;
+	public JSONObject addFeedToJSON(Statement st, ResultSet rs) {
+		JSONObject feed = new JSONObject();
+		try {
+			rs = st.executeQuery("SELECT * from CurrentTrips");
+			//look at addusertojson if needed
+			while (rs.next()) {
+				//add counter for num of trips
+				//make strings for each list of origins, destinations, cars, every single column in currenttrips table
+				//make some separator between each origin like "---"
+			}
+			//then do feed.put("origin",string of origins) for every string u made
+			//and make a feed.put("feedsize", int) for how big feed is
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return feed;
 	}
 	
 	public byte[] toBinary(JSONObject message) {
