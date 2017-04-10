@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -118,6 +118,10 @@
                             <constraint firstItem="SOJ-wK-Zos" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="26" id="zZg-tZ-NbS"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="password" destination="g85-mL-eMd" id="Rpp-2x-FAx"/>
+                        <outlet property="username" destination="NW9-7s-3l1" id="y6P-zV-KDS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -136,7 +140,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="244"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="up9-xg-fxb" id="Xuu-eh-xo6">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="243.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="243"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xge-0x-Lrq">
@@ -162,7 +166,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Departure Time:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4UU-ch-4zC">
-                                            <rect key="frame" x="79" y="212" width="123" height="19.5"/>
+                                            <rect key="frame" x="79" y="212" width="123" height="20"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="123" id="6qz-mu-oO9"/>
                                                 <constraint firstAttribute="height" constant="19.5" id="Np8-cA-Cya"/>
@@ -172,7 +176,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" April 8, 2017 11:00 am" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ue8-Ps-dCZ">
-                                            <rect key="frame" x="206" y="213" width="163.5" height="21"/>
+                                            <rect key="frame" x="206" y="213" width="164" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="Ttb-NX-dGM"/>
                                                 <constraint firstAttribute="width" constant="163.5" id="a20-Ee-Ep7"/>
@@ -618,7 +622,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dvX-dW-fW7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="644" y="514.99250374812596"/>
+            <point key="canvasLocation" x="662" y="582"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="Q7g-47-xdc">
@@ -843,7 +847,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IOi-tB-VOg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+<<<<<<< HEAD
             <point key="canvasLocation" x="2660" y="438.98050974512745"/>
+=======
+            <point key="canvasLocation" x="3092" y="251"/>
+>>>>>>> eafc48d1d088224eabbe89f581358995321883f1
         </scene>
         <!--Menu View Controller-->
         <scene sceneID="4Fp-K5-SZW">
@@ -861,13 +869,17 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5ah-V1-jRl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+<<<<<<< HEAD
             <point key="canvasLocation" x="2034" y="789"/>
+=======
+            <point key="canvasLocation" x="2106" y="624"/>
+>>>>>>> eafc48d1d088224eabbe89f581358995321883f1
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="0Hy-rg-2NR">
             <objects>
                 <navigationController id="gM0-AA-z6p" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="NTH-pC-CgG">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="NTH-pC-CgG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -877,7 +889,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uph-ma-NO3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="718" y="-164"/>
+            <point key="canvasLocation" x="828" y="-164"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="IIy-e1-iEg">
@@ -923,7 +935,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="w3a-xD-4nl" id="OzR-3F-dDJ">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -966,6 +978,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="beJ-5O-awl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-7" y="582"/>
         </scene>
     </scenes>
     <resources>

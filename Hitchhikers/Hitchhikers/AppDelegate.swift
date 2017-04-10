@@ -63,13 +63,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         
         Client.sharedInstance.establishConnection() {
-            let json:NSMutableDictionary = NSMutableDictionary()
-            json.setValue("hello world", forKey: "message")
-            let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
-            let jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue) as! String
-            print(jsonString)
             
-            Client.sharedInstance.socket.write(data: jsonData as Data)
         }
         
     }
