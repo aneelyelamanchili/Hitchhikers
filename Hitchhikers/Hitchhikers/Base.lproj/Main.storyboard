@@ -847,11 +847,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IOi-tB-VOg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-<<<<<<< HEAD
             <point key="canvasLocation" x="2660" y="438.98050974512745"/>
-=======
-            <point key="canvasLocation" x="3092" y="251"/>
->>>>>>> eafc48d1d088224eabbe89f581358995321883f1
         </scene>
         <!--Menu View Controller-->
         <scene sceneID="4Fp-K5-SZW">
@@ -869,11 +865,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5ah-V1-jRl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-<<<<<<< HEAD
             <point key="canvasLocation" x="2034" y="789"/>
-=======
-            <point key="canvasLocation" x="2106" y="624"/>
->>>>>>> eafc48d1d088224eabbe89f581358995321883f1
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="0Hy-rg-2NR">
