@@ -27,12 +27,14 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 //import org.json.simple.JSONObject;
 //import org.json.JSONException;
 //import org.json.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+//import org.json.simple.parser.JSONParser;
+//import org.json.simple.parser.ParseException;
+//import org.json.simple.parser.JSONParser;
 
 //TEST WITH var ws = new WebSocket('ws://localhost:8080/Server/ws'); in CHROME DEV TOOLS ctrl shift j
 
@@ -62,14 +64,19 @@ public class WebSocketEndpoint {
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-		JSONParser parser = new JSONParser();
+		//JSONParser parser = new JSONParser();
 		JSONObject json = null;
-		try {
-			json = (JSONObject) parser.parse(printMe);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+//		try {
+			try {
+				json = new JSONObject(printMe);
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+//		} catch (ParseException e) {
+//			e.printStackTrace();
+//		}
 		application.parseMessage(json, session, this);
+		System.out.println(printMe);
 		//send message back, convert to 
 		lock.unlock();
 	}

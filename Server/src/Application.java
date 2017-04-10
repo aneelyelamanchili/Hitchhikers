@@ -29,11 +29,11 @@ public class Application {
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection("jdbc:mysql://localhost/Hitchhikers?user=root&password=root&useSSL=false");
 	        st = conn.createStatement();
-	        
-	        if (message.get("SignUpUsername")!=null) {
+			
+	        if (message.get("message").equals("signup")) {
 				wsep.sendToSession(session, toBinary(signUp(message, session, st, rs)));
 			}
-			else if (message.get("SignInUsername")!=null) {
+			else if (message.get("message").equals("login")) {
 				wsep.sendToSession(session, toBinary(signIn(message, session, st, rs)));
 			}
 	        
@@ -67,17 +67,19 @@ public class Application {
 	public JSONObject signUp(JSONObject message, Session session, Statement st, ResultSet rs) {
 		JSONObject response = new JSONObject();
 		try {
-			String signupusername = (String) message.get("SignUpUsername");
+			String signupusername = (String) message.get("username");
 			if (signupusername.length() > 0) {
 				rs = st.executeQuery("SELECT * from TotalUsers");
 				while (rs.next()) {
 					if (rs.getString("Username").equals(signupusername)) {
+						response.put("message", "signupfail");
 						response.put("signupfail", "Username already exists.");
 						return response;
 						//return failed sign up message
 					}
 				}
-				if (message.get("Password")!=null || message.get("Age")!=null || message.get("Email")!=null || message.get("Picture")!=null || message.get("isDriver")!=null) {
+				if (message.get("password")!=null || message.get("age")!=null || message.get("email")!=null || message.get("picture")!=null || message.get("isDriver")!=null) {
+					response.put("message", "signupfail");
 					response.put("signupfail", "Please fill in all of the fields.");
 					return response;
 					//return failed sign up message
@@ -88,6 +90,7 @@ public class Application {
 				String signuppicture = (String)message.get("Picture");
 				String signupdriver = (String)message.get("isDriver");
 				if (signuppassword.equals("") || signupage.equals("") || signupemail.equals("") || signuppicture.equals("") || signupdriver.equals("")) {
+					response.put("message", "signupfail");
 					response.put("signupfail", "Please fill in all of the fields.");
 					return response;
 					//return failed sign up message
@@ -96,11 +99,13 @@ public class Application {
 				try {
 					signupageint = Integer.parseInt(signupage);
 				} catch (NumberFormatException e) {
+					response.put("message", "signupfail");
 					response.put("signupfail", "Please enter a valid age.");
 					return response;
 					//return failed sign up message
 				}
 				if (signupageint < 1) {
+					response.put("message", "signupfail");
 					response.put("signupfail", "Please enter a valid age.");
 					return response;
 					//return failed sign up message
@@ -113,6 +118,7 @@ public class Application {
 				//Account has successful inputs and is now entered into the database.
 				String addUser = "('" + signupusername + "', '" + signuppassword + "', " + signupage + ", '" + signupemail + "', '" + signuppicture + "', " + signupdriverbool + ")";
 				st.execute(Constants.SQL_INSERT_USER + addUser + ";");
+				response.put("message", "signupsuccess");
 				response.put("signupsuccess", "Account was made.");
 				
 				//User details for front-end.
@@ -125,12 +131,14 @@ public class Application {
 				return response;
 			}
 			else {
+				response.put("message", "signupfail");
 				response.put("signupfail", "Please enter a username.");
 				return response;
 				//return failed sign up message
 			}
 		} catch (SQLException sqle) {
 			try {
+				response.put("message", "signupfail");
 				response.put("signupfail", "Sign up failed.");
 			} catch (JSONException e) {
 				e.printStackTrace();
@@ -146,13 +154,14 @@ public class Application {
 	public JSONObject signIn(JSONObject message, Session session, Statement st, ResultSet rs) {
 		JSONObject response = new JSONObject();
 		try {
-			String signinusername = (String) message.get("SignInUsername");
-			String signinpassword = (String) message.get("SignInPassword");
+			String signinusername = (String) message.get("username");
+			String signinpassword = (String) message.get("password");
 			if (signinusername.length() > 0 && signinpassword.length() > 0) {
 				rs = st.executeQuery("SELECT * from TotalUsers WHERE username='" + signinusername + "';");
 				if (rs.next()) {
 					if (rs.getString("Password").equals(signinpassword)) { //YOOOOO GET THE RIGHT COLUMN NUMBER
-						response.put("signinsuccess", "Logged in.");
+						response.put("message", "loginsuccess");
+						response.put("loginsuccess", "Logged in.");
 						
 						//User details for front-end.
 						JSONObject userDetails = addUserToJSON(signinusername, st, rs);
@@ -163,31 +172,43 @@ public class Application {
 						return response;
 					}
 					else {
-						response.put("signinfail", "Incorrect password.");
+						response.put("message", "loginfail");
+						response.put("loginfail", "Incorrect password.");
 						return response;
 					}
 				}
 				else {
-					response.put("signinfail", "Username doesn't exist.");
+					response.put("message", "loginfail");
+					response.put("loginfail", "Username doesn't exist.");
 					return response;
 				}
 			}
 			else {
-				response.put("signinfail", "Please fill in all of the fields.");
+				response.put("message", "loginfail");
+				response.put("loginfail", "Please fill in all of the fields.");
 				return response;
 			}
 		} catch (SQLException sqle) {
 			try {
-				response.put("signinfailed", "Sign in failed.");
+				response.put("message", "loginfail");
+				response.put("loginfailed", "Login failed.");
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
 			return response;
 	    } catch (JSONException e) {
 			e.printStackTrace();
-		} finally {
-			return null;
-		}
+		} return response;
+//		finally {
+//			try {
+//				response.put("message", "loginfail");
+//				response.put("loginfailed", "Login failed.");
+//			} catch (JSONException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//			return response;
+//		}
 	}
 	//for profile, return all the deets of user x
 	
@@ -225,7 +246,7 @@ public class Application {
 		String messageToConvert = message.toString();
 		byte[] converted = null;
 		try {
-			converted = messageToConvert.getBytes("US_ASCII");
+			converted = messageToConvert.getBytes("UTF-8");
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
