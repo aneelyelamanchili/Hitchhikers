@@ -39,14 +39,21 @@ class FeedTableViewController: UITableViewController {
         
     }
     
-    func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if  segue.identifier == "showRide",
-            let destination = segue.destination as? RideViewController
-//            let rowIndex = tableView.indexPathForSelectedRow?.row
+            let destination = segue.destination as? RideViewController,
+            let rowIndex = tableView.indexPathForSelectedRow?.row,
+            let sectionIndex = tableView.indexPathForSelectedRow?.section
         {
             print("GOT HERE");
-//            print(rowIndex);
-            destination.words = "This row is: ";
+            print(rowIndex);
+            let indexPath = IndexPath(row: rowIndex, section: sectionIndex);
+            let cell = tableView.cellForRow(at: indexPath) as! FeedTableViewCell;
+            destination.dName = "Jeffrey Miller,PhD";
+            destination.dImage = cell.imageString;
+            
+            // FINISH THE REST OF THE OUTLETS
+            // destination.carModel = "Toyota"
         }
     }
     

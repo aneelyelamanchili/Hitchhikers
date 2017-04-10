@@ -7,18 +7,48 @@
 //
 
 import UIKit
+import MapKit
 
 class RideViewController: UIViewController {
-
-    @IBOutlet weak var testLabel: UILabel!
     
-    var words = String();
+    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var driverName: UILabel!
+    @IBOutlet weak var driverImage: UIImageView!
+    @IBOutlet weak var carModelLicense: UILabel!
+    @IBOutlet weak var contactUser: UIButton!
+    @IBOutlet weak var departure: UILabel!
+    @IBOutlet weak var price: UILabel!
+    @IBOutlet weak var destination: UILabel!
+    @IBOutlet weak var luggage: UILabel!
+    @IBOutlet weak var food: UILabel!
+    @IBOutlet weak var hospitality: UILabel!
+    @IBOutlet weak var detours: UILabel!
+    
+    var dName = String();
+    var dImage = String();
+    var carModel = String();
+    var departurePlace = String();
+    var dollars = String();
+    var destinationPlace = String();
+    var stuffToBring = String();
+    var eat = String();
+    var hospitalities = String();
+    var detour = String();
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        testLabel.text = words;
         // Do any additional setup after loading the view.
+        driverName.text = dName;
+        
+        driverImage.image = UIImage(named: dImage);
+        carModelLicense.text = carModel;
+        departure.text = departurePlace;
+        price.text = dollars;
+        destination.text = destinationPlace;
+        luggage.text = stuffToBring;
+        food.text = eat;
+        hospitality.text = hospitalities;
+        detours.text = detour;
     }
 
     override func didReceiveMemoryWarning() {

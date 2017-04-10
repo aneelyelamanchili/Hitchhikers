@@ -17,6 +17,8 @@ class FeedTableViewCell: UITableViewCell {
     @IBOutlet weak var destinationLabel: UILabel!
     @IBOutlet weak var departureTimeLabel: UILabel!
     
+    var imageString = String();
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -30,6 +32,7 @@ class FeedTableViewCell: UITableViewCell {
     
     func configureCell() {
         profileImage.image = UIImage(named:"jeffrey_miller.jpg");
+        imageString = "jeffrey_miller.jpg";
         profileImage.layer.cornerRadius = 31.5;
         profileImage.layer.masksToBounds = true;
         destinationLabel.text = "University California, Berkley, Berkley CA 94720";
