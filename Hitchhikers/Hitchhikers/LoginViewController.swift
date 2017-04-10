@@ -11,6 +11,9 @@ import UIKit
 class LoginViewController: UIViewController {
     
     let sharedModel = Client.sharedInstance
+    
+    @IBOutlet weak var username: UITextField!
+    @IBOutlet weak var password: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +44,17 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func loginButton(_ sender: Any) {
+        let json:NSMutableDictionary = NSMutableDictionary()
+        json.setValue("login", forKey: "message")
+        json.setValue(username.text, forKey: "username")
+        json.setValue(password.text, forKey: "password")
+        let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
+        let jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue) as! String
+        print(jsonString)
+        
+        Client.sharedInstance.socket.write(data: jsonData as Data)
+        
+        
         let mainViewController = storyboard?.instantiateViewController(withIdentifier: "FeedTableViewController") as! FeedTableViewController
         let leftViewController = storyboard?.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
         let nvc: UINavigationController = UINavigationController(rootViewController: mainViewController)

@@ -12,7 +12,7 @@ import Starscream
 class Client: NSObject, WebSocketDelegate {
     static let sharedInstance = Client()
 
-    var socket = WebSocket(url: URL(string: "ws://52a2a0f1.ngrok.io/Server/ws")!)
+    var socket = WebSocket(url: URL(string: "ws://4afb3445.ngrok.io/Server/ws")!)
     
     // MARK: Websocket Delegate Methods.
     
@@ -33,7 +33,14 @@ class Client: NSObject, WebSocketDelegate {
     }
     
     func websocketDidReceiveData(socket: WebSocket, data: Data) {
-        print("Received data: \(data.count)")
+        //print("Received data: \(data)")
+        
+        if let str = String(data: data, encoding: String.Encoding.utf8) {
+            let json = convertToDictionary(text: str)
+            print(str)
+        } else {
+            print("not a valid UTF-8 sequence")
+        }
     }
     
     func establishConnection(completion: @escaping ()->Void) {
@@ -46,6 +53,17 @@ class Client: NSObject, WebSocketDelegate {
 
     func closeConnection() {
         socket.disconnect()
+    }
+    
+    func convertToDictionary(text: String) -> [String: Any]? {
+        if let data = text.data(using: .utf8) {
+            do {
+                return try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        return nil
     }
 
 }

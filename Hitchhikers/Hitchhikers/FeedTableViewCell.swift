@@ -32,7 +32,7 @@ class FeedTableViewCell: UITableViewCell {
         profileImage.image = UIImage(named:"jeffrey_miller.jpg");
         profileImage.layer.cornerRadius = 31.5;
         profileImage.layer.masksToBounds = true;
-        destinationLabel.text = "University California, Berkley, Berkley CA 94720";
+        destinationLabel.text = "University California, Berkeley, Berkeley CA 94720";
         departureTimeLabel.text = "April 8, 2017 11:00 am"
         
         let initialLocation = CLLocation(latitude: 21.282778, longitude: -157.829444)
@@ -49,6 +49,8 @@ class FeedTableViewCell: UITableViewCell {
         mapView.isUserInteractionEnabled = false;
         
     }
+    
+    
     
 }
 
