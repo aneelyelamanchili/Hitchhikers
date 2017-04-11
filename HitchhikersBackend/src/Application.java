@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.websocket.Session;
@@ -16,7 +17,28 @@ import org.json.JSONObject;
 
 public class Application {
 	private Map<Integer, ArrayList<String>> rideList; //what do we need to store in each ride, should it be in sql
+	private Map<Integer, Integer> rideSize;
 	public Application() {
+		rideList = new HashMap<Integer, ArrayList<String>>();
+		rideSize = new HashMap<Integer, Integer>();
+		
+		Connection conn = null;
+		Statement st = null;
+		ResultSet rs = null;
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost/Hitchhikers?user=root&password=root&useSSL=false");
+			st = conn.createStatement();
+			rs = st.executeQuery("SELECT * FROM CurrentTrips");
+			while (rs.next()) {
+				ArrayList<String> x = new ArrayList<>();
+				x.add(rs.getString("Username"));
+				rideList.put(rs.getInt("rideID"), x);
+				rideSize.put(rs.getInt("rideID"), rs.getInt("TotalSeats"));
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
 		
 	}
 	public void parseMessage(JSONObject message, Session session, WebSocketEndpoint wsep) {
@@ -37,6 +59,15 @@ public class Application {
 			}
 			else if (message.get("message").equals("makeride")) {
 				wsep.sendToSession(session, toBinary(makeRide(message, conn)));
+			}
+			else if (message.get("message").equals("joinride")) {
+				wsep.sendToSession(session, toBinary(joinRide(message, conn)));
+			}
+			else if (message.get("message").equals("deleteride")) {
+				
+			}
+			else if (message.get("message").equals("guestview")) {
+				wsep.sendToSession(session, toBinary(guestView(message, conn)));
 			}
 	        
 		} catch (ClassNotFoundException | SQLException | JSONException e) {
@@ -236,11 +267,22 @@ public class Application {
 			String hospitality = (String)message.getString("hospitality");
 			String food = (String)message.getString("food");
 			String luggage = (String)message.getString("luggage");
-			
+			int totalseats = (int)message.getInt("totalseats");
 			
 			//currently there is no preventing a ride from being created
-			String addRide = "('" + username + "', '" + origin + "', '" + destination + "', '" + carmodel + "', '" + licenseplate + "', " + cost + ", '" + datetime + "', '" + detours + "', '" + hospitality + "', '" + food + "', '" + luggage + "')";
+			String addRide = "('" + username + "', '" + origin + "', '" + destination + "', '" + carmodel + "', '" + licenseplate + "', " + cost + ", '" + datetime + "', '" + detours + "', '" + hospitality + "', '" + food + "', '" + luggage + "', " + totalseats + ", " + (totalseats-1) + ")";
 			st.execute(Constants.SQL_INSERT_RIDE + addRide + ";");
+			
+			ResultSet rs = null;
+			rs = st.executeQuery("SELECT * FROM CurrentRides");
+			while (rs.next()) {
+				if (username.equals(rs.getString("Username")) && origin.equals(rs.getString("Origin")) && destination.equals(rs.getString("Destination")) && carmodel.equals(rs.getString("CarModel")) && hospitality.equals(rs.getString("Hospitality"))) {
+					rideSize.put(rs.getInt("rideID"), totalseats-1);
+					ArrayList<String> riders = new ArrayList<String>();
+					riders.add(username);
+					rideList.put(rs.getInt("rideID"), riders);
+				}
+			}
 			
 			response.put("message", "addridesuccess");
 			JSONObject userDetails = addUserToJSON(username, conn);
@@ -266,8 +308,79 @@ public class Application {
 		}
 	}
 	public JSONObject joinRide(JSONObject message, Connection conn) {
+		JSONObject response = new JSONObject();
+		try {
+			Statement st = conn.createStatement();
+			int rideid = message.getInt("rideid");
+			String username = message.getString("username");
+			ArrayList<String> currentriders = rideList.get(rideid);
+			boolean notonride = true;
+			for (int i=0; i<currentriders.size(); i++) {
+				if (currentriders.get(i).equals(username)) {
+					notonride = false;
+				}
+			}
+			if (!notonride) {
+				response.put("message", "addriderfail");
+				response.put("addriderfail", "This user is already on the trip");
+			}
+			else if (notonride && currentriders.size() < rideSize.get(rideid)) {
+				currentriders.add(username);
+				rideList.put(rideid, currentriders);
+				response.put("message", "addridersuccessful");
+				ResultSet rs = st.executeQuery("SELECT * FROM CurrentTrips WHERE rideID=" + rideid + ";");
+				if (rs.next()) {
+					st.executeUpdate("UPDATE CurrentTrips set SeatsAvailable = " + (rs.getInt("SeatsAvailable")-1) + " WHERE rideID=" + rideid + ";");
+				}
+			}
+			else {
+				response.put("message", "addriderfail");
+				response.put("addriderfail", "There is no space");
+			}
+			
+			JSONObject userDetails = addUserToJSON(username, conn);
+			for (String key : JSONObject.getNames(userDetails)) {
+				response.put(key, userDetails.get(key));
+			}
+			JSONObject feedDetails = addFeedToJSON(conn);
+			for (String key : JSONObject.getNames(feedDetails)) {
+				response.put(key, feedDetails.get(key));
+			}
+			
+			return response;
+		} catch (JSONException e) {
+			e.printStackTrace();
+			return response;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return response;
+		}
+	}
+	
+	public JSONObject deleteRide(JSONObject message, Connection conn) {
 		return null;
 	}
+	
+	public JSONObject guestView(JSONObject message, Connection conn) {
+		JSONObject response = new JSONObject();
+		try {
+			response.put("message", "guestviewsuccess");
+			JSONObject feedDetails = addFeedToJSON(conn);
+			for (String key : JSONObject.getNames(feedDetails)) {
+				response.put(key, feedDetails.get(key));
+			}
+			return response;
+		} catch (JSONException e) {
+			e.printStackTrace();
+			try {
+				response.put("message", "guestviewfail");
+			} catch (JSONException e1) {
+				e1.printStackTrace();
+			}
+			return response;
+		}
+	}
+	
 	public JSONObject addUserToJSON(String username, Connection conn) {
 		JSONObject user = new JSONObject();
 		try {
@@ -291,7 +404,6 @@ public class Application {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return user;
@@ -322,6 +434,7 @@ public class Application {
 					st1.close();
 				}
 				//make strings for each list of origins, destinations, cars, every single column in currenttrips table
+				currFeed.put("rideid", rs.getString("rideID"));
 				currFeed.put("username", rs.getString("Username"));
 				currFeed.put("origin", rs.getString("StartingPoint"));
 				currFeed.put("destination", rs.getString("DestinationPoint"));
@@ -333,7 +446,19 @@ public class Application {
 				currFeed.put("hospitality", rs.getString("Hospitality"));
 				currFeed.put("food", rs.getString("Food"));
 				currFeed.put("luggage", rs.getString("Luggage"));
+				currFeed.put("totalseats", rs.getString("TotalSeats"));
+				currFeed.put("seatsavailable", rs.getString("SeatsAvailable"));
 
+				String users = "";
+				for (int i=0; i<rideList.get(rs.getInt("rideID")).size(); i++) {
+					if (i>0) {
+						users += ", " + rideList.get(rs.getInt("rideID")).get(i);
+					}
+					else {
+						users += rideList.get(rs.getInt("rideID")).get(i);
+					}
+				}
+				currFeed.put("currentriders", users);
 				feed.put("feed" + feedIndex, currFeed);
 
 				//Increment trip counter + counter 
@@ -419,7 +544,7 @@ public class Application {
 				//Account has successful inputs and is now entered into the database.
 //				String addUser = "('" + signupusername + "', '" + signuppassword + "', " + signupage + ", '" + signupemail + "', '" + signuppicture + "', " + signupdriverbool + ")";
 				String addUser = "('" + signupusername + "', '" + signuppassword + "', '" + signupemail + "', " + signupage + ", '" + signupphonenumber + "', '" + signuppicture + "', " + signupdriverint + ")";
-				System.out.println(Constants.SQL_INSERT_USER + addUser);
+//				System.out.println(Constants.SQL_INSERT_USER + addUser);
 				st.execute(Constants.SQL_INSERT_USER + addUser + ";");
 				response.put("message", "signupsuccess");
 				response.put("signupsuccess", "Account was made.");
@@ -445,7 +570,6 @@ public class Application {
 			}
 		} catch (SQLException sqle) {
 			try {
-				System.out.println("wtf");
 				response.put("message", "signupfail");
 				response.put("signupfail", "Sign up failed.");
 			} catch (JSONException e) {
@@ -526,11 +650,13 @@ public class Application {
 	        st1 = conn.createStatement();
 			
 	        if (message.get("message").equals("signup")) {
-	        	System.out.println("tester");
 				return signUp(message, conn);
 			}
 			else if (message.get("message").equals("login")) {
 				return signIn(message, conn);
+			}
+			else if (message.get("message").equals("joinride")) {
+				return joinRide(message, conn);
 			}
 	        
 		} catch (ClassNotFoundException | SQLException | JSONException e) {

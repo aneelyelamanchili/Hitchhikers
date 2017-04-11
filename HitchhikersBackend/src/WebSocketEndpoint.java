@@ -29,12 +29,7 @@ import javax.websocket.server.ServerEndpoint;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-//import org.json.simple.JSONObject;
-//import org.json.JSONException;
-//import org.json.JSONObject;
-//import org.json.simple.parser.JSONParser;
-//import org.json.simple.parser.ParseException;
-//import org.json.simple.parser.JSONParser;
+
 
 //TEST WITH var ws = new WebSocket('ws://localhost:8080/Server/ws'); in CHROME DEV TOOLS ctrl shift j
 
@@ -43,7 +38,7 @@ import org.json.JSONObject;
 public class WebSocketEndpoint {
 	private static final Logger logger = Logger.getLogger("BotEndpoint");
 	private static final Map<String, Session> sessions = new HashMap<String, Session>();
-//	private static final Map<String, Factory> factories = new HashMap<>();
+	private static final Map<String, Session> usernames = new HashMap<>();
 	private static Application application = new Application();
 	private static Lock lock = new ReentrantLock();
 
@@ -76,7 +71,7 @@ public class WebSocketEndpoint {
 //			e.printStackTrace();
 //		}
 		application.parseMessage(json, session, this);
-		System.out.println(printMe);
+//		System.out.println(printMe);
 		//send message back, convert to 
 		lock.unlock();
 	}
