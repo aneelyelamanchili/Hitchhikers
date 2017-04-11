@@ -1181,22 +1181,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <navigationBar key="tableHeaderView" contentMode="scaleToFill" id="2Ao-U1-c9F">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <items>
-                                <navigationItem title="Guest View" id="pbX-gU-5cp">
-                                    <barButtonItem key="leftBarButtonItem" systemItem="done" id="NFn-Zy-WSa">
-                                        <connections>
-                                            <action selector="dismissView:" destination="3Pn-f2-T7N" id="5NP-Ec-Bc5"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </navigationItem>
-                            </items>
-                        </navigationBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="feedCell" rowHeight="244" id="T79-nc-sPn" customClass="FeedTableViewCell" customModule="Hitchhikers" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="72" width="375" height="244"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="244"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="T79-nc-sPn" id="bir-lZ-5Vg">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="243.5"/>
@@ -1295,7 +1282,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HWh-NW-1Fo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="828" y="-903"/>
+            <point key="canvasLocation" x="785" y="-923"/>
         </scene>
     </scenes>
     <resources>
