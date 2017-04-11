@@ -9,6 +9,7 @@ target 'Hitchhikers' do
    pod 'SwiftIconFont'
    pod 'SlideMenuControllerSwift'
    pod 'Starscream'
+   pod 'Alamofire', '~> 4.4'
 
   target 'HitchhikersTests' do
     inherit! :search_paths

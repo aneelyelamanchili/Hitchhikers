@@ -1,18 +1,21 @@
 PODS:
+  - Alamofire (4.4.0)
   - SlideMenuControllerSwift (3.0.1)
   - Starscream (2.0.3)
   - SwiftIconFont (2.6.0)
 
 DEPENDENCIES:
+  - Alamofire (~> 4.4)
   - SlideMenuControllerSwift
   - Starscream
   - SwiftIconFont
 
 SPEC CHECKSUMS:
+  Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
   SlideMenuControllerSwift: 9a163b16d54afab734add42858cba7ef7c307755
   Starscream: 3fdd5c277e57cca6b5c406d274e3f34a7c88f2ce
   SwiftIconFont: bbe1f32e1e16bac87dad8566afc80132cb8d072c
 
-PODFILE CHECKSUM: 4519418bece3a88f92dbbf252503735f95c409aa
+PODFILE CHECKSUM: 725e8b53735e8a6c8755df0454d3c28229dc5d6e
 
 COCOAPODS: 1.2.0
