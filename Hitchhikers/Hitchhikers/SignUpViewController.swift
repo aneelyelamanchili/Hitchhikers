@@ -7,11 +7,18 @@
 //
 
 import UIKit
+import SwiftIconFont
 
 class SignUpViewController: UIViewController {
+    @IBOutlet weak var btn: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let origImage = UIImage(named: "down_arrow.png")
+        let tintedImage = origImage?.withRenderingMode(.alwaysTemplate)
+        btn.setImage(tintedImage, for: .normal)
+        btn.tintColor = .gray
 
         // Do any additional setup after loading the view.
     }
@@ -20,6 +27,11 @@ class SignUpViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    @IBAction func dismissView(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
+
     
 
     /*

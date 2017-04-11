@@ -491,10 +491,10 @@
             </objects>
             <point key="canvasLocation" x="2660" y="-472"/>
         </scene>
-        <!--View Controller-->
+        <!--Sign Up View Controller-->
         <scene sceneID="Zat-zj-Udx">
             <objects>
-                <viewController id="SZ0-L4-Ajh" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignUpViewController" id="SZ0-L4-Ajh" customClass="SignUpViewController" customModule="Hitchhikers" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vdd-D3-xgy"/>
                         <viewControllerLayoutGuide type="bottom" id="qvz-GQ-dK2"/>
@@ -615,14 +615,27 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" backgroundImage="welcome.png"/>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rTE-Zw-cSB">
+                                <rect key="frame" x="0.0" y="28" width="42" height="43"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="down_arrow.png">
+                                    <color key="titleColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="dismissView:" destination="SZ0-L4-Ajh" eventType="touchUpInside" id="Ojz-NS-UBf"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="CJ9-qw-1yY"/>
+                    <connections>
+                        <outlet property="btn" destination="rTE-Zw-cSB" id="PJq-vw-FLR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dvX-dW-fW7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="662" y="582"/>
+            <point key="canvasLocation" x="668" y="595.95202398800609"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="Q7g-47-xdc">
@@ -1168,6 +1181,7 @@
         <image name="adventure_girl.png" width="385" height="166"/>
         <image name="contact_user.png" width="243" height="32"/>
         <image name="crossroads.png" width="70" height="70"/>
+        <image name="down_arrow.png" width="200" height="200"/>
         <image name="food.png" width="70" height="70"/>
         <image name="girl_on_hill.png" width="1002" height="668"/>
         <image name="hamburger_menu.png" width="24" height="18"/>
