@@ -246,18 +246,31 @@ public class Application {
 		JSONObject feed = new JSONObject();
 		try {
 			rs = st.executeQuery("SELECT * from CurrentTrips");
-			//look at addusertojson if needed
+			//Loop through database of CurrentTrips
+			int feedCounter = 0;
+			int feedIndex = 1; 			//For keeping track of feed index
 			while (rs.next()) {
-				//add counter for num of trips
+				JSONObject currFeed = new JSONObject();
+				
 				//make strings for each list of origins, destinations, cars, every single column in currenttrips table
-				//make some separator between each origin like "---"
+				currFeed.put("Origin", rs.getString("StartingPoint"));
+				currFeed.put("Destination", rs.getString("DestinationPoint"));
+				currFeed.put("CarModel", rs.getString("CarModel"));
+				currFeed.put("LicensePlate", rs.getString("LicensePlate"));
+				currFeed.put("Cost", rs.getString("Cost"));
+				currFeed.put("Date/Time", rs.getString("Date/Time"));
+
+				feed.put("feed" + feedIndex, currFeed);
+
+				//Increment trip counter + counter 
+				feedCounter++; 
+				feedIndex++;
 			}
-			//then do feed.put("origin",string of origins) for every string u made
-			//and make a feed.put("feedsize", int) for how big feed is
+			//Placed feed size in the thing 
+			feed.put("feedsize", feedCounter);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return feed;
