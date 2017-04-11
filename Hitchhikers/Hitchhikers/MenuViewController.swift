@@ -103,14 +103,20 @@ class MenuViewController: UIViewController, LeftMenuProtocol {
 //            let controller = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
 //            self.present(controller, animated: true, completion: { () -> Void in
 //            })
-            navigationController?.popViewController(animated: true)
-            dismiss(animated: true, completion: nil)
+            let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
+            let mainViewController = mainStoryBoard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.window?.rootViewController = mainViewController
+            self.dismiss(animated: true) {
+                let _ = self.navigationController?.popToRootViewController(animated: true)
+            }
         }
     }
     
     func handleTap(sender: UITapGestureRecognizer? = nil) {
         self.slideMenuController()?.changeMainViewController(self.profileViewController, close: true)
     }
+    
 }
 
 extension MenuViewController: UITableViewDelegate {
