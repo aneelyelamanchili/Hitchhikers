@@ -9,8 +9,10 @@
 import UIKit
 import MapKit
 
-class RideViewController: UIViewController {
+class RideViewController: UIViewController, UIScrollViewDelegate {
     
+    @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var driverName: UILabel!
     @IBOutlet weak var driverImage: UIImageView!
@@ -49,7 +51,18 @@ class RideViewController: UIViewController {
         food.text = eat;
         hospitality.text = hospitalities;
         detours.text = detour;
+        scrollView.frame = view.bounds
+        self.scrollView.contentSize = self.contentView.bounds.size;
+//        scrollView.contentSize = CGSize(width: 375, height: 1136);
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+//        scrollView.frame = view.bounds
+//        contentView.frame = CGRect(0, 0, scrollView.contentSize.width, scrollView.contentSize.height);
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
