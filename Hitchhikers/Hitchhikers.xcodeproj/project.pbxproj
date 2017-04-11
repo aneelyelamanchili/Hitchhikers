@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		117B48181E9CD3CC00B0799C /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117B48171E9CD3CC00B0799C /* ProfileTableViewController.swift */; };
+		117B481C1E9CE04700B0799C /* vertical_dots.png in Resources */ = {isa = PBXBuildFile; fileRef = 117B481B1E9CE04700B0799C /* vertical_dots.png */; };
+		117B481E1E9CE27500B0799C /* JeffreyMiller.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 117B481D1E9CE27500B0799C /* JeffreyMiller.jpg */; };
 		117EAC611E8DD9FE008BEE42 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117EAC601E8DD9FE008BEE42 /* Client.swift */; };
 		11BF99921E94E810000E393C /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BF99911E94E810000E393C /* MenuViewController.swift */; };
 		11BF99961E94E8F2000E393C /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BF99951E94E8F2000E393C /* UIViewController.swift */; };
@@ -82,6 +85,9 @@
 
 /* Begin PBXFileReference section */
 		0B20C2CE7461E8A91A41C4D4 /* Pods-HitchhikersTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HitchhikersTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HitchhikersTests/Pods-HitchhikersTests.release.xcconfig"; sourceTree = "<group>"; };
+		117B48171E9CD3CC00B0799C /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
+		117B481B1E9CE04700B0799C /* vertical_dots.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vertical_dots.png; sourceTree = "<group>"; };
+		117B481D1E9CE27500B0799C /* JeffreyMiller.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = JeffreyMiller.jpg; sourceTree = "<group>"; };
 		117EAC601E8DD9FE008BEE42 /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		11BF99911E94E810000E393C /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		11BF99951E94E8F2000E393C /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
@@ -203,6 +209,8 @@
 		B91FF28E1E8DD93B00A7E766 /* img */ = {
 			isa = PBXGroup;
 			children = (
+				117B481D1E9CE27500B0799C /* JeffreyMiller.jpg */,
+				117B481B1E9CE04700B0799C /* vertical_dots.png */,
 				B9C349F31E971AC4008B85CC /* dude_pic.png */,
 				B9143A401E95F40A0081D002 /* welcome.png */,
 				11BF999F1E95188C000E393C /* jeffrey_miller.jpg */,
@@ -283,6 +291,7 @@
 				B9143A3A1E95BF860081D002 /* AddRideViewController.swift */,
 				B9143A3C1E95D8CF0081D002 /* SearchRidesViewController.swift */,
 				B9C349F11E9716F6008B85CC /* FeedTableViewCell.swift */,
+				117B48171E9CD3CC00B0799C /* ProfileTableViewController.swift */,
 			);
 			path = Hitchhikers;
 			sourceTree = "<group>";
@@ -432,6 +441,7 @@
 				B91FF2BD1E8DDA8800A7E766 /* crossroads.png in Resources */,
 				B91FF2BF1E8DDA8800A7E766 /* suitcase_icon.png in Resources */,
 				B91FF2AE1E8DDA8800A7E766 /* nice_car_trunk.png in Resources */,
+				117B481E1E9CE27500B0799C /* JeffreyMiller.jpg in Resources */,
 				B9143A411E95F40A0081D002 /* welcome.png in Resources */,
 				B9C349F41E971AC4008B85CC /* dude_pic.png in Resources */,
 				B91FF2B61E8DDA8800A7E766 /* adventure_girl.png in Resources */,
@@ -455,6 +465,7 @@
 				B91FF2AC1E8DDA8800A7E766 /* id.png in Resources */,
 				B91FF2C01E8DDA8800A7E766 /* hamburger_menu.png in Resources */,
 				B92989F51E8DCA9800CF8287 /* Main.storyboard in Resources */,
+				117B481C1E9CE04700B0799C /* vertical_dots.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -624,6 +635,7 @@
 				11BF999A1E94E9AB000E393C /* ProfileViewController.swift in Sources */,
 				B92989F21E8DCA9800CF8287 /* ViewController.swift in Sources */,
 				B970B7D91E97B5AB0084428A /* RideViewController.swift in Sources */,
+				117B48181E9CD3CC00B0799C /* ProfileTableViewController.swift in Sources */,
 				11BF99921E94E810000E393C /* MenuViewController.swift in Sources */,
 				11BF999C1E94ED6F000E393C /* BaseTableViewCell.swift in Sources */,
 				B9143A3F1E95F0E10081D002 /* SignUpViewController.swift in Sources */,

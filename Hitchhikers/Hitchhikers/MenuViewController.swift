@@ -37,7 +37,7 @@ class MenuViewController: UIViewController, LeftMenuProtocol {
         let viewSize:CGSize = self.view.frame.size;
         let newView = UIView(frame: CGRect(x: 0, y: 0, width: viewSize.width-105, height: 150))
         newView.backgroundColor = UIColor(red:0.19, green:0.27, blue:0.31, alpha:1.0)
-        let image = UIImage(named: "jeffrey_miller.jpg")
+        let image = UIImage(named: "JeffreyMiller.jpg")
         let imageView = UIImageView(image: image!)
         imageView.frame = CGRect(x: 15, y: 20, width: 100, height: 100)
         imageView.layer.borderWidth = 0.1

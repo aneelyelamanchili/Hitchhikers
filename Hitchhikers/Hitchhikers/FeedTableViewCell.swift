@@ -49,7 +49,7 @@ class FeedTableViewCell: UITableViewCell {
         // Set up stored variables in the cell
         dName = "Jeffrey Miller,PhD";
         imageString = "jeffrey_miller.jpg";
-        profileImage.image = UIImage(named:"jeffrey_miller.jpg");
+        profileImage.image = UIImage(named:"JeffreyMiller.jpg");
         carModel = "Toyota Prius 7TWC807"
         departurePlace = "3025 Royal Street, Los Angeles, CA 90007";
         dollars = "$25-$30";
