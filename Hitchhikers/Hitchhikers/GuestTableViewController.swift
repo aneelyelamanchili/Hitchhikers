@@ -36,6 +36,10 @@ class GuestTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
+    @IBAction func dismissView(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
 //    @IBAction func unwindToMenu(segue: UIStoryboardSegue) {
 //        
 //    }
