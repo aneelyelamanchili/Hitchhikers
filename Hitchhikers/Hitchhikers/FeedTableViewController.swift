@@ -51,9 +51,16 @@ class FeedTableViewController: UITableViewController {
             let cell = tableView.cellForRow(at: indexPath) as! FeedTableViewCell;
             destination.dName = "Jeffrey Miller,PhD";
             destination.dImage = cell.imageString;
-            
-            // FINISH THE REST OF THE OUTLETS
-            // destination.carModel = "Toyota"
+            destination.carModel = "Toyota Prius 7TWC807";
+            destination.departurePlace = "3025 Royal Street, Los Angeles, CA 90007";
+            destination.dollars = "$25-$30";
+            destination.destinationPlace = "Voodoo Doughnut 22 SW 3rd Ave, Portland, OR 97204";
+            destination.stuffToBring = "1-2 bags maximum";
+            destination.eat = "Will make stops; Feel free to bring snacks";
+            destination.hospitalities = "Will make frequent pit stops for bathroom; Camping out doors at night";
+            destination.detour = "Yes";
+            destination.xCoordinate = cell.xCoordinate;
+            destination.yCoordinate = cell.yCoordinate;
         }
     }
     

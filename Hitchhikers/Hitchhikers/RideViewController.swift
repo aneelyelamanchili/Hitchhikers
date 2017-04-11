@@ -36,13 +36,34 @@ class RideViewController: UIViewController, UIScrollViewDelegate {
     var eat = String();
     var hospitalities = String();
     var detour = String();
+    var xCoordinate = Float();
+    var yCoordinate = Float();
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        let initialLocation = CLLocation(latitude: CLLocationDegrees(xCoordinate), longitude: CLLocationDegrees(yCoordinate))
+        
+        let regionRadius: CLLocationDistance = 1000
+        let coordinateRegion = MKCoordinateRegionMakeWithDistance(initialLocation.coordinate,
+                                                                  regionRadius * 2.0, regionRadius * 2.0)
+        print(xCoordinate);
+        print(yCoordinate);
+        let annotation = MKPointAnnotation();
+        annotation.coordinate = CLLocationCoordinate2D(latitude: CLLocationDegrees(xCoordinate), longitude: CLLocationDegrees(yCoordinate))
+        mapView.addAnnotation(annotation)
+        mapView.setRegion(coordinateRegion, animated: true)
+        mapView.isZoomEnabled = false;
+        mapView.isScrollEnabled = false;
+        mapView.isUserInteractionEnabled = false;
+        
         driverName.text = dName;
         
         driverImage.image = UIImage(named: dImage);
+        driverImage.layer.cornerRadius = 45.5;
+        driverImage.layer.masksToBounds = true;
+        
         carModelLicense.text = carModel;
         departure.text = departurePlace;
         price.text = dollars;
