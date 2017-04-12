@@ -18,7 +18,12 @@ class SignUpViewController: UIViewController {
         let origImage = UIImage(named: "down_arrow.png")
         let tintedImage = origImage?.withRenderingMode(.alwaysTemplate)
         btn.setImage(tintedImage, for: .normal)
-        btn.tintColor = .gray
+        btn.tintColor = UIColor(red:0.19, green:0.27, blue:0.31, alpha:1.0)
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(SignUpViewController.dismissKeyboard))
+        
+        view.addGestureRecognizer(tap)
+
 
         // Do any additional setup after loading the view.
     }
@@ -30,6 +35,11 @@ class SignUpViewController: UIViewController {
     
     @IBAction func dismissView(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
     }
 
     

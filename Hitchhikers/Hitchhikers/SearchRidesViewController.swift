@@ -26,6 +26,11 @@ class SearchRidesViewController: UIViewController, UITableViewDelegate, UITableV
         
         //self.navigationController?.navigationBar.tintColor = UIColor.white
 //        self.navigationItem.leftBarButtonItem?.icon(from: .Themify, code: "arrowleft", ofSize: 25)
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(SearchRidesViewController.dismissKeyboard))
+        
+        view.addGestureRecognizer(tap)
+
 
         // Do any additional setup after loading the view.
     }
@@ -52,6 +57,11 @@ class SearchRidesViewController: UIViewController, UITableViewDelegate, UITableV
      // Configure the cell...
      
      return cell
+    }
+    
+    func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
     }
     
     

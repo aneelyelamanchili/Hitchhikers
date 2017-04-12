@@ -15,13 +15,13 @@ class GuestTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let screenSize: CGRect = UIScreen.main.bounds
-        let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: screenSize.width, height: 54))
-        self.view.addSubview(navBar);
-        let navItem = UINavigationItem(title: "");
-        let doneItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done, target: nil, action: #selector(dismissView(_:)));
-        navItem.leftBarButtonItem = doneItem;
-        navBar.setItems([navItem], animated: false);
+//        let screenSize: CGRect = UIScreen.main.bounds
+//        let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: screenSize.width, height: 54))
+//        self.view.addSubview(navBar);
+//        let navItem = UINavigationItem(title: "");
+//        let doneItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done, target: nil, action: #selector(dismissView(_:)));
+//        navItem.leftBarButtonItem = doneItem;
+//        navBar.setItems([navItem], animated: false);
         
         
 //        self.navigationController?.navigationBar.barTintColor = UIColor(red:0.19, green:0.27, blue:0.31, alpha:1.0)
