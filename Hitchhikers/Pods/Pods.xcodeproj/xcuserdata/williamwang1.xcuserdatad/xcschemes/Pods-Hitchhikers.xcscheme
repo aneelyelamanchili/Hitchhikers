@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0830"
+   LastUpgradeVersion = "0700"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1822AF65F776443E727FBDB5CE6055A9"
+               BlueprintIdentifier = "7658C070930D9BCCBCE238A6C77AAECE"
                BuildableName = "Pods_Hitchhikers.framework"
                BlueprintName = "Pods-Hitchhikers"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1822AF65F776443E727FBDB5CE6055A9"
+            BlueprintIdentifier = "7658C070930D9BCCBCE238A6C77AAECE"
             BuildableName = "Pods_Hitchhikers.framework"
             BlueprintName = "Pods-Hitchhikers"
             ReferencedContainer = "container:Pods.xcodeproj">
@@ -60,15 +60,6 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1822AF65F776443E727FBDB5CE6055A9"
-            BuildableName = "Pods_Hitchhikers.framework"
-            BlueprintName = "Pods-Hitchhikers"
-            ReferencedContainer = "container:Pods.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
