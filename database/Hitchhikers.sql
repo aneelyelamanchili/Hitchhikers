@@ -20,6 +20,7 @@ CREATE TABLE `TotalUsers` (
 );
 
 CREATE TABLE `TotalPreviousTrips` (
+	`rideID` INT(11) NOT NULL,
 	`userID` INT(11) NOT NULL,
 	`Username` VARCHAR(50) NOT NULL,
     `StartingPoint` VARCHAR(50) NOT NULL,
@@ -32,7 +33,10 @@ CREATE TABLE `TotalPreviousTrips` (
     `Hospitality` VARCHAR(100) NOT NULL,
     `Food` VARCHAR(50) NOT NULL,
     `Luggage` VARCHAR(50) NOT NULL,
-    FOREIGN KEY(`userID`) REFERENCES `TotalUsers`(`userID`)
+    `TotalSeats` INT(11) NOT NULL,
+    `SeatsFilled` INT(11) NOT NULL,
+    FOREIGN KEY(`userID`) REFERENCES `TotalUsers`(`userID`),
+	PRIMARY KEY(`rideID`) 
 );
 
 CREATE TABLE `CurrentTrips` (
@@ -56,7 +60,7 @@ CREATE TABLE `CurrentTrips` (
 );
 
 INSERT INTO `TotalUsers`( Username, Password, Email, `Age` ,`PhoneNumber`, `Picture`,isDriver ) VALUES  ('Adam', 'mypassword', 'adamespi@usc.edu', 20, '6267560235', 'swag.com', 1);
-INSERT INTO `TotalPreviousTrips`( userID,Username,StartingPoint, DestinationPoint, CarModel, LicensePlate, Cost, `Date/Time`, Detours, Hospitality, Food, Luggage) VALUES (1,'Adam','San Fracisco,CA', 'Los Angeles', 'Honda Civic' , '64j74k', 25, 'jlksjdf', 'no detours', 'gimme a pillow', 'i have snaks', 'no space');
+INSERT INTO `TotalPreviousTrips`( rideID, userID,Username,StartingPoint, DestinationPoint, CarModel, LicensePlate, Cost, `Date/Time`, Detours, Hospitality, Food, Luggage, TotalSeats, SeatsFilled) VALUES (6,1,'Adam','San Fracisco,CA', 'Los Angeles', 'Honda Civic' , '64j74k', 25, 'jlksjdf', 'no detours', 'gimme a pillow', 'i have snaks', 'no space', 4, 2);
 INSERT INTO `CurrentTrips`( userID,Username,StartingPoint, DestinationPoint, CarModel, LicensePlate, Cost, `Date/Time`, Detours, Hospitality, Food, Luggage, TotalSeats, SeatsAvailable) VALUES (1,'Adam','1816 NW 127th Pl, Portland, OR', 'Voodoo Doughnut', 'Bugatti Veyron' , '309EAK', 10, '4:20AM', 'no detours', 'gimme a pillow', 'i have snaks', 'no space', 4, 3);
 INSERT INTO `CurrentTrips`( userID,Username,StartingPoint, DestinationPoint, CarModel, LicensePlate, Cost, `Date/Time`, Detours, Hospitality, Food, Luggage, TotalSeats, SeatsAvailable) VALUES (1,'Adam','1816 NW 127th Pl, Portland, OR', 'Voodoo Doughnut', 'Bugatti Veyron' , '309EAK', 10, '4:20AM', 'all the detours', 'ughhhhh hospitality', 'i got food tho', 'bring ur house',4,3);
 

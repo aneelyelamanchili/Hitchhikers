@@ -13,15 +13,23 @@ import javax.websocket.Session;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-//import org.json.simple.JSONObject;
 
 public class Application {
-	private Map<Integer, ArrayList<String>> rideList; //what do we need to store in each ride, should it be in sql
+	/* 
+	 * rideList is a map mapping rideID's to an ArrayList that holds the usernames that
+	 * are going on that ride. rideSize is a map mapping rideID's to the size of that ride.
+	 */
+	private Map<Integer, ArrayList<String>> rideList;
 	private Map<Integer, Integer> rideSize;
 	public Application() {
 		rideList = new HashMap<Integer, ArrayList<String>>();
 		rideSize = new HashMap<Integer, Integer>();
 		
+		/*
+		 * Initially, any rides in the database should be added into the maps when the
+		 * application is first constructed. Typically, this shouldn't happen but it was
+		 * used in testing functionality.
+		 */
 		Connection conn = null;
 		Statement st = null;
 		ResultSet rs = null;
@@ -38,9 +46,15 @@ public class Application {
 			}
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
-		}
-		
+		}	
 	}
+	/*
+	 * ParseMessage is the main method used for figuring out what to do with a JSONObject sent
+	 * from the frontend app to the backend through the WebSocketEndpoint. Here, other functions
+	 * are called based on the "message".
+	 * Input JSON - "message",_____
+	 * Output JSON - object sent back to frontend
+	 */
 	public void parseMessage(JSONObject message, Session session, WebSocketEndpoint wsep) {
 		Connection conn = null;
 		Statement st = null;
@@ -64,10 +78,16 @@ public class Application {
 				wsep.sendToSession(session, toBinary(joinRide(message, conn)));
 			}
 			else if (message.get("message").equals("deleteride")) {
-				
+				wsep.sendToSession(session, toBinary(deleteRide(message, conn)));
 			}
 			else if (message.get("message").equals("guestview")) {
 				wsep.sendToSession(session, toBinary(guestView(message, conn)));
+			}
+			else if (message.get("message").equals("search")) {
+				wsep.sendToSession(session, toBinary(search(message, conn)));
+			}
+			else if (message.get("message").equals("searchview")) {
+				wsep.sendToSession(session, toBinary(searchView(message, conn)));
 			}
 	        
 		} catch (ClassNotFoundException | SQLException | JSONException e) {
@@ -96,6 +116,13 @@ public class Application {
 		}
 	}
 
+	/*
+	 * When a user enters all of their information and clicks sign up, the data is then sent here.
+	 * Input - "message","signup"  "username",___  "password",___  "age",___  "email",___
+	 * 		   "picture",___  "isDriver",yes/no  "phonenumber",___
+	 * Output - "message","signupsuccess"/"signupfail"  if signupfail --> "signupfail",reason
+	 * 			User data returned along with feed data in JSON
+	 */
 	public JSONObject signUp(JSONObject message, Session session, Connection conn) {
 		JSONObject response = new JSONObject();
 		try {
@@ -195,6 +222,13 @@ public class Application {
 		}
 	}
 
+	/*
+	 * When a user signs in, this is the function that deals with correct/incorrect info.
+	 * Input - "message","login"  "username",___  "password",___
+	 * Output - "message","loginsuccess"/"loginfail"
+	 * 			if loginsuccess --> all of user data and feed data returned in JSON
+	 * 			if loginfail --> "loginfail",reason
+	 */
 	public JSONObject signIn(JSONObject message, Session session, Connection conn) {
 		JSONObject response = new JSONObject();
 		try {
@@ -250,13 +284,31 @@ public class Application {
 			e.printStackTrace();
 		} return response;
 	}
-	//for when to destroy ride, check database every time it is queried to see if any need to be deleted and delete them (addfeedtojson method)
-	//make a dictionary of something, what was i doing idk fml
+	
+	/*
+	 * When a user clicks makeRide and has inputted all of the info, they are sent here.
+	 * Input - "message","makeride"
+	 * 		   "username",who posted/logged in
+	 * 		   "origin",___
+	 * 		   "destination",___
+	 * 		   "carmodel",___
+	 * 		   "licenseplate",___
+	 * 		   "cost",___(int)
+	 * 		   "datetime",___
+	 * 		   "detours",___
+	 * 		   "hospitality",___
+	 * 		   "food",___
+	 * 		   "luggage",___
+	 * 		   "totalseats",___(int)
+	 * Output - "message","makeridefail"/"makeridesuccess"
+	 * 			all of the feed and the user's profile returned
+	 */
 	public JSONObject makeRide(JSONObject message, Connection conn) {
 		JSONObject response = new JSONObject();
+		String username = "";
 		try {
 			Statement st = conn.createStatement();
-			String username = (String)message.getString("username");
+			username = (String)message.getString("username");
 			String origin = (String)message.getString("origin");
 			String destination = (String)message.getString("destination");
 			String carmodel = (String)message.getString("carmodel");
@@ -269,7 +321,28 @@ public class Application {
 			String luggage = (String)message.getString("luggage");
 			int totalseats = (int)message.getInt("totalseats");
 			
-			//currently there is no preventing a ride from being created
+			if (username.equals("") || origin.equals("") || destination.equals("") || carmodel.equals("") || licenseplate.equals("") || datetime.equals("") || detours.equals("") || hospitality.equals("") || food.equals("") || luggage.equals("")) {
+				response.put("message", "addridefail");
+				response.put("addridefail", "Adding ride failed.");
+				JSONObject userDetails = addUserToJSON(username, conn);
+				for (String key : JSONObject.getNames(userDetails)) {
+					try {
+						response.put(key, userDetails.get(key));
+					} catch (JSONException e1) {
+						e1.printStackTrace();
+					}
+				}
+				JSONObject feedDetails = addFeedToJSON(conn);
+				for (String key : JSONObject.getNames(feedDetails)) {
+					try {
+						response.put(key, feedDetails.get(key));
+					} catch (JSONException e1) {
+						e1.printStackTrace();
+					}
+				}
+				return response;
+			}
+
 			String addRide = "('" + username + "', '" + origin + "', '" + destination + "', '" + carmodel + "', '" + licenseplate + "', " + cost + ", '" + datetime + "', '" + detours + "', '" + hospitality + "', '" + food + "', '" + luggage + "', " + totalseats + ", " + (totalseats-1) + ")";
 			st.execute(Constants.SQL_INSERT_RIDE + addRide + ";");
 			
@@ -298,6 +371,22 @@ public class Application {
 			try {
 				response.put("message", "addridefail");
 				response.put("addridefail", "Adding ride failed.");
+				JSONObject userDetails = addUserToJSON(username, conn);
+				for (String key : JSONObject.getNames(userDetails)) {
+					try {
+						response.put(key, userDetails.get(key));
+					} catch (JSONException e1) {
+						e1.printStackTrace();
+					}
+				}
+				JSONObject feedDetails = addFeedToJSON(conn);
+				for (String key : JSONObject.getNames(feedDetails)) {
+					try {
+						response.put(key, feedDetails.get(key));
+					} catch (JSONException e1) {
+						e1.printStackTrace();
+					}
+				}
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
@@ -307,11 +396,20 @@ public class Application {
 			return response;
 		}
 	}
+	
+	/*
+	 * When a user wants to join a ride, they can join if they are already not on the ride
+	 * and it is not full yet.
+	 * Input - "message","joinride"
+	 * 		   "joinrideid",ride's ID
+	 * 		   "username",loggedinuser
+	 * Output - returns feed + currentuser
+	 */
 	public JSONObject joinRide(JSONObject message, Connection conn) {
 		JSONObject response = new JSONObject();
 		try {
 			Statement st = conn.createStatement();
-			int rideid = message.getInt("rideid");
+			int rideid = message.getInt("joinrideid");
 			String username = message.getString("username");
 			ArrayList<String> currentriders = rideList.get(rideid);
 			boolean notonride = true;
@@ -357,10 +455,110 @@ public class Application {
 		}
 	}
 	
+	/*
+	 * Only the poster of the ride can actually delete a ride. The ride is then
+	 * added to the table TotalPreviousTrips in order to study behavior and deal with
+	 * complaints following a ride.
+	 * Input - "message","deleteride"
+	 * 		   "deleterideid",rideid to delete
+	 * 		   "username",loggedinuser
+	 * Output - "message","deleteridefail"/"deleteridesuccessful"
+	 * 			returns feed and user info
+	 */
 	public JSONObject deleteRide(JSONObject message, Connection conn) {
-		return null;
+		String currentuser = "";
+		JSONObject response = new JSONObject();
+		try {
+			Statement st = conn.createStatement();
+			Statement st1 = conn.createStatement();
+			currentuser = message.getString("username");
+			int rideid = Integer.parseInt(message.getString("deleterideid"));//rn taking a string from ios
+			ResultSet rs1 = st1.executeQuery("SELECT * FROM TotalUsers WHERE Username='" + currentuser + "';");
+			int userid = -1;
+			if (rs1.next()) {
+				userid = rs1.getInt("userID");
+			}
+			ResultSet rs = st.executeQuery("SELECT * FROM CurrentTrips WHERE rideID=" + rideid + ";");
+			String username="";
+			if (rs.next()) {
+				//return fail it is not this user's ride
+				username = rs.getString("Username");
+			}
+			if (!username.equals(currentuser)) {
+				response.put("message", "deleteridefail");
+				JSONObject userDetails = addUserToJSON(currentuser, conn);
+				for (String key : JSONObject.getNames(userDetails)) {
+					response.put(key, userDetails.get(key));
+				}
+				JSONObject feedDetails = addFeedToJSON(conn);
+				for (String key : JSONObject.getNames(feedDetails)) {
+					response.put(key, feedDetails.get(key));
+				}
+				return response;
+			}
+			
+			String origin = rs.getString("StartingPoint");
+			String destination = rs.getString("DestinationPoint");
+			String carmodel = rs.getString("CarModel");
+			String licenseplate = rs.getString("LicensePlate");
+			int cost = rs.getInt("Cost");
+			String datetime = rs.getString("Date/Time");
+			String detours = rs.getString("Detours");
+			String hospitality = rs.getString("Hospitality");
+			String food = rs.getString("Food");
+			String luggage = rs.getString("Luggage");
+			int totalseats = rs.getInt("TotalSeats");
+			int seatsavailable = rs.getInt("SeatsAvailable");
+			
+			int seatsfilled = totalseats-seatsavailable;
+			
+			String insertride = "(" + rideid + ", " + userid + ", '"+ username + "', '" + origin + "', '" + destination + "', '" + carmodel + "', '" + licenseplate + "', " + cost + ", '" + datetime + "', '" + detours + "', '" + hospitality + "', '" + food + "', '" + luggage + "', " + totalseats + ", " + seatsfilled + ")";
+			
+			rideList.remove(rideid);
+			rideSize.remove(rideid);
+			st.execute(Constants.SQL_INSERT_PREVIOUSRIDE + insertride + ";");
+			st.execute("DELETE FROM CurrentTrips WHERE rideID=" + rideid + ";");
+			
+			response.put("message", "deleteridesuccessful");
+			
+			JSONObject userDetails = addUserToJSON(currentuser, conn);
+			for (String key : JSONObject.getNames(userDetails)) {
+				response.put(key, userDetails.get(key));
+			}
+			JSONObject feedDetails = addFeedToJSON(conn);
+			for (String key : JSONObject.getNames(feedDetails)) {
+				response.put(key, feedDetails.get(key));
+			}
+			
+			return response;
+		} catch (SQLException | JSONException e) {
+			e.printStackTrace();
+			JSONObject userDetails = addUserToJSON(currentuser, conn);
+			for (String key : JSONObject.getNames(userDetails)) {
+				try {
+					response.put(key, userDetails.get(key));
+				} catch (JSONException e1) {
+					e1.printStackTrace();
+				}
+			}
+			JSONObject feedDetails = addFeedToJSON(conn);
+			for (String key : JSONObject.getNames(feedDetails)) {
+				try {
+					response.put(key, feedDetails.get(key));
+				} catch (JSONException e1) {
+					e1.printStackTrace();
+				}
+			}
+			return response;
+		}
 	}
 	
+	/*
+	 * When a guest opens the app without logging in, this is a special view where they
+	 * can view all of the rides but that is it.
+	 * Input - "message","guestview"
+	 * Output - all of the rides in the feed
+	 */
 	public JSONObject guestView(JSONObject message, Connection conn) {
 		JSONObject response = new JSONObject();
 		try {
@@ -380,7 +578,130 @@ public class Application {
 			return response;
 		}
 	}
+
+	/*
+	 * When a user searches, any rides in the feed with that string present in the destination
+	 * should be returned to be viewed by the user to choose from.
+	 * Input - "message","search"
+	 * 		   "search",search query
+	 * Output - all of the rides with the search query in the destination string
+	 * 			user info
+	 */
+	public JSONObject search(JSONObject message, Connection conn) {
+		JSONObject response = new JSONObject();
+		String currentuser = "";
+		try {
+			currentuser = message.getString("username");
+			String searchquery = message.getString("search");
+			Statement st = conn.createStatement();
+			ResultSet rs = null;
+			rs = st.executeQuery("SELECT * FROM CurrentTrips");
+			int feedIndex = 1;
+			int feedCounter = 0;
+			while (rs.next()) {
+				String destination = rs.getString("DestinationPoint");
+				if (destination.contains(searchquery)) {
+					JSONObject currFeed = new JSONObject();
+					String username = rs.getString("Username");
+					Statement st1 = conn.createStatement();
+					ResultSet rs1 = null;
+					rs1 = st1.executeQuery("SELECT * from TotalUsers WHERE username='" + username + "';");
+					if (rs1.next()) {
+						currFeed.put("userpicture", rs1.getString("Picture"));
+					}
+					if (rs1 != null) {
+						rs1.close();
+					}
+					if (st1 != null) {
+						st1.close();
+					}
+					//make strings for each list of origins, destinations, cars, every single column in currenttrips table
+					currFeed.put("rideid", rs.getString("rideID"));
+					currFeed.put("username", rs.getString("Username"));
+					currFeed.put("origin", rs.getString("StartingPoint"));
+					currFeed.put("destination", rs.getString("DestinationPoint"));
+					currFeed.put("carmodel", rs.getString("CarModel"));
+					currFeed.put("licenseplate", rs.getString("LicensePlate"));
+					currFeed.put("cost", rs.getString("Cost"));
+					currFeed.put("datetime", rs.getString("Date/Time"));
+					currFeed.put("detours", rs.getString("Detours"));
+					currFeed.put("hospitality", rs.getString("Hospitality"));
+					currFeed.put("food", rs.getString("Food"));
+					currFeed.put("luggage", rs.getString("Luggage"));
+					currFeed.put("totalseats", rs.getString("TotalSeats"));
+					currFeed.put("seatsavailable", rs.getString("SeatsAvailable"));
+
+					String users = "";
+					for (int i=0; i<rideList.get(rs.getInt("rideID")).size(); i++) {
+						if (i>0) {
+							users += ", " + rideList.get(rs.getInt("rideID")).get(i);
+						}
+						else {
+							users += rideList.get(rs.getInt("rideID")).get(i);
+						}
+					}
+					currFeed.put("currentriders", users);
+					response.put("feed" + feedIndex, currFeed);
+
+					//Increment trip counter + counter 
+					feedCounter++; 
+					feedIndex++;
+				}
+			}
+			response.put("feedsize", feedCounter);
+			response.put("message", "searchsuccess");
+			
+			JSONObject userDetails = addUserToJSON(currentuser, conn);
+			for (String key : JSONObject.getNames(userDetails)) {
+				response.put(key, userDetails.get(key));
+			}
+			return response;
+		} catch (JSONException | SQLException e) {
+			try {
+				response.put("message", "searchfail");
+				JSONObject userDetails = addUserToJSON(currentuser, conn);
+				for (String key : JSONObject.getNames(userDetails)) {
+					response.put(key, userDetails.get(key));
+				}
+			} catch (JSONException e1) {
+				e1.printStackTrace();
+			}
+			JSONObject feedDetails = addFeedToJSON(conn);
+			for (String key : JSONObject.getNames(feedDetails)) {
+				try {
+					response.put(key, feedDetails.get(key));
+				} catch (JSONException e1) {
+					e1.printStackTrace();
+				}
+			}
+			return response;
+		}
+	}
 	
+	/*
+	 * Returns the previously searched destinations for the user.
+	 * Input - "message","searchview"
+	 * 		   "username",current user of app
+	 * Output - "message","searchviewsuccessful"/"searchviewfail"
+	 * 			"previoussearchsize",int x
+	 * 			"previoussearch1","previoussearch2" to x,string searched
+	 * 			all of the user info and ride info
+	 */
+	public JSONObject searchView(JSONObject message, Connection conn) {
+		JSONObject response = new JSONObject();
+	}
+	
+	/*
+	 * Returns the info for the user that sent the message to the backend to be returned.
+	 * Input - username
+	 * Output - "username"
+	 * 			"password"
+	 * 			"age"
+	 * 			"picture"
+	 * 			"email"
+	 * 			"phonenumber"
+	 * 			"isDriver","yes"/"no"
+	 */
 	public JSONObject addUserToJSON(String username, Connection conn) {
 		JSONObject user = new JSONObject();
 		try {
@@ -408,7 +729,27 @@ public class Application {
 		}
 		return user;
 	}
-	
+	/*
+	 * Returns all of the rides that exist in the CurrentRides table in the database.
+	 * Output - "feedsize", number of rides in feed
+	 * 			JSON "feed"+x (ex. feed1 or feed2)
+	 * 				"username",who posted ride
+	 * 				"userpicture",picture of poster
+	 * 				"rideid"
+	 * 				"origin"
+	 * 				"destination"
+	 * 				"carmodel"
+	 * 				"licenseplate"
+	 * 				"cost"
+	 * 				"datetime"
+	 * 				"detours"
+	 * 				"hospitality"
+	 * 				"food"
+	 * 				"luggage"
+	 * 				"totalseats"
+	 * 				"seatsavailable"
+	 * 				"currentriders",string list of riders
+	 */
 	public JSONObject addFeedToJSON(Connection conn) {
 		JSONObject feed = new JSONObject();
 		try {
@@ -465,7 +806,7 @@ public class Application {
 				feedCounter++; 
 				feedIndex++;
 			}
-			//Placed feed size in the thing 
+			//Placed feed size in the JSON 
 			feed.put("feedsize", feedCounter);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -474,7 +815,9 @@ public class Application {
 		}
 		return feed;
 	}
-	
+	/*
+	 * Converts the JSONObject into binary so that it can be sent to the frontend.
+	 */
 	public byte[] toBinary(JSONObject message) {
 		String messageToConvert = message.toString();
 		byte[] converted = null;
@@ -657,6 +1000,12 @@ public class Application {
 			}
 			else if (message.get("message").equals("joinride")) {
 				return joinRide(message, conn);
+			}
+			else if (message.get("message").equals("deleteride")) {
+				return deleteRide(message, conn);
+			}
+			else if (message.get("message").equals("search")) {
+				return search(message, conn);
 			}
 	        
 		} catch (ClassNotFoundException | SQLException | JSONException e) {
