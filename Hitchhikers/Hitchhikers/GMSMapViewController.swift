@@ -17,6 +17,7 @@ class GMSMapViewController: UIViewController, CLLocationManagerDelegate, UITable
     
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var previousSearchTableView: UITableView!
+    @IBOutlet weak var currentLocation: UILabel!
     
     // VARIABLES
     var locationManager = CLLocationManager();
@@ -52,6 +53,33 @@ class GMSMapViewController: UIViewController, CLLocationManagerDelegate, UITable
         annotation.coordinate = CLLocationCoordinate2D(latitude: initialCoord.latitude, longitude: initialCoord.longitude)
         mapView.addAnnotation(annotation)
         mapView.setRegion(coordinateRegion, animated: true)
+        
+        var location = locationManager.location;
+        
+        CLGeocoder().reverseGeocodeLocation(location!, completionHandler: {(placemarks, error) -> Void in
+            print(location!)
+            
+            if error != nil {
+                print("Reverse geocoder failed with error" + (error?.localizedDescription)!)
+                return
+            }
+            
+            if (placemarks?.count)! > 0 {
+                let pm = placemarks?[0]
+                print(String(describing: pm?.locality))
+                print(pm!.administrativeArea);
+                print(pm!.postalCode);
+                print(pm!.country);
+                
+                var partOne: String = pm!.locality! + ", " + pm!.administrativeArea!;
+                var partTwo: String = ", " + pm!.postalCode! + ", " + pm!.country!;
+                
+                self.currentLocation.text = "Current Location: " + partOne + partTwo;
+            }
+            else {
+                print("Problem with the data received from geocoder")
+            }
+        })
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -78,6 +106,8 @@ class GMSMapViewController: UIViewController, CLLocationManagerDelegate, UITable
         print("Place attributions: \(place.attributions)")
         self.dismiss(animated: true, completion: nil) // dismiss after select place
         
+        
+        self.currentLocation.text = "Current Location: " + place.formattedAddress!;
     }
     
     @IBAction func dismissView(_ sender: UIBarButtonItem) {

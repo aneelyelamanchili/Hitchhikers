@@ -21,9 +21,6 @@ class ProfileViewController: UIViewController {
 //        let imageView = UIImageView(image:logo)
 //        self.navigationItem.titleView = imageView
         
-//        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(dismissView))
-//        self.navigationItem.leftBarButtonItem?.icon(from: .Themify, code: "close", ofSize: 25)
-        
         self.navigationController?.navigationBar.barTintColor = UIColor(red:0.19, green:0.27, blue:0.31, alpha:1.0)
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
@@ -36,7 +33,6 @@ class ProfileViewController: UIViewController {
         let vignette = CIFilter(name: "CIVignette")
         vignette?.setValue(img, forKey:kCIInputImageKey)
         vignette?.setValue(2, forKey:kCIInputIntensityKey)
-        //vignette?.setValue(30, forKey:kCIInputRadiusKey)
         
         self.profileImage.image = UIImage(ciImage: (vignette?.outputImage)!)
         profileImage.autoresizingMask = [.flexibleWidth, .flexibleHeight, .flexibleBottomMargin, .flexibleRightMargin, .flexibleLeftMargin, .flexibleTopMargin]
