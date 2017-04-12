@@ -46,7 +46,7 @@ class AddRideViewController: UIViewController, UITextFieldDelegate {
     
     func keyboardUp(notification: NSNotification) {
         if ((notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
-            self.view.frame.origin.y = 54
+            self.view.frame.origin.y = 57
             if(activeField?.placeholder == "Current Location") {
                 self.view.frame.origin.y -= 0
             } else if(activeField?.placeholder == "Destination Location") {
@@ -68,7 +68,7 @@ class AddRideViewController: UIViewController, UITextFieldDelegate {
     
     func keyboardDown(notification: NSNotification) {
         if ((notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
-            self.view.frame.origin.y = 54
+            self.view.frame.origin.y = 57
         }
     
     }
