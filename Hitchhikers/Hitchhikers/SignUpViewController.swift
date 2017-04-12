@@ -11,6 +11,7 @@ import SwiftIconFont
 
 class SignUpViewController: UIViewController {
     @IBOutlet weak var btn: UIButton!
+    var activeField: UITextField?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,9 +24,48 @@ class SignUpViewController: UIViewController {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(SignUpViewController.dismissKeyboard))
         
         view.addGestureRecognizer(tap)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(SignUpViewController.keyboardUp), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(SignUpViewController.keyboardDown), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
 
 
         // Do any additional setup after loading the view.
+    }
+    
+    
+    @IBAction func setField(sender: UITextField) {
+        activeField = sender
+    }
+    
+    func keyboardUp(notification: NSNotification) {
+        if ((notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
+            self.view.frame.origin.y = 0
+            if(activeField?.restorationIdentifier == "first") {
+                self.view.frame.origin.y -= 0
+            } else if(activeField?.restorationIdentifier == "last") {
+                self.view.frame.origin.y -= 0
+            } else if(activeField?.restorationIdentifier == "email") {
+                self.view.frame.origin.y -= 0
+            } else if(activeField?.restorationIdentifier == "month") {
+                self.view.frame.origin.y -= 253
+            } else if(activeField?.restorationIdentifier == "day") {
+                self.view.frame.origin.y -= 253
+            } else if(activeField?.restorationIdentifier == "year") {
+                self.view.frame.origin.y -= 253
+            } else if(activeField?.restorationIdentifier == "password") {
+                self.view.frame.origin.y -= 253
+            } else if(activeField?.restorationIdentifier == "retype") {
+                self.view.frame.origin.y -= 253
+            }
+        }
+        
+    }
+    
+    func keyboardDown(notification: NSNotification) {
+        if ((notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
+            self.view.frame.origin.y = 0
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {

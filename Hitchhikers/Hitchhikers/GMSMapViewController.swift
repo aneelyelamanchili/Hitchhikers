@@ -139,6 +139,9 @@ class GMSMapViewController: UIViewController, CLLocationManagerDelegate, UITable
         let autoCompleteController = GMSAutocompleteViewController()
         autoCompleteController.delegate = self
         
+        //TEST
+        autoCompleteController.navigationController?.navigationBar.barTintColor = UIColor(red:0.19, green:0.27, blue:0.31, alpha:1.0)
+        
         self.locationManager.startUpdatingLocation()
         self.present(autoCompleteController, animated: true, completion: nil)
     }

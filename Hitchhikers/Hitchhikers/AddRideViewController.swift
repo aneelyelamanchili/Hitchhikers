@@ -9,12 +9,14 @@
 import UIKit
 import SwiftIconFont
 
-class AddRideViewController: UIViewController {
+class AddRideViewController: UIViewController, UITextFieldDelegate {
     
     let sharedModel = Client.sharedInstance
+    var activeField: UITextField?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 
         let logo = UIImage(named: "mountain_icon.png")
         let imageView = UIImageView(image:logo)
@@ -28,12 +30,49 @@ class AddRideViewController: UIViewController {
         self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationItem.leftBarButtonItem?.icon(from: .Themify, code: "arrowleft", ofSize: 25)
         
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboard))
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(AddRideViewController.dismissKeyboard))
         
         view.addGestureRecognizer(tap)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(AddRideViewController.keyboardUp), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(AddRideViewController.keyboardDown), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
         // Do any additional setup after loading the view.
     }
+    
+    @IBAction func setField(sender: UITextField) {
+        activeField = sender
+    }
+    
+    func keyboardUp(notification: NSNotification) {
+        if ((notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
+            self.view.frame.origin.y = 54
+            if(activeField?.placeholder == "Current Location") {
+                self.view.frame.origin.y -= 0
+            } else if(activeField?.placeholder == "Destination Location") {
+                self.view.frame.origin.y -= 0
+            } else if(activeField?.placeholder == "$$$$$") {
+                self.view.frame.origin.y -= 0
+            } else if(activeField?.placeholder == "Maximum Luggage") {
+                self.view.frame.origin.y -= 0
+            } else if(activeField?.placeholder == "Food/Snacks on Trip") {
+                self.view.frame.origin.y -= 253
+            } else if(activeField?.placeholder == "Hospitality Notes") {
+                self.view.frame.origin.y -= 253
+            } else if(activeField?.placeholder == "Will you be detouring?") {
+                self.view.frame.origin.y -= 253
+            }
+        }
+    
+    }
+    
+    func keyboardDown(notification: NSNotification) {
+        if ((notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
+            self.view.frame.origin.y = 54
+        }
+    
+    }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
