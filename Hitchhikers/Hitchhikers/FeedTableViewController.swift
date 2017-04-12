@@ -15,6 +15,8 @@ class FeedTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //self.tableView.backgroundColor = UIColor.gray
+        
         let logo = UIImage(named: "mountain_icon.png")
         let imageView = UIImageView(image:logo)
         self.navigationItem.titleView = imageView
@@ -89,6 +91,10 @@ class FeedTableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of rows
         return 4
     }
+    
+//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 300
+//    }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "feedCell", for: indexPath) as! FeedTableViewCell

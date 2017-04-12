@@ -17,14 +17,14 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-//        let logo = UIImage(named: "mountain_icon.png")
-//        let imageView = UIImageView(image:logo)
-//        self.navigationItem.titleView = imageView
+        let logo = UIImage(named: "mountain_icon.png")
+        let imageView = UIImageView(image:logo)
+        self.navigationItem.titleView = imageView
         
         self.navigationController?.navigationBar.barTintColor = UIColor(red:0.19, green:0.27, blue:0.31, alpha:1.0)
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.isTranslucent = true;
+        self.navigationController?.navigationBar.isTranslucent = false;
         
         self.navigationController?.navigationBar.tintColor = UIColor.white
         
@@ -35,9 +35,12 @@ class ProfileViewController: UIViewController {
         vignette?.setValue(2, forKey:kCIInputIntensityKey)
         
         self.profileImage.image = UIImage(ciImage: (vignette?.outputImage)!)
-        profileImage.autoresizingMask = [.flexibleWidth, .flexibleHeight, .flexibleBottomMargin, .flexibleRightMargin, .flexibleLeftMargin, .flexibleTopMargin]
-        profileImage.contentMode = .scaleAspectFit
-        profileImage.clipsToBounds = true
+        
+        self.profileImage.layer.cornerRadius = profileImage.frame.size.width/2
+        self.profileImage.clipsToBounds = true
+//        profileImage.autoresizingMask = [.flexibleWidth, .flexibleHeight, .flexibleBottomMargin, .flexibleRightMargin, .flexibleLeftMargin, .flexibleTopMargin]
+//        profileImage.contentMode = .scaleAspectFit
+//        profileImage.clipsToBounds = true
 
         
     }

@@ -17,6 +17,7 @@ class ProfileTableViewController: UITableViewController {
         super.viewDidLoad()
         
         self.table.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0);
+        self.table.isScrollEnabled = false;
 
     }
     
