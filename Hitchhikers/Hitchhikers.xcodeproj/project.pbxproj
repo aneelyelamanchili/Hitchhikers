@@ -21,6 +21,8 @@
 		3F959DC2A77D48CD9C01830D /* Pods_Hitchhikers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1892EB6D4B294B6253EBBFDD /* Pods_Hitchhikers.framework */; };
 		7755C0185E6452AFD2C8710A /* Pods_HitchhikersTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 469962EC67B5D23BCE188CD4 /* Pods_HitchhikersTests.framework */; };
 		B90799211E9D8E2D0008A12F /* GuestTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90799201E9D8E2D0008A12F /* GuestTableViewController.swift */; };
+		B90799271E9DAF9D0008A12F /* GMSMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90799261E9DAF9D0008A12F /* GMSMapViewController.swift */; };
+		B907992B1E9DD0E00008A12F /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B907992A1E9DD0E00008A12F /* SearchTableViewCell.swift */; };
 		B9143A3B1E95BF860081D002 /* AddRideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9143A3A1E95BF860081D002 /* AddRideViewController.swift */; };
 		B9143A3D1E95D8CF0081D002 /* SearchRidesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9143A3C1E95D8CF0081D002 /* SearchRidesViewController.swift */; };
 		B9143A3F1E95F0E10081D002 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9143A3E1E95F0E10081D002 /* SignUpViewController.swift */; };
@@ -60,7 +62,6 @@
 		B92989F81E8DCA9800CF8287 /* Hitchhikers.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B92989F61E8DCA9800CF8287 /* Hitchhikers.xcdatamodeld */; };
 		B92989FA1E8DCA9800CF8287 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B92989F91E8DCA9800CF8287 /* Assets.xcassets */; };
 		B92989FD1E8DCA9800CF8287 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B92989FB1E8DCA9800CF8287 /* LaunchScreen.storyboard */; };
-		B9298A081E8DCA9900CF8287 /* HitchhikersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9298A071E8DCA9900CF8287 /* HitchhikersTests.swift */; };
 		B9298A131E8DCA9900CF8287 /* HitchhikersUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9298A121E8DCA9900CF8287 /* HitchhikersUITests.swift */; };
 		B970B7D91E97B5AB0084428A /* RideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B970B7D81E97B5AB0084428A /* RideViewController.swift */; };
 		B9C349F21E9716F6008B85CC /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C349F11E9716F6008B85CC /* FeedTableViewCell.swift */; };
@@ -106,6 +107,8 @@
 		92C0871AD102DBC05FE09FFE /* Pods-Hitchhikers.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hitchhikers.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hitchhikers/Pods-Hitchhikers.release.xcconfig"; sourceTree = "<group>"; };
 		95EECFE92C501098AAB66E61 /* Pods_HitchhikersUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HitchhikersUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B90799201E9D8E2D0008A12F /* GuestTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuestTableViewController.swift; sourceTree = "<group>"; };
+		B90799261E9DAF9D0008A12F /* GMSMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GMSMapViewController.swift; sourceTree = "<group>"; };
+		B907992A1E9DD0E00008A12F /* SearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		B9143A3A1E95BF860081D002 /* AddRideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRideViewController.swift; sourceTree = "<group>"; };
 		B9143A3C1E95D8CF0081D002 /* SearchRidesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchRidesViewController.swift; sourceTree = "<group>"; };
 		B9143A3E1E95F0E10081D002 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -148,8 +151,6 @@
 		B92989FC1E8DCA9800CF8287 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B92989FE1E8DCA9800CF8287 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B9298A031E8DCA9900CF8287 /* HitchhikersTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HitchhikersTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B9298A071E8DCA9900CF8287 /* HitchhikersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitchhikersTests.swift; sourceTree = "<group>"; };
-		B9298A091E8DCA9900CF8287 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B9298A0E1E8DCA9900CF8287 /* HitchhikersUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HitchhikersUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9298A121E8DCA9900CF8287 /* HitchhikersUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitchhikersUITests.swift; sourceTree = "<group>"; };
 		B9298A141E8DCA9900CF8287 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -254,7 +255,6 @@
 			isa = PBXGroup;
 			children = (
 				B92989EE1E8DCA9800CF8287 /* Hitchhikers */,
-				B9298A061E8DCA9900CF8287 /* HitchhikersTests */,
 				B9298A111E8DCA9900CF8287 /* HitchhikersUITests */,
 				B92989ED1E8DCA9800CF8287 /* Products */,
 				50686AA10A46B5CD747C4353 /* Pods */,
@@ -280,6 +280,7 @@
 				117EAC601E8DD9FE008BEE42 /* Client.swift */,
 				B92989F11E8DCA9800CF8287 /* ViewController.swift */,
 				B92989F31E8DCA9800CF8287 /* Main.storyboard */,
+				B90799261E9DAF9D0008A12F /* GMSMapViewController.swift */,
 				B970B7D81E97B5AB0084428A /* RideViewController.swift */,
 				B9143A3E1E95F0E10081D002 /* SignUpViewController.swift */,
 				B92989F91E8DCA9800CF8287 /* Assets.xcassets */,
@@ -298,17 +299,9 @@
 				B9143A3C1E95D8CF0081D002 /* SearchRidesViewController.swift */,
 				B9C349F11E9716F6008B85CC /* FeedTableViewCell.swift */,
 				117B48171E9CD3CC00B0799C /* ProfileTableViewController.swift */,
+				B907992A1E9DD0E00008A12F /* SearchTableViewCell.swift */,
 			);
 			path = Hitchhikers;
-			sourceTree = "<group>";
-		};
-		B9298A061E8DCA9900CF8287 /* HitchhikersTests */ = {
-			isa = PBXGroup;
-			children = (
-				B9298A071E8DCA9900CF8287 /* HitchhikersTests.swift */,
-				B9298A091E8DCA9900CF8287 /* Info.plist */,
-			);
-			path = HitchhikersTests;
 			sourceTree = "<group>";
 		};
 		B9298A111E8DCA9900CF8287 /* HitchhikersUITests */ = {
@@ -397,16 +390,19 @@
 				TargetAttributes = {
 					B92989EB1E8DCA9800CF8287 = {
 						CreatedOnToolsVersion = 8.3;
-						DevelopmentTeam = MS7GBK46MH;
+						DevelopmentTeam = CKF73J7D4M;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 					B9298A021E8DCA9900CF8287 = {
 						CreatedOnToolsVersion = 8.3;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 						TestTargetID = B92989EB1E8DCA9800CF8287;
 					};
 					B9298A0D1E8DCA9900CF8287 = {
 						CreatedOnToolsVersion = 8.3;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 						TestTargetID = B92989EB1E8DCA9800CF8287;
 					};
@@ -636,6 +632,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B91FF28D1E8DD8C700A7E766 /* LoginViewController.swift in Sources */,
+				B90799271E9DAF9D0008A12F /* GMSMapViewController.swift in Sources */,
 				B9143A3D1E95D8CF0081D002 /* SearchRidesViewController.swift in Sources */,
 				B918278F1E8DFF5500FFE83E /* FeedTableViewController.swift in Sources */,
 				B9143A3B1E95BF860081D002 /* AddRideViewController.swift in Sources */,
@@ -643,6 +640,7 @@
 				B92989F21E8DCA9800CF8287 /* ViewController.swift in Sources */,
 				B970B7D91E97B5AB0084428A /* RideViewController.swift in Sources */,
 				117B48181E9CD3CC00B0799C /* ProfileTableViewController.swift in Sources */,
+				B907992B1E9DD0E00008A12F /* SearchTableViewCell.swift in Sources */,
 				11BF99921E94E810000E393C /* MenuViewController.swift in Sources */,
 				11BF999C1E94ED6F000E393C /* BaseTableViewCell.swift in Sources */,
 				B90799211E9D8E2D0008A12F /* GuestTableViewController.swift in Sources */,
@@ -660,7 +658,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B9298A081E8DCA9900CF8287 /* HitchhikersTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -807,11 +804,11 @@
 			baseConfigurationReference = 30EABE6987A56A6969E73E96 /* Pods-Hitchhikers.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = MS7GBK46MH;
+				DEVELOPMENT_TEAM = CKF73J7D4M;
 				INFOPLIST_FILE = Hitchhikers/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = aneel.Hitchhikers;
+				PRODUCT_BUNDLE_IDENTIFIER = will.Hitchhikers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -822,11 +819,11 @@
 			baseConfigurationReference = 92C0871AD102DBC05FE09FFE /* Pods-Hitchhikers.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = MS7GBK46MH;
+				DEVELOPMENT_TEAM = CKF73J7D4M;
 				INFOPLIST_FILE = Hitchhikers/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = aneel.Hitchhikers;
+				PRODUCT_BUNDLE_IDENTIFIER = will.Hitchhikers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
