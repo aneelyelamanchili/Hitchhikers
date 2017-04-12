@@ -26,6 +26,17 @@ class GMSMapViewController: UIViewController, CLLocationManagerDelegate, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let logo = UIImage(named: "mountain_icon.png")
+        let imageView = UIImageView(image:logo)
+        self.navigationItem.titleView = imageView
+        
+        self.navigationController?.navigationBar.barTintColor = UIColor(red:0.19, green:0.27, blue:0.31, alpha:1.0)
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = false;
+        
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        
         previousSearchTableView.dataSource = self as! UITableViewDataSource
         previousSearchTableView.delegate = self as! UITableViewDelegate
         
