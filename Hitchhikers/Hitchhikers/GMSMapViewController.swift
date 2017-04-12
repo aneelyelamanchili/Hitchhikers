@@ -154,8 +154,37 @@ class GMSMapViewController: UIViewController, CLLocationManagerDelegate, UITable
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "searchCell", for: indexPath as IndexPath) as! SearchTableViewCell
         
-        cell.addressLabel.text = "3025 Royal Street, Los Angeles, CA 90007 wowowowo wowowow owowoowowoww owowow"
+        cell.addressLabel.text = "3025 Royal Street, Los Angeles, CA 90007"
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath as IndexPath, animated: true)
+        let cell = previousSearchTableView.cellForRow(at: indexPath) as! SearchTableViewCell
+        print(cell.addressLabel.text!);
+        var address = cell.addressLabel.text!;
+        currentLocation.text = "Current Address: " + address;
+        var geocoder = CLGeocoder()
+        
+        // Delete previous annotations
+        let annotations = self.mapView.annotations;
+        for annotation in annotations {
+            if let annotation = annotation as? MKAnnotation
+            {
+                self.mapView.removeAnnotation(annotation)
+            }
+        }
+        
+        // Put new annotation in and zoom into that coordinate
+        geocoder.geocodeAddressString(address, completionHandler: {(placemarks: [CLPlacemark]?, error: Error?) -> Void in
+            if let placemark = placemarks?[0] {
+                self.mapView.addAnnotation(MKPlacemark(placemark: placemark))
+                let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+                let coordinate = placemark.location!.coordinate
+                let region = MKCoordinateRegion(center: coordinate, span: span)
+                self.mapView.setRegion(region, animated: true)
+            }
+        })
     }
 }
 
