@@ -11,8 +11,9 @@ import Starscream
 
 class Client: NSObject, WebSocketDelegate {
     static let sharedInstance = Client()
-
-    var socket = WebSocket(url: URL(string: "ws://4afb3445.ngrok.io/Server/ws")!)
+    
+    var json: [String: Any]?
+    var socket = WebSocket(url: URL(string: "ws://6be9f624.ngrok.io/HitchhikersBackend/ws")!)
     
     // MARK: Websocket Delegate Methods.
     
@@ -36,8 +37,11 @@ class Client: NSObject, WebSocketDelegate {
         //print("Received data: \(data)")
         
         if let str = String(data: data, encoding: String.Encoding.utf8) {
-            let json = convertToDictionary(text: str)
+            json = convertToDictionary(text: str)
             print(str)
+            if(json!["message"] as? String == "loginfail" || json?["message"] as? String == "success") {
+                LoginViewController().didReceiveData()
+            }
         } else {
             print("not a valid UTF-8 sequence")
         }
