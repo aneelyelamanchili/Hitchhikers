@@ -12,6 +12,8 @@ class LoginViewController: UIViewController {
     
     let sharedModel = Client.sharedInstance
     
+    var sendMessage: [String: Any]?
+    
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var password: UITextField!
 
@@ -46,15 +48,25 @@ class LoginViewController: UIViewController {
     @IBAction func loginButton(_ sender: Any) {
         let json:NSMutableDictionary = NSMutableDictionary()
         json.setValue("login", forKey: "message")
-        json.setValue(username.text, forKey: "username")
+        json.setValue(username.text, forKey: "email")
         json.setValue(password.text, forKey: "password")
         let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
-        let jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue) as! String
+        let jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
         //print(jsonString)
         
         Client.sharedInstance.socket.write(data: jsonData as Data)
         
-
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if  segue.identifier == "loginSegue",
+            let destination = segue.destination as? FeedTableViewController
+        {
+            print("GOT HERE");
+            // Set the destination dictionary to the current dictionary
+            destination.toPopulate = sendMessage;
+        }
         
     }
     
@@ -66,8 +78,15 @@ class LoginViewController: UIViewController {
         } else {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             
-            //self.present(mainViewController, animated: true, completion: nil)
             print("SUCCESS")
+            // Convert dictionary to string
+//            do {
+//                sendMessage = try JSONSerialization.jsonObject(with: Client.sharedInstance.json?["message"] as! Data, options: .allowFragments) as! Dictionary<String, Any>
+//            } catch {
+//                print("parse error")
+//            }
+            
+            sendMessage = Client.sharedInstance.json
             
             let mainViewController = storyboard.instantiateViewController(withIdentifier: "FeedTableViewController") as! FeedTableViewController
             let leftViewController = storyboard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController

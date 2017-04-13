@@ -48,7 +48,7 @@ class FeedTableViewCell: UITableViewCell, MKMapViewDelegate {
     
     // Read in from the database to configure the cell. Database json will be passed into this function
     // and will be used to set up the cell's properties and stored values
-    func configureCell() {
+    func configureCell(populate: [String: Any]) {
         // Set up stored variables in the cell
         dName = "Jeffrey Miller,PhD";
         imageString = "JeffreyMiller.jpg";

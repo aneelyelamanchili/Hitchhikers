@@ -11,6 +11,8 @@ import SwiftIconFont
 
 class FeedTableViewController: UITableViewController {
     @IBOutlet weak var innerBarButtonItem: UIBarButtonItem?
+    
+    var toPopulate: [String: Any]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -101,7 +103,7 @@ class FeedTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "feedCell", for: indexPath) as! FeedTableViewCell
 
         // Configure the cell...
-        cell.configureCell();
+        cell.configureCell(populate: toPopulate!);
         cell.selectionStyle = UITableViewCellSelectionStyle.none;
         
         return cell
