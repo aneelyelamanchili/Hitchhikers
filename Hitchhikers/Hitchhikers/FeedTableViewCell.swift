@@ -90,6 +90,14 @@ class FeedTableViewCell: UITableViewCell, MKMapViewDelegate {
         
     }
     
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        let renderer = MKPolylineRenderer(overlay: overlay)
+        renderer.strokeColor = UIColor.red
+        renderer.lineWidth = 4.0
+        
+        return renderer
+    }
+    
     func displayCellRoutes(initialCoord: CLLocationCoordinate2D, destinationCoord: CLLocationCoordinate2D) {
         // Remove all previous annotatations
         let annotations = self.mapView.annotations;
