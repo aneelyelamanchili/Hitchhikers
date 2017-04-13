@@ -43,7 +43,7 @@ public class Application {
 			rs = st.executeQuery("SELECT * FROM CurrentTrips");
 			while (rs.next()) {
 				rideList.put(rs.getInt("rideID"), new TreeSet<String>());
-				rideList.get(rs.getInt("rideID")).add(rs.getString("Username"));
+				rideList.get(rs.getInt("rideID")).add(rs.getString("Email"));
 				rideSize.put(rs.getInt("rideID"), rs.getInt("TotalSeats"));
 			}
 			Statement st1 = conn.createStatement();
@@ -71,7 +71,7 @@ public class Application {
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection("jdbc:mysql://localhost/Hitchhikers?user=root&password=root&useSSL=false");
 			st = conn.createStatement();
-			
+//			System.out.println(message.toString());
 	        if (message.get("message").equals("signup")) {
 				wsep.sendToSession(session, toBinary(signUp(message, session, conn)));
 			}
@@ -129,7 +129,8 @@ public class Application {
 	/*
 	 * When a user enters all of their information and clicks sign up, the data is then sent here.
 	 * Input - "message","signup"
-	 * 		   "username",___
+	 * 		   "firstname",___
+	 * 		   "lastname",___
 	 * 		   "password",___
 	 * 		   "age",___
 	 * 		   "email",___
@@ -145,27 +146,28 @@ public class Application {
 		try {
 			Statement st = conn.createStatement();
 			ResultSet rs = null;
-			String signupusername = (String) message.get("username");
-			if (signupusername.length() > 0) {
+			String signupemail = (String) message.get("email");
+			if (signupemail.length() > 0) {
 				rs = st.executeQuery("SELECT * from TotalUsers");
 				while (rs.next()) {
-					if (rs.getString("Username").equals(signupusername)) {
+					if (rs.getString("Email").equals(signupemail)) {
 						response.put("message", "signupfail");
-						response.put("signupfail", "Username already exists.");
+						response.put("signupfail", "Account already exists.");
 						return response;
 						//return failed sign up message
 					}
 				}
 				
+				String signupfirstname = message.getString("firstname");
+				String signuplastname = message.getString("lastname");
 				String signuppassword = (String)message.get("password");
 				signuppassword.replaceAll("\\s+","");
 				String signupage = (String)message.get("age");
-				String signupemail = (String)message.get("email");
 				String signuppicture = (String)message.get("picture");
 				String signupdriver = (String)message.get("isDriver");
 				String signupphonenumber = (String)message.get("phonenumber");
 				
-				if (signuppassword.equals("") || signupage.equals("") || signupemail.equals("") || signuppicture.equals("") || signupphonenumber.equals("") || signupdriver.equals("")) {
+				if (signupfirstname.equals("") || signuplastname.equals("") || signuppassword.equals("") || signupage.equals("") || signupemail.equals("") || signuppicture.equals("") || signupphonenumber.equals("") || signupdriver.equals("")) {
 					response.put("message", "signupfail");
 					response.put("signupfail", "Please fill in all of the fields.");
 					return response;
@@ -202,15 +204,15 @@ public class Application {
 				}
 				
 				//Account has successful inputs and is now entered into the database.
-				String addUser = "('" + signupusername + "', '" + signuppassword + "', " + signupemail + ", '" + signupage + "', '" + signupphonenumber + "', '" + signuppicture + "', " + signupdriverint + ")";
+				String addUser = "('" + signupfirstname + "', '" + signuplastname + "', '" + signuppassword + "', " + signupemail + ", '" + signupage + "', '" + signupphonenumber + "', '" + signuppicture + "', " + signupdriverint + ")";
 				st.execute(Constants.SQL_INSERT_USER + addUser + ";");
 				response.put("message", "signupsuccess");
 				response.put("signupsuccess", "Account was made.");
 				
-				previousSearches.put(signupusername, new ArrayList<String>());
+				previousSearches.put(signupemail, new ArrayList<String>());
 				
 				//User details for front-end.
-				JSONObject userDetails = addUserToJSON(signupusername, conn);
+				JSONObject userDetails = addUserToJSON(signupemail, conn);
 				for (String key : JSONObject.getNames(userDetails)) {
 					response.put(key, userDetails.get(key));
 				}
@@ -224,7 +226,7 @@ public class Application {
 			}
 			else {
 				response.put("message", "signupfail");
-				response.put("signupfail", "Please enter a username.");
+				response.put("signupfail", "Please enter an email.");
 				return response;
 				//return failed sign up message
 			}
@@ -245,7 +247,7 @@ public class Application {
 	/*
 	 * When a user signs in, this is the function that deals with correct/incorrect info.
 	 * Input - "message","login"
-	 * 		   "username",___
+	 * 		   "email",___
 	 * 		   "password",___
 	 * Output - "message","loginsuccess"/"loginfail"
 	 * 			if loginsuccess --> all of user data and feed data returned in JSON
@@ -256,18 +258,19 @@ public class Application {
 		try {
 			Statement st = conn.createStatement();
 			ResultSet rs = null;
-			String signinusername = (String) message.get("username");
+			String signinemail = (String) message.get("email");
 			String signinpassword = (String) message.get("password");
 			signinpassword.replaceAll("\\s+","");
-			if (signinusername.length() > 0 && signinpassword.length() > 0) {
-				rs = st.executeQuery("SELECT * from TotalUsers WHERE username='" + signinusername + "';");
+//			System.out.println();
+			if (signinemail.length() > 0 && signinpassword.length() > 0) {
+				rs = st.executeQuery("SELECT * from TotalUsers WHERE Email='" + signinemail + "';");
 				if (rs.next()) {
 					if (rs.getString("Password").equals(signinpassword)) {
 						response.put("message", "loginsuccess");
 						response.put("loginsuccess", "Logged in.");
 						
 						//User details for front-end.
-						JSONObject userDetails = addUserToJSON(signinusername, conn);
+						JSONObject userDetails = addUserToJSON(signinemail, conn);
 						for (String key : JSONObject.getNames(userDetails)) {
 							response.put(key, userDetails.get(key));
 						}
@@ -286,7 +289,7 @@ public class Application {
 				}
 				else {
 					response.put("message", "loginfail");
-					response.put("loginfail", "Username doesn't exist.");
+					response.put("loginfail", "Email doesn't exist.");
 					return response;
 				}
 			}
@@ -311,7 +314,7 @@ public class Application {
 	/*
 	 * When a user clicks makeRide and has inputted all of the info, they are sent here.
 	 * Input - "message","makeride"
-	 * 		   "username",who posted/logged in
+	 * 		   "email",who posted/logged in
 	 * 		   "origin",___
 	 * 		   "destination",___
 	 * 		   "carmodel",___
@@ -328,10 +331,10 @@ public class Application {
 	 */
 	public JSONObject makeRide(JSONObject message, Connection conn) {
 		JSONObject response = new JSONObject();
-		String username = "";
+		String email = "";
 		try {
 			Statement st = conn.createStatement();
-			username = (String)message.getString("username");
+			email = (String)message.getString("email");
 			String origin = (String)message.getString("origin");
 			String destination = (String)message.getString("destination");
 			String carmodel = (String)message.getString("carmodel");
@@ -344,10 +347,10 @@ public class Application {
 			String luggage = (String)message.getString("luggage");
 			int totalseats = (int)message.getInt("totalseats");
 			
-			if (username.equals("") || origin.equals("") || destination.equals("") || carmodel.equals("") || licenseplate.equals("") || datetime.equals("") || detours.equals("") || hospitality.equals("") || food.equals("") || luggage.equals("")) {
+			if (email.equals("") || origin.equals("") || destination.equals("") || carmodel.equals("") || licenseplate.equals("") || datetime.equals("") || detours.equals("") || hospitality.equals("") || food.equals("") || luggage.equals("")) {
 				response.put("message", "addridefail");
 				response.put("addridefail", "Adding ride failed.");
-				JSONObject userDetails = addUserToJSON(username, conn);
+				JSONObject userDetails = addUserToJSON(email, conn);
 				for (String key : JSONObject.getNames(userDetails)) {
 					try {
 						response.put(key, userDetails.get(key));
@@ -365,23 +368,26 @@ public class Application {
 				}
 				return response;
 			}
-
-			String addRide = "('" + username + "', '" + origin + "', '" + destination + "', '" + carmodel + "', '" + licenseplate + "', " + cost + ", '" + datetime + "', '" + detours + "', '" + hospitality + "', '" + food + "', '" + luggage + "', " + totalseats + ", " + (totalseats-1) + ")";
+			Statement st1 = conn.createStatement();
+			ResultSet rs1 = st1.executeQuery("SELECT * FROM TotalUsers WHERE Email='" + email + "';");
+			String firstname = rs1.getString("FirstName");
+			String lastname = rs1.getString("LastName");
+			String addRide = "('" + firstname + "', '" + lastname + "', '" + email + "', '" + origin + "', '" + destination + "', '" + carmodel + "', '" + licenseplate + "', " + cost + ", '" + datetime + "', '" + detours + "', '" + hospitality + "', '" + food + "', '" + luggage + "', " + totalseats + ", " + (totalseats-1) + ")";
 			st.execute(Constants.SQL_INSERT_RIDE + addRide + ";");
 			
 			ResultSet rs = null;
 			rs = st.executeQuery("SELECT * FROM CurrentRides");
 			while (rs.next()) {
-				if (username.equals(rs.getString("Username")) && origin.equals(rs.getString("Origin")) && destination.equals(rs.getString("Destination")) && carmodel.equals(rs.getString("CarModel")) && hospitality.equals(rs.getString("Hospitality"))) {
+				if (email.equals(rs.getString("Email")) && origin.equals(rs.getString("Origin")) && destination.equals(rs.getString("Destination")) && carmodel.equals(rs.getString("CarModel")) && hospitality.equals(rs.getString("Hospitality"))) {
 					rideSize.put(rs.getInt("rideID"), totalseats-1);
 					TreeSet<String> riders = new TreeSet<String>();
-					riders.add(username);
+					riders.add(email);
 					rideList.put(rs.getInt("rideID"), riders);
 				}
 			}
 			
 			response.put("message", "addridesuccess");
-			JSONObject userDetails = addUserToJSON(username, conn);
+			JSONObject userDetails = addUserToJSON(email, conn);
 			for (String key : JSONObject.getNames(userDetails)) {
 				response.put(key, userDetails.get(key));
 			}
@@ -394,7 +400,7 @@ public class Application {
 			try {
 				response.put("message", "addridefail");
 				response.put("addridefail", "Adding ride failed.");
-				JSONObject userDetails = addUserToJSON(username, conn);
+				JSONObject userDetails = addUserToJSON(email, conn);
 				for (String key : JSONObject.getNames(userDetails)) {
 					try {
 						response.put(key, userDetails.get(key));
@@ -425,7 +431,7 @@ public class Application {
 	 * and it is not full yet.
 	 * Input - "message","joinride"
 	 * 		   "joinrideid",ride's ID
-	 * 		   "username",loggedinuser
+	 * 		   "email",loggedinuser
 	 * Output - "message","addriderfail"/"addridersuccess"
 	 * 			if "addriderfail" --> "addriderfail",reason
 	 * 			returns feed + currentuser
@@ -435,7 +441,7 @@ public class Application {
 		try {
 			Statement st = conn.createStatement();
 			int rideid = message.getInt("joinrideid");
-			String username = message.getString("username");
+			String email = message.getString("email");
 			TreeSet<String> currentriders = rideList.get(rideid);
 //			boolean notonride = true;
 //			for (int i=0; i<currentriders.size(); i++) {
@@ -443,12 +449,12 @@ public class Application {
 //					notonride = false;
 //				}
 //			}
-			if (!currentriders.add(username)) {
+			if (!currentriders.add(email)) {
 				response.put("message", "addriderfail");
 				response.put("addriderfail", "This user is already on the trip");
 			}
 			else if (currentriders.size() < rideSize.get(rideid)) {
-				currentriders.add(username);
+				currentriders.add(email);
 				rideList.put(rideid, currentriders);
 				response.put("message", "addridersuccessful");
 				ResultSet rs = st.executeQuery("SELECT * FROM CurrentTrips WHERE rideID=" + rideid + ";");
@@ -461,7 +467,7 @@ public class Application {
 				response.put("addriderfail", "There is no space");
 			}
 			
-			JSONObject userDetails = addUserToJSON(username, conn);
+			JSONObject userDetails = addUserToJSON(email, conn);
 			for (String key : JSONObject.getNames(userDetails)) {
 				response.put(key, userDetails.get(key));
 			}
@@ -486,7 +492,7 @@ public class Application {
 	 * complaints following a ride.
 	 * Input - "message","deleteride"
 	 * 		   "deleterideid",rideid to delete
-	 * 		   "username",loggedinuser
+	 * 		   "email",loggedinuser
 	 * Output - "message","deleteridefail"/"deleteridesuccessful"
 	 * 			returns feed and user info
 	 */
@@ -496,20 +502,20 @@ public class Application {
 		try {
 			Statement st = conn.createStatement();
 			Statement st1 = conn.createStatement();
-			currentuser = message.getString("username");
+			currentuser = message.getString("email");
 			int rideid = Integer.parseInt(message.getString("deleterideid"));//rn taking a string from ios
-			ResultSet rs1 = st1.executeQuery("SELECT * FROM TotalUsers WHERE Username='" + currentuser + "';");
+			ResultSet rs1 = st1.executeQuery("SELECT * FROM TotalUsers WHERE Email='" + currentuser + "';");
 			int userid = -1;
 			if (rs1.next()) {
 				userid = rs1.getInt("userID");
 			}
 			ResultSet rs = st.executeQuery("SELECT * FROM CurrentTrips WHERE rideID=" + rideid + ";");
-			String username="";
+			String email="";
 			if (rs.next()) {
 				//return fail it is not this user's ride
-				username = rs.getString("Username");
+				email = rs.getString("Email");
 			}
-			if (!username.equals(currentuser)) {
+			if (!email.equals(currentuser)) {
 				response.put("message", "deleteridefail");
 				JSONObject userDetails = addUserToJSON(currentuser, conn);
 				for (String key : JSONObject.getNames(userDetails)) {
@@ -521,7 +527,8 @@ public class Application {
 				}
 				return response;
 			}
-			
+			String firstname = rs.getString("FirstName");
+			String lastname = rs.getString("LastName");
 			String origin = rs.getString("StartingPoint");
 			String destination = rs.getString("DestinationPoint");
 			String carmodel = rs.getString("CarModel");
@@ -537,7 +544,7 @@ public class Application {
 			
 			int seatsfilled = totalseats-seatsavailable;
 			
-			String insertride = "(" + rideid + ", " + userid + ", '"+ username + "', '" + origin + "', '" + destination + "', '" + carmodel + "', '" + licenseplate + "', " + cost + ", '" + datetime + "', '" + detours + "', '" + hospitality + "', '" + food + "', '" + luggage + "', " + totalseats + ", " + seatsfilled + ")";
+			String insertride = "(" + rideid + ", " + userid + ", '"+ firstname + "', '" + lastname + "', '" + email + "', '" + origin + "', '" + destination + "', '" + carmodel + "', '" + licenseplate + "', " + cost + ", '" + datetime + "', '" + detours + "', '" + hospitality + "', '" + food + "', '" + luggage + "', " + totalseats + ", " + seatsfilled + ")";
 			
 			rideList.remove(rideid);
 			rideSize.remove(rideid);
@@ -616,7 +623,7 @@ public class Application {
 		JSONObject response = new JSONObject();
 		String currentuser = "";
 		try {
-			currentuser = message.getString("username");
+			currentuser = message.getString("email");
 			String searchquery = message.getString("search");
 			previousSearches.get(currentuser).add(searchquery);
 			if (previousSearches.get(currentuser).size()>6) {
@@ -631,10 +638,10 @@ public class Application {
 				String destination = rs.getString("DestinationPoint");
 				if (destination.contains(searchquery)) {
 					JSONObject currFeed = new JSONObject();
-					String username = rs.getString("Username");
+					String email = rs.getString("Email");
 					Statement st1 = conn.createStatement();
 					ResultSet rs1 = null;
-					rs1 = st1.executeQuery("SELECT * from TotalUsers WHERE username='" + username + "';");
+					rs1 = st1.executeQuery("SELECT * from TotalUsers WHERE Email='" + email + "';");
 					if (rs1.next()) {
 						currFeed.put("userpicture", rs1.getString("Picture"));
 					}
@@ -646,7 +653,9 @@ public class Application {
 					}
 					//make strings for each list of origins, destinations, cars, every single column in currenttrips table
 					currFeed.put("rideid", rs.getString("rideID"));
-					currFeed.put("username", rs.getString("Username"));
+					currFeed.put("firstname", rs.getString("FirstName"));
+					currFeed.put("lastname", rs.getString("LastName"));
+					currFeed.put("email", rs.getString("Email"));
 					currFeed.put("origin", rs.getString("StartingPoint"));
 					currFeed.put("destination", rs.getString("DestinationPoint"));
 					currFeed.put("carmodel", rs.getString("CarModel"));
@@ -713,7 +722,7 @@ public class Application {
 	/*
 	 * Returns the previously searched destinations for the user.
 	 * Input - "message","searchview"
-	 * 		   "username",current user of app
+	 * 		   "email",current user of app
 	 * Output - "message","searchviewsuccessful"/"searchviewfail"
 	 * 			"previoussearchsize",int x
 	 * 			"previoussearch1","previoussearch2" to x,string searched
@@ -723,7 +732,7 @@ public class Application {
 		JSONObject response = new JSONObject();
 		String currentuser = "";
 		try {
-			currentuser = message.getString("username");
+			currentuser = message.getString("email");
 			ArrayList<String> searches = previousSearches.get(currentuser);
 			for (int i=0; i<searches.size(); i++) {
 				response.put("previoussearch" + (i+1), searches.get(i));
@@ -764,15 +773,15 @@ public class Application {
 	/*
 	 * Just returns the feed and user data.
 	 * input - "message","getdata"
-	 * 		   "username",current user of app
+	 * 		   "email",current user of app
 	 * Output - "message","getdatasuccess"
 	 * 			user and feed data
 	 */
 	public JSONObject refreshData(JSONObject message, Connection conn) {
 		JSONObject response = new JSONObject();
 		try {
-			String username = message.getString("username");
-			JSONObject userDetails = addUserToJSON(username, conn);
+			String email = message.getString("email");
+			JSONObject userDetails = addUserToJSON(email, conn);
 			for (String key : JSONObject.getNames(userDetails)) {
 				response.put(key, userDetails.get(key));
 			}
@@ -795,23 +804,26 @@ public class Application {
 	
 	/*
 	 * Returns the info for the user that sent the message to the backend to be returned.
-	 * Input - username
-	 * Output - "username"
+	 * Input - email
+	 * Output - "email"
+	 * 			"firstname"
+	 * 			"lastname"
 	 * 			"password"
 	 * 			"age"
 	 * 			"picture"
-	 * 			"email"
 	 * 			"phonenumber"
 	 * 			"isDriver","yes"/"no"
 	 */
-	public JSONObject addUserToJSON(String username, Connection conn) {
+	public JSONObject addUserToJSON(String email, Connection conn) {
 		JSONObject user = new JSONObject();
 		try {
 			Statement st = conn.createStatement();
 			ResultSet rs = null;
-			rs = st.executeQuery("SELECT * from TotalUsers WHERE username='" + username + "';");
+			rs = st.executeQuery("SELECT * from TotalUsers WHERE Email='" + email + "';");
 			if (rs.next()) {
-				user.put("username", rs.getString("Username"));
+				user.put("email", rs.getString("Email"));
+				user.put("firstname", rs.getString("FirstName"));
+				user.put("lastname", rs.getString("LastName"));
 				user.put("password", rs.getString("Password"));
 				user.put("age", rs.getString("Age"));
 				user.put("picture", rs.getString("Picture"));
@@ -835,7 +847,9 @@ public class Application {
 	 * Returns all of the rides that exist in the CurrentRides table in the database.
 	 * Output - "feedsize", number of rides in feed
 	 * 			JSON "feed"+x (ex. feed1 or feed2)
-	 * 				"username",who posted ride
+	 * 				"email",who posted ride
+	 * 				"firstname"
+	 * 				"lastname"
 	 * 				"userpicture",picture of poster
 	 * 				"rideid"
 	 * 				"origin"
@@ -863,10 +877,10 @@ public class Application {
 			int feedIndex = 1; 			//For keeping track of feed index
 			while (rs.next()) {
 				JSONObject currFeed = new JSONObject();
-				String username = rs.getString("Username");
+				String email = rs.getString("Email");
 				Statement st1 = conn.createStatement();
 				ResultSet rs1 = null;
-				rs1 = st1.executeQuery("SELECT * from TotalUsers WHERE username='" + username + "';");
+				rs1 = st1.executeQuery("SELECT * from TotalUsers WHERE Email='" + email + "';");
 				if (rs1.next()) {
 					currFeed.put("userpicture", rs1.getString("Picture"));
 				}
@@ -878,7 +892,9 @@ public class Application {
 				}
 				//make strings for each list of origins, destinations, cars, every single column in currenttrips table
 				currFeed.put("rideid", rs.getString("rideID"));
-				currFeed.put("username", rs.getString("Username"));
+				currFeed.put("email", rs.getString("Email"));
+				currFeed.put("firstname", rs.getString("FirstName"));
+				currFeed.put("lastname", rs.getString("LastName"));
 				currFeed.put("origin", rs.getString("StartingPoint"));
 				currFeed.put("destination", rs.getString("DestinationPoint"));
 				currFeed.put("carmodel", rs.getString("CarModel"));
