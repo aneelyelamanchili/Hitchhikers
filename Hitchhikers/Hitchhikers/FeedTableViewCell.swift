@@ -51,7 +51,7 @@ class FeedTableViewCell: UITableViewCell, MKMapViewDelegate {
     func configureCell() {
         // Set up stored variables in the cell
         dName = "Jeffrey Miller,PhD";
-        imageString = "jeffrey_miller.jpg";
+        imageString = "JeffreyMiller.jpg";
         profileImage.image = UIImage(named:"JeffreyMiller.jpg");
         carModel = "Toyota Prius 7TWC807"
         departurePlace = "3025 Royal Street, Los Angeles, CA 90007";
