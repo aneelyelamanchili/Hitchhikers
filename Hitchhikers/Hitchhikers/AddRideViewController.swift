@@ -8,16 +8,23 @@
 
 import UIKit
 import SwiftIconFont
+import GoogleMaps
+import GooglePlaces
+import MapKit
 
-class AddRideViewController: UIViewController, UITextFieldDelegate {
+class AddRideViewController: UIViewController, UITextFieldDelegate, GMSAutocompleteViewControllerDelegate {
     
     let sharedModel = Client.sharedInstance
     var activeField: UITextField?
+    
+    @IBOutlet weak var currentLocationTextField: UITextField!
+    @IBOutlet weak var destinationLocationTextField: UITextField!
+    @IBOutlet weak var searchCurrent: UIButton!
+    @IBOutlet weak var searchDestination: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
         let logo = UIImage(named: "mountain_icon.png")
         let imageView = UIImageView(image:logo)
         self.navigationItem.titleView = imageView
@@ -39,6 +46,70 @@ class AddRideViewController: UIViewController, UITextFieldDelegate {
         
         // Do any additional setup after loading the view.
     }
+    
+    func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
+        
+//        let regionRadius: CLLocationDistance = 1000
+//        let coordinateRegion = MKCoordinateRegionMakeWithDistance(place.coordinate,
+//                                                                  regionRadius * 2.0, regionRadius * 2.0)
+//        let annotation = MKPointAnnotation();
+//        annotation.coordinate = CLLocationCoordinate2D(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
+//        mapView.addAnnotation(annotation)
+//        mapView.setRegion(coordinateRegion, animated: true)
+//        mapView.isZoomEnabled = false;
+//        mapView.isScrollEnabled = false;
+//        mapView.isUserInteractionEnabled = false;
+//        
+//        print("Place name: \(place.name)")
+//        print("Place address: \(place.formattedAddress)")
+//        print("Place attributions: \(place.attributions)")
+        self.dismiss(animated: true, completion: nil) // dismiss after select place
+//
+//        
+//        self.currentLocation.text = "Current Location: " + place.formattedAddress!;
+        
+        print("Place address: \(place.formattedAddress)")
+        currentLocationTextField.text = place.formattedAddress;
+        
+    }
+    
+    @IBAction func dismissView(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
+        
+        print("ERROR AUTO COMPLETE \(error)")
+        
+    }
+    
+    func wasCancelled(_ viewController: GMSAutocompleteViewController) {
+        self.dismiss(animated: true, completion: nil) // when cancel search
+    }
+
+    
+    @IBAction func openSearchAddressCurrent(_ sender: UIButton) {
+        let autoCompleteController = GMSAutocompleteViewController()
+        autoCompleteController.delegate = self
+        
+        //TEST
+        autoCompleteController.navigationController?.navigationBar.barTintColor = UIColor(red:0.19, green:0.27, blue:0.31, alpha:1.0)
+        
+//        locationManager.startUpdatingLocation()
+        self.present(autoCompleteController, animated: true, completion: nil)
+    }
+    
+    @IBAction func openSearchAddressDestination(_ sender: Any) {
+        let autoCompleteController = GMSAutocompleteViewController()
+        autoCompleteController.delegate = self
+        
+        //TEST
+        autoCompleteController.navigationController?.navigationBar.barTintColor = UIColor(red:0.19, green:0.27, blue:0.31, alpha:1.0)
+        
+        //        locationManager.startUpdatingLocation()
+        self.present(autoCompleteController, animated: true, completion: nil)
+    }
+    
     
     @IBAction func setField(sender: UITextField) {
         activeField = sender
