@@ -39,7 +39,7 @@ class Client: NSObject, WebSocketDelegate {
         if let str = String(data: data, encoding: String.Encoding.utf8) {
             json = convertToDictionary(text: str)
             print(str)
-            if(json!["message"] as? String == "loginfail" || json?["message"] as? String == "success") {
+            if(json!["message"] as? String == "loginfail" || json?["message"] as? String == "loginsuccess") {
                 LoginViewController().didReceiveData()
             }
         } else {
