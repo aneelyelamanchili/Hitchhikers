@@ -10,7 +10,7 @@ import UIKit
 import Foundation
 import MapKit
 
-class FeedTableViewCell: UITableViewCell {
+class FeedTableViewCell: UITableViewCell, MKMapViewDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var profileImage: UIImageView!
@@ -72,8 +72,8 @@ class FeedTableViewCell: UITableViewCell {
 //        yCoordinate = Float(-157.829444);
         
         // These coordinates will change depending on what the server sends back
-        initialCoord = CLLocationCoordinate2D(latitude: 37.3230, longitude: 122.0322)
-        destinationCoord = CLLocationCoordinate2D(latitude: 40.7128, longitude: 74.0059)
+        initialCoord = CLLocationCoordinate2D(latitude: 37.309927, longitude: -122.057035)
+        destinationCoord = CLLocationCoordinate2D(latitude: 40.7128, longitude: -74.0059)
         
 //        let tempController = GMSMapViewController();
         displayCellRoutes(initialCoord: initialCoord, destinationCoord: destinationCoord);
@@ -107,7 +107,7 @@ class FeedTableViewCell: UITableViewCell {
         
         // Create the routes to and from two locations
         // 1.
-//        mapView.delegate = self
+        mapView.delegate = self
         
         // 2.
         let sourceLocation = CLLocationCoordinate2D(latitude: initialCoord.latitude, longitude: initialCoord.longitude)

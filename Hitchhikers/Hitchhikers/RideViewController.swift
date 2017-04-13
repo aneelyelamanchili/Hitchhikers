@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class RideViewController: UIViewController, UIScrollViewDelegate {
+class RideViewController: UIViewController, UIScrollViewDelegate, MKMapViewDelegate {
     
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
@@ -99,7 +99,7 @@ class RideViewController: UIViewController, UIScrollViewDelegate {
         
         // Create the routes to and from two locations
         // 1.
-        //        mapView.delegate = self
+                mapView.delegate = self
         
         // 2.
         let sourceLocation = CLLocationCoordinate2D(latitude: initialCoord.latitude, longitude: initialCoord.longitude)
