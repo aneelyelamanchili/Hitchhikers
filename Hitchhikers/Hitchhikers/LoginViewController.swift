@@ -55,12 +55,24 @@ class LoginViewController: UIViewController {
         Client.sharedInstance.socket.write(data: jsonData as Data)
         
         
-        let mainViewController = storyboard?.instantiateViewController(withIdentifier: "FeedTableViewController") as! FeedTableViewController
-        let leftViewController = storyboard?.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
-        let nvc: UINavigationController = UINavigationController(rootViewController: mainViewController)
+    }
+    
+    public func didReceiveData() {
+        print(Client.sharedInstance.json?["message"])
         
-        let slideMenuController = SlideController(mainViewController: nvc, leftMenuViewController: leftViewController)
-        UIApplication.shared.delegate?.window??.rootViewController = slideMenuController
+        if (Client.sharedInstance.json?["message"] as! String == "loginfail") {
+            print("ALERT")
+        } else {
+            
+            let mainViewController = storyboard?.instantiateViewController(withIdentifier: "FeedTableViewController") as! FeedTableViewController
+            let leftViewController = storyboard?.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
+            let nvc: UINavigationController = UINavigationController(rootViewController: mainViewController)
+            
+            let slideMenuController = SlideController(mainViewController: nvc, leftMenuViewController: leftViewController)
+            UIApplication.shared.delegate?.window??.rootViewController = slideMenuController
+        }
+
+    
     }
 
     /*
