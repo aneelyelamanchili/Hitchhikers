@@ -54,6 +54,7 @@ class LoginViewController: UIViewController {
         
         Client.sharedInstance.socket.write(data: jsonData as Data)
         
+
         
     }
     
@@ -63,15 +64,19 @@ class LoginViewController: UIViewController {
         if (Client.sharedInstance.json?["message"] as! String == "loginfail") {
             print("ALERT")
         } else {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
             
-            let mainViewController = self.storyboard?.instantiateViewController(withIdentifier: "FeedTableViewController") as! FeedTableViewController
-            let leftViewController = self.storyboard?.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
+            //self.present(mainViewController, animated: true, completion: nil)
+            print("SUCCESS")
+            
+            let mainViewController = storyboard.instantiateViewController(withIdentifier: "FeedTableViewController") as! FeedTableViewController
+            let leftViewController = storyboard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
             let nvc: UINavigationController = UINavigationController(rootViewController: mainViewController)
             
             let slideMenuController = SlideController(mainViewController: nvc, leftMenuViewController: leftViewController)
             UIApplication.shared.delegate?.window??.rootViewController = slideMenuController
             
-            self.present(FeedTableViewController, animated: true, completion: nil)
+            self.navigationController?.pushViewController(mainViewController, animated: true)
             
         }
 
