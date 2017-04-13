@@ -71,7 +71,7 @@ class LoginViewController: UIViewController {
             let slideMenuController = SlideController(mainViewController: nvc, leftMenuViewController: leftViewController)
             UIApplication.shared.delegate?.window??.rootViewController = slideMenuController
             
-            self.present(FeedTableViewController, animated: true, completion: nil)
+            self.present(FeedTableViewController(), animated: true, completion: nil)
             
         }
 

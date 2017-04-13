@@ -82,6 +82,14 @@ class RideViewController: UIViewController, UIScrollViewDelegate, MKMapViewDeleg
 //        scrollView.contentSize = CGSize(width: 375, height: 1136);
     }
     
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        let renderer = MKPolylineRenderer(overlay: overlay)
+        renderer.strokeColor = UIColor.red
+        renderer.lineWidth = 4.0
+        
+        return renderer
+    }
+    
     func displayRideRoute(initialCoord: CLLocationCoordinate2D, destinationCoord: CLLocationCoordinate2D) {
         // Remove all previous annotatations
         let annotations = self.mapView.annotations;
