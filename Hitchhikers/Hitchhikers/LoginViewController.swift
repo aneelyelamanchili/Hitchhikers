@@ -50,7 +50,7 @@ class LoginViewController: UIViewController {
         json.setValue(password.text, forKey: "password")
         let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
         let jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue) as! String
-        print(jsonString)
+        //print(jsonString)
         
         Client.sharedInstance.socket.write(data: jsonData as Data)
         
@@ -64,12 +64,15 @@ class LoginViewController: UIViewController {
             print("ALERT")
         } else {
             
-            let mainViewController = storyboard?.instantiateViewController(withIdentifier: "FeedTableViewController") as! FeedTableViewController
-            let leftViewController = storyboard?.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
+            let mainViewController = self.storyboard?.instantiateViewController(withIdentifier: "FeedTableViewController") as! FeedTableViewController
+            let leftViewController = self.storyboard?.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
             let nvc: UINavigationController = UINavigationController(rootViewController: mainViewController)
             
             let slideMenuController = SlideController(mainViewController: nvc, leftMenuViewController: leftViewController)
             UIApplication.shared.delegate?.window??.rootViewController = slideMenuController
+            
+            self.present(FeedTableViewController, animated: true, completion: nil)
+            
         }
 
     
