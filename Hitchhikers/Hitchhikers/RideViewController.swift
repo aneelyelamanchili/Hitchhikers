@@ -38,22 +38,27 @@ class RideViewController: UIViewController, UIScrollViewDelegate {
     var detour = String();
     var xCoordinate = Float();
     var yCoordinate = Float();
+    var initialCoord = CLLocationCoordinate2D();
+    var destinationCoord = CLLocationCoordinate2D();
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        let initialLocation = CLLocation(latitude: CLLocationDegrees(xCoordinate), longitude: CLLocationDegrees(yCoordinate))
+//        let initialLocation = CLLocation(latitude: CLLocationDegrees(xCoordinate), longitude: CLLocationDegrees(yCoordinate))
+//        
+//        let regionRadius: CLLocationDistance = 1000
+//        let coordinateRegion = MKCoordinateRegionMakeWithDistance(initialLocation.coordinate,
+//                                                                  regionRadius * 2.0, regionRadius * 2.0)
+//        print(xCoordinate);
+//        print(yCoordinate);
+//        let annotation = MKPointAnnotation();
+//        annotation.coordinate = CLLocationCoordinate2D(latitude: CLLocationDegrees(xCoordinate), longitude: CLLocationDegrees(yCoordinate))
+//        mapView.addAnnotation(annotation)
+//        mapView.setRegion(coordinateRegion, animated: true)
         
-        let regionRadius: CLLocationDistance = 1000
-        let coordinateRegion = MKCoordinateRegionMakeWithDistance(initialLocation.coordinate,
-                                                                  regionRadius * 2.0, regionRadius * 2.0)
-        print(xCoordinate);
-        print(yCoordinate);
-        let annotation = MKPointAnnotation();
-        annotation.coordinate = CLLocationCoordinate2D(latitude: CLLocationDegrees(xCoordinate), longitude: CLLocationDegrees(yCoordinate))
-        mapView.addAnnotation(annotation)
-        mapView.setRegion(coordinateRegion, animated: true)
+        displayRideRoute(initialCoord: initialCoord, destinationCoord: destinationCoord);
+        
         mapView.isZoomEnabled = false;
         mapView.isScrollEnabled = false;
         mapView.isUserInteractionEnabled = false;
@@ -75,6 +80,86 @@ class RideViewController: UIViewController, UIScrollViewDelegate {
         scrollView.frame = view.bounds
         self.scrollView.contentSize = self.contentView.bounds.size;
 //        scrollView.contentSize = CGSize(width: 375, height: 1136);
+    }
+    
+    func displayRideRoute(initialCoord: CLLocationCoordinate2D, destinationCoord: CLLocationCoordinate2D) {
+        // Remove all previous annotatations
+        let annotations = self.mapView.annotations;
+        
+        for annotation in annotations {
+            if let annotation = annotation as? MKAnnotation
+            {
+                self.mapView.removeAnnotation(annotation)
+            }
+        }
+        
+        // Remove all previous map overlays
+        let overlays = mapView.overlays
+        mapView.removeOverlays(overlays)
+        
+        // Create the routes to and from two locations
+        // 1.
+        //        mapView.delegate = self
+        
+        // 2.
+        let sourceLocation = CLLocationCoordinate2D(latitude: initialCoord.latitude, longitude: initialCoord.longitude)
+        let destinationLocation = CLLocationCoordinate2D(latitude: destinationCoord.latitude, longitude: destinationCoord.longitude)
+        
+        // 3.
+        let sourcePlacemark = MKPlacemark(coordinate: sourceLocation, addressDictionary: nil)
+        let destinationPlacemark = MKPlacemark(coordinate: destinationLocation, addressDictionary: nil)
+        
+        // 4.
+        let sourceMapItem = MKMapItem(placemark: sourcePlacemark)
+        let destinationMapItem = MKMapItem(placemark: destinationPlacemark)
+        
+        // 5.
+        let sourceAnnotation = MKPointAnnotation()
+        sourceAnnotation.title = "Times Square"
+        
+        if let location = sourcePlacemark.location {
+            sourceAnnotation.coordinate = location.coordinate
+        }
+        
+        
+        let destinationAnnotation = MKPointAnnotation()
+        destinationAnnotation.title = "Empire State Building"
+        
+        if let location = destinationPlacemark.location {
+            destinationAnnotation.coordinate = location.coordinate
+        }
+        
+        // 6.
+        self.mapView.showAnnotations([sourceAnnotation,destinationAnnotation], animated: true )
+        
+        // 7.
+        let directionRequest = MKDirectionsRequest()
+        directionRequest.source = sourceMapItem
+        directionRequest.destination = destinationMapItem
+        directionRequest.transportType = .automobile
+        
+        // Calculate the direction
+        let directions = MKDirections(request: directionRequest)
+        
+        // 8.
+        directions.calculate {
+            (response, error) -> Void in
+            
+            guard let response = response else {
+                if let error = error {
+                    print("Error: \(error)")
+                }
+                
+                return
+            }
+            
+            let route = response.routes[0]
+            self.mapView.add((route.polyline), level: MKOverlayLevel.aboveRoads)
+            
+            let rect = route.polyline.boundingMapRect
+            //            self.mapView.setRegion(MKCoordinateRegionForMapRect(rect), animated: true)
+            self.mapView.showAnnotations(self.mapView.annotations, animated: true)
+        }
     }
     
     override func viewDidLayoutSubviews() {

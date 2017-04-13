@@ -61,8 +61,9 @@ class FeedTableViewController: UITableViewController {
             destination.eat = "Will make stops; Feel free to bring snacks";
             destination.hospitalities = "Will make frequent pit stops for bathroom; Camping out doors at night";
             destination.detour = "Yes";
-            destination.xCoordinate = cell.xCoordinate;
-            destination.yCoordinate = cell.yCoordinate;
+            destination.initialCoord = cell.initialCoord;
+            destination.destinationCoord = cell.destinationCoord;
+            
         }
     }
     

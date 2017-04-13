@@ -16,6 +16,7 @@ class AddRideViewController: UIViewController, UITextFieldDelegate, GMSAutocompl
     
     let sharedModel = Client.sharedInstance
     var activeField: UITextField?
+    var current = Bool();
     
     @IBOutlet weak var currentLocationTextField: UITextField!
     @IBOutlet weak var destinationLocationTextField: UITextField!
@@ -69,7 +70,13 @@ class AddRideViewController: UIViewController, UITextFieldDelegate, GMSAutocompl
 //        self.currentLocation.text = "Current Location: " + place.formattedAddress!;
         
         print("Place address: \(place.formattedAddress)")
-        currentLocationTextField.text = place.formattedAddress;
+        if(current) {
+            currentLocationTextField.text = place.formattedAddress;
+        }
+        
+        else {
+            destinationLocationTextField.text = place.formattedAddress;
+        }
         
     }
     
@@ -97,6 +104,7 @@ class AddRideViewController: UIViewController, UITextFieldDelegate, GMSAutocompl
         
 //        locationManager.startUpdatingLocation()
         self.present(autoCompleteController, animated: true, completion: nil)
+        current = true;
     }
     
     @IBAction func openSearchAddressDestination(_ sender: Any) {
@@ -108,6 +116,7 @@ class AddRideViewController: UIViewController, UITextFieldDelegate, GMSAutocompl
         
         //        locationManager.startUpdatingLocation()
         self.present(autoCompleteController, animated: true, completion: nil)
+        current = false;
     }
     
     
