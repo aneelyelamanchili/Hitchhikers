@@ -50,9 +50,24 @@ class FeedTableViewCell: UITableViewCell, MKMapViewDelegate {
     // and will be used to set up the cell's properties and stored values
     func configureCell(populate: [String: Any]) {
         // Set up stored variables in the cell
-        dName = "Jeffrey Miller,PhD";
-        imageString = "JeffreyMiller.jpg";
-        profileImage.image = UIImage(named:"JeffreyMiller.jpg");
+//        dName = "Jeffrey Miller,PhD";
+//        imageString = "JeffreyMiller.jpg";
+//        profileImage.image = UIImage(named:"JeffreyMiller.jpg");
+//        carModel = "Toyota Prius 7TWC807"
+//        departurePlace = "3025 Royal Street, Los Angeles, CA 90007";
+//        dollars = "$25-$30";
+//        destinationPlace = "Voodoo Doughnut 22 SW 3rd Ave, Portland, OR 97204";
+//        stuffToBring = "1-2 bags maximum";
+//        eat = "Will make stops; Feel free to bring snacks";
+//        hospitalities = "Will make frequent pit stops for bathroom; Camping out doors at night";
+//        detour = "Yes";
+        
+        dName = (populate["firstname"] as? String)! + " " + (populate["lastname"] as? String)!
+        imageString = populate["picture"] as! String;
+        let url = URL(string: populate["picture"] as! String)
+        let data = try? Data(contentsOf: url!)
+        
+        profileImage.image = UIImage(data: data!);
         carModel = "Toyota Prius 7TWC807"
         departurePlace = "3025 Royal Street, Los Angeles, CA 90007";
         dollars = "$25-$30";

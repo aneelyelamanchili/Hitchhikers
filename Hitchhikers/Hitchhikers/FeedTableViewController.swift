@@ -103,6 +103,7 @@ class FeedTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "feedCell", for: indexPath) as! FeedTableViewCell
 
         // Configure the cell...
+        print(toPopulate?["picture"])
         cell.configureCell(populate: toPopulate!);
         cell.selectionStyle = UITableViewCellSelectionStyle.none;
         

@@ -390,7 +390,7 @@
 				TargetAttributes = {
 					B92989EB1E8DCA9800CF8287 = {
 						CreatedOnToolsVersion = 8.3;
-						DevelopmentTeam = CKF73J7D4M;
+						DevelopmentTeam = MS7GBK46MH;
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
@@ -804,11 +804,11 @@
 			baseConfigurationReference = 30EABE6987A56A6969E73E96 /* Pods-Hitchhikers.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = CKF73J7D4M;
+				DEVELOPMENT_TEAM = MS7GBK46MH;
 				INFOPLIST_FILE = Hitchhikers/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = will.Hitchhikers;
+				PRODUCT_BUNDLE_IDENTIFIER = aneel.Hitchhikers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -819,11 +819,11 @@
 			baseConfigurationReference = 92C0871AD102DBC05FE09FFE /* Pods-Hitchhikers.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = CKF73J7D4M;
+				DEVELOPMENT_TEAM = MS7GBK46MH;
 				INFOPLIST_FILE = Hitchhikers/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = will.Hitchhikers;
+				PRODUCT_BUNDLE_IDENTIFIER = aneel.Hitchhikers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

@@ -59,16 +59,16 @@ class LoginViewController: UIViewController {
         
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if  segue.identifier == "loginSegue",
-            let destination = segue.destination as? FeedTableViewController
-        {
-            print("GOT HERE");
-            // Set the destination dictionary to the current dictionary
-            destination.toPopulate = sendMessage;
-        }
-        
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//       //if  segue.identifier == "loginSegue",
+//          if  let destination = segue.destination as? FeedTableViewController
+//        {
+//            print("GOT HERE");
+//            // Set the destination dictionary to the current dictionary
+//            destination.toPopulate = sendMessage;
+//        }
+//        
+//    }
     
     public func didReceiveData() {
         print(Client.sharedInstance.json?["message"])
@@ -88,6 +88,8 @@ class LoginViewController: UIViewController {
             
             sendMessage = Client.sharedInstance.json
             
+            print(sendMessage?["message"])
+            
             let mainViewController = storyboard.instantiateViewController(withIdentifier: "FeedTableViewController") as! FeedTableViewController
             let leftViewController = storyboard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
             let nvc: UINavigationController = UINavigationController(rootViewController: mainViewController)
@@ -95,6 +97,7 @@ class LoginViewController: UIViewController {
             let slideMenuController = SlideController(mainViewController: nvc, leftMenuViewController: leftViewController)
             UIApplication.shared.delegate?.window??.rootViewController = slideMenuController
             
+            mainViewController.toPopulate = sendMessage
             self.navigationController?.pushViewController(mainViewController, animated: true)
             
         }
