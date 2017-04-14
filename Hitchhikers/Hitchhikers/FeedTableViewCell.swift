@@ -34,6 +34,7 @@ class FeedTableViewCell: UITableViewCell, MKMapViewDelegate {
     var hospitalities = String();
     var detour = String();
     var departureTime = String();
+    var cellID: String?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -49,7 +50,7 @@ class FeedTableViewCell: UITableViewCell, MKMapViewDelegate {
     
     // Read in from the database to configure the cell. Database json will be passed into this function
     // and will be used to set up the cell's properties and stored values
-    func configureCell(populate: [String: Any]) {
+    func configureCell(feed: String, populate: [String: Any]) {
         // Set up stored variables in the cell
 //        dName = "Jeffrey Miller,PhD";
 //        imageString = "JeffreyMiller.jpg";
@@ -62,6 +63,14 @@ class FeedTableViewCell: UITableViewCell, MKMapViewDelegate {
 //        eat = "Will make stops; Feel free to bring snacks";
 //        hospitalities = "Will make frequent pit stops for bathroom; Camping out doors at night";
 //        detour = "Yes";
+        
+        print("FEED STUFF")
+        //print(Client.sharedInstance.json?[feed])
+        let outer = Client.sharedInstance.json?[feed] as? [String : Any?]
+        cellID = outer?["rideid"] as! String
+        
+        print(cellID)
+        
         
         dName = (populate["firstname"] as? String)! + " " + (populate["lastname"] as? String)!
         imageString = populate["userpicture"] as! String;

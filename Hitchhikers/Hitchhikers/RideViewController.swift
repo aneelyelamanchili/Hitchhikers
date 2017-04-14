@@ -25,6 +25,7 @@ class RideViewController: UIViewController, UIScrollViewDelegate, MKMapViewDeleg
     @IBOutlet weak var food: UILabel!
     @IBOutlet weak var hospitality: UILabel!
     @IBOutlet weak var detours: UILabel!
+    @IBOutlet weak var deleteRide: UIButton!
     
     var dName = String();
     var dImage = String();
@@ -40,6 +41,7 @@ class RideViewController: UIViewController, UIScrollViewDelegate, MKMapViewDeleg
     var yCoordinate = Float();
     var initialCoord = CLLocationCoordinate2D();
     var destinationCoord = CLLocationCoordinate2D();
+    var cellID = String();
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,6 +86,9 @@ class RideViewController: UIViewController, UIScrollViewDelegate, MKMapViewDeleg
         hospitality.text = hospitalities;
         detours.text = detour;
         scrollView.frame = view.bounds
+        scrollView.isUserInteractionEnabled = true
+        scrollView.isExclusiveTouch = true
+        scrollView.addSubview(deleteRide)
         self.scrollView.contentSize = self.contentView.bounds.size;
 //        scrollView.contentSize = CGSize(width: 375, height: 1136);
     }
@@ -189,6 +194,25 @@ class RideViewController: UIViewController, UIScrollViewDelegate, MKMapViewDeleg
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func deleteThisRide(sender: UIButton) {
+        let json:NSMutableDictionary = NSMutableDictionary()
+        json.setValue("deleteride", forKey: "message")
+        json.setValue(Client.sharedInstance.json?["email"], forKey: "email")
+        json.setValue(cellID, forKey: "deleterideid")
+        let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
+
+        Client.sharedInstance.socket.write(data: jsonData)
+        
+        usleep(3000000)
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let mainViewController = storyboard.instantiateViewController(withIdentifier: "FeedTableViewController") as! FeedTableViewController
+        
+        mainViewController.toPopulate = Client.sharedInstance.json
+        
+        _ = navigationController?.popViewController(animated: true)
+    
+    }
 
     /*
     // MARK: - Navigation

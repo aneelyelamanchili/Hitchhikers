@@ -65,6 +65,7 @@ class FeedTableViewController: UITableViewController {
             destination.detour = cell.detour;
             destination.initialCoord = cell.initialCoord;
             destination.destinationCoord = cell.destinationCoord;
+            destination.cellID = cell.cellID!;
             
         }
     }
@@ -76,6 +77,10 @@ class FeedTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.setNavigationBarItem(viewController: "FeedTableViewController")
+        
+        DispatchQueue.main.async{
+            self.tableView.reloadData()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -107,7 +112,7 @@ class FeedTableViewController: UITableViewController {
         print(toPopulate?["picture"])
         var feedNum: String = "feed" + String(indexPath.row + 1);
         print(feedNum);
-        cell.configureCell(populate: toPopulate?[feedNum] as! [String : Any]);
+        cell.configureCell(feed: feedNum, populate: toPopulate?[feedNum] as! [String : Any]);
         cell.selectionStyle = UITableViewCellSelectionStyle.none;
         
         return cell

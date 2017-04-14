@@ -118,7 +118,7 @@ class GuestTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "feedCell", for: indexPath) as! FeedTableViewCell
         
         // Configure the cell...
-        cell.configureCell(populate: toPopulate!);
+        cell.configureCell(feed: "temp", populate: toPopulate!);
         cell.selectionStyle = UITableViewCellSelectionStyle.none;
         
         return cell
