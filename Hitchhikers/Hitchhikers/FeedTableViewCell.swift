@@ -66,8 +66,8 @@ class FeedTableViewCell: UITableViewCell, MKMapViewDelegate {
         
         print("FEED STUFF")
         //print(Client.sharedInstance.json?[feed])
-        let outer = Client.sharedInstance.json?[feed] as? [String : Any?]
-        cellID = outer?["rideid"] as! String
+//        let outer = Client.sharedInstance.json?[feed] as? [String : Any?]
+        cellID = populate["rideid"] as! String
         
         print(cellID)
         

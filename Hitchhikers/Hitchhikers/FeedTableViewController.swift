@@ -12,7 +12,7 @@ import SwiftIconFont
 class FeedTableViewController: UITableViewController {
     @IBOutlet weak var innerBarButtonItem: UIBarButtonItem?
     
-    var toPopulate: [String: Any]?
+    var toPopulate = Client.sharedInstance.json
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,9 +78,11 @@ class FeedTableViewController: UITableViewController {
         super.viewWillAppear(animated)
         self.setNavigationBarItem(viewController: "FeedTableViewController")
         
-        DispatchQueue.main.async{
-            self.tableView.reloadData()
-        }
+//        DispatchQueue.main.async{
+//            self.tableView.reloadData()
+            
+//        }
+        self.viewDidLoad()
     }
 
     override func didReceiveMemoryWarning() {
