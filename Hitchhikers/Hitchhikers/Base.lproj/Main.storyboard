@@ -697,12 +697,12 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                 <connections>
                                     <action selector="setFieldWithSender:" destination="SZ0-L4-Ajh" eventType="editingDidEnd" id="uhe-EJ-rPS"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="retype" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="J4n-Yn-beM">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="profile" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="J4n-Yn-beM">
                                 <rect key="frame" x="26" y="559" width="322.5" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
@@ -712,7 +712,7 @@
                                     <action selector="setFieldWithSender:" destination="SZ0-L4-Ajh" eventType="editingDidEnd" id="xNc-Iw-xpy"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="month" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aeQ-Vi-olO">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="age" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aeQ-Vi-olO">
                                 <rect key="frame" x="26" y="409" width="90.5" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
@@ -722,12 +722,12 @@
                                     <action selector="setFieldWithSender:" destination="SZ0-L4-Ajh" eventType="editingDidEnd" id="NKM-Ue-CSc"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="day" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="foP-d7-wY6">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="phone" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="foP-d7-wY6">
                                 <rect key="frame" x="143" y="409" width="206" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                 <connections>
                                     <action selector="setFieldWithSender:" destination="SZ0-L4-Ajh" eventType="editingDidEnd" id="Xqo-X2-O74"/>
                                 </connections>
@@ -776,6 +776,9 @@
                                 <rect key="frame" x="91" y="611" width="195" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" backgroundImage="welcome.png"/>
+                                <connections>
+                                    <action selector="signUpUser:" destination="SZ0-L4-Ajh" eventType="touchUpInside" id="KgZ-rv-NZV"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rTE-Zw-cSB">
                                 <rect key="frame" x="0.0" y="28" width="42" height="43"/>
@@ -799,7 +802,14 @@
                     </view>
                     <navigationItem key="navigationItem" id="CJ9-qw-1yY"/>
                     <connections>
+                        <outlet property="age" destination="aeQ-Vi-olO" id="ZuU-70-XoY"/>
                         <outlet property="btn" destination="rTE-Zw-cSB" id="PJq-vw-FLR"/>
+                        <outlet property="email" destination="ddq-P4-tpj" id="6aH-4z-2n5"/>
+                        <outlet property="firstname" destination="67P-mG-YEr" id="sma-XF-TtT"/>
+                        <outlet property="lastname" destination="19q-LO-THB" id="pdf-Ur-eL9"/>
+                        <outlet property="password" destination="N6e-Nb-oBC" id="jab-uY-cwV"/>
+                        <outlet property="phonenumber" destination="foP-d7-wY6" id="FmG-ri-w5A"/>
+                        <outlet property="profileURL" destination="J4n-Yn-beM" id="KG0-8W-K8g"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dvX-dW-fW7" userLabel="First Responder" sceneMemberID="firstResponder"/>
