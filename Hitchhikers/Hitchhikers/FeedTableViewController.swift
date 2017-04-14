@@ -92,7 +92,8 @@ class FeedTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 4
+        // Return the number of rows in the feed
+        return toPopulate?["feedsize"] as! Int
     }
     
 //    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -104,7 +105,9 @@ class FeedTableViewController: UITableViewController {
 
         // Configure the cell...
         print(toPopulate?["picture"])
-        cell.configureCell(populate: toPopulate!);
+        var feedNum: String = "feed" + String(indexPath.row + 1);
+        print(feedNum);
+        cell.configureCell(populate: toPopulate?[feedNum] as! [String : Any]);
         cell.selectionStyle = UITableViewCellSelectionStyle.none;
         
         return cell

@@ -63,19 +63,19 @@ class FeedTableViewCell: UITableViewCell, MKMapViewDelegate {
 //        detour = "Yes";
         
         dName = (populate["firstname"] as? String)! + " " + (populate["lastname"] as? String)!
-        imageString = populate["picture"] as! String;
-        let url = URL(string: populate["picture"] as! String)
+        imageString = populate["userpicture"] as! String;
+        let url = URL(string: populate["userpicture"] as! String)
         let data = try? Data(contentsOf: url!)
         
         profileImage.image = UIImage(data: data!);
-        carModel = "Toyota Prius 7TWC807"
-        departurePlace = "3025 Royal Street, Los Angeles, CA 90007";
-        dollars = "$25-$30";
-        destinationPlace = "Voodoo Doughnut 22 SW 3rd Ave, Portland, OR 97204";
-        stuffToBring = "1-2 bags maximum";
-        eat = "Will make stops; Feel free to bring snacks";
-        hospitalities = "Will make frequent pit stops for bathroom; Camping out doors at night";
-        detour = "Yes";
+        carModel = populate["carmodel"] as! String;
+        departurePlace = populate["origin"] as! String;
+        dollars = "$" + (populate["costs"] as! String);
+        destinationPlace = populate["destination"] as! String;
+        stuffToBring = populate["luggage"] as! String;
+        eat = populate["food"] as! String;
+        hospitalities = populate["hospitality"] as! String;
+        detour = populate["detours"] as! String;
         
         profileImage.layer.cornerRadius = 31.5;
         profileImage.layer.masksToBounds = true;
