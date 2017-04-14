@@ -87,7 +87,7 @@ class RideViewController: UIViewController, UIScrollViewDelegate, MKMapViewDeleg
         food.text = eat;
         hospitality.text = hospitalities;
         detours.text = detour;
-        seatsLeft.text = seatsAvailable;
+        //seatsLeft.text = seatsAvailable;
         scrollView.frame = view.bounds
         scrollView.isUserInteractionEnabled = true
         scrollView.isExclusiveTouch = true
@@ -208,12 +208,10 @@ class RideViewController: UIViewController, UIScrollViewDelegate, MKMapViewDeleg
     
     }
     
-    func goBack() {
+    public func goBack() {
         print("Got into here 2")
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let mainViewController = storyboard.instantiateViewController(withIdentifier: "FeedTableViewController") as! FeedTableViewController
         
-        self.navigationController?.popToViewController(mainViewController, animated: true);
+        navigationController?.popViewController(animated: true)
     }
 
     /*

@@ -24,6 +24,7 @@ class GMSMapViewController: UIViewController, CLLocationManagerDelegate, UITable
     var initialCoord = CLLocationCoordinate2D();
     var initialAddress = String();
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -274,6 +275,23 @@ class GMSMapViewController: UIViewController, CLLocationManagerDelegate, UITable
                 self.displayRoutes(initialCoord: self.initialCoord, destinationCoord: (placemark.location?.coordinate)!)
             }
         })
+    }
+    
+    
+    @IBAction func showSearchResults(_ sender: Any) {
+        var destination = self.currentLocation.text?.components(separatedBy: ":").last
+        print(destination)
+        destination?.remove(at: (destination?.startIndex)!)
+        
+        let json:NSMutableDictionary = NSMutableDictionary()
+        json.setValue("search", forKey: "message")
+        json.setValue(destination, forKey: "search")
+        json.setValue(Client.sharedInstance.json?["email"], forKey: "email")
+        let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
+        
+        Client.sharedInstance.socket.write(data: jsonData)
+
+        
     }
 }
 
