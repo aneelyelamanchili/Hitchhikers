@@ -205,10 +205,8 @@ class AddRideViewController: UIViewController, UITextFieldDelegate, GMSAutocompl
     
     func goBack() {
         print("Got into here 2")
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let mainViewController = storyboard.instantiateViewController(withIdentifier: "FeedTableViewController") as! FeedTableViewController
         
-        self.navigationController?.popToViewController(mainViewController, animated: true);
+        navigationController?.popViewController(animated: true)
     }
 
     

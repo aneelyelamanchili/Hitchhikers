@@ -67,6 +67,7 @@ class FeedTableViewController: UITableViewController {
             destination.destinationCoord = cell.destinationCoord;
             destination.cellID = cell.cellID!;
             destination.seatsAvailable = cell.seatsAvailable;
+            print(cell.seatsAvailable);
         }
     }
     

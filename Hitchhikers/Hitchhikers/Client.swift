@@ -47,7 +47,7 @@ class Client: NSObject, WebSocketDelegate {
                 let vc = UIApplication.topViewController() as? RideViewController
                 vc?.goBack()
                 
-            } else if(json!["message"] as? String == "makeridesuccess") {
+            } else if(json!["message"] as? String == "addridesuccess") {
                 let vc = UIApplication.topViewController() as? AddRideViewController
                 vc?.goBack()
 

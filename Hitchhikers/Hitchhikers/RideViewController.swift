@@ -86,7 +86,7 @@ class RideViewController: UIViewController, UIScrollViewDelegate, MKMapViewDeleg
         food.text = eat;
         hospitality.text = hospitalities;
         detours.text = detour;
-        //seatsLeft.text = seatsAvailable;
+        seatsLeft.text = seatsAvailable;
         scrollView.frame = view.bounds
         scrollView.isUserInteractionEnabled = true
         scrollView.isExclusiveTouch = true
