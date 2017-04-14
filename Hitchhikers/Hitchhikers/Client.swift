@@ -45,8 +45,12 @@ class Client: NSObject, WebSocketDelegate {
                 print("Got into here")
                 
                 let vc = UIApplication.topViewController() as? RideViewController
-                
                 vc?.goBack()
+                
+            } else if(json!["message"] as? String == "makeridesuccess") {
+                let vc = UIApplication.topViewController() as? AddRideViewController
+                vc?.goBack()
+
             }
         } else {
             print("not a valid UTF-8 sequence")
