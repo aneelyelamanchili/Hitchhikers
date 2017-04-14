@@ -25,7 +25,7 @@ class MenuViewController: UIViewController, LeftMenuProtocol {
     var mainViewController: UIViewController!
     var profileViewController: UIViewController!
     
-    var toPopulate: [String: Any]?
+    let toPopulate = Client.sharedInstance.json
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -55,8 +55,8 @@ class MenuViewController: UIViewController, LeftMenuProtocol {
         imageView.clipsToBounds = true
         newView.addSubview(imageView)
         
-        let label = UILabel(frame: CGRect(x: 190, y: 75, width: 200, height: 21))
-        label.center = CGPoint(x: 190, y: 75)
+        let label = UILabel(frame: CGRect(x: 190, y: 74, width: 200, height: 21))
+        label.center = CGPoint(x: 190, y: 74)
         label.textAlignment = .center
         label.text = (toPopulate?["firstname"] as? String)! + " " + (toPopulate?["lastname"] as? String)!
         label.textColor = UIColor.white
@@ -70,6 +70,7 @@ class MenuViewController: UIViewController, LeftMenuProtocol {
         self.tableView.delegate = self
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let profileViewController = storyboard.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
+        
         self.profileViewController = UINavigationController(rootViewController: profileViewController)
         
         self.tableView.register(BaseTableViewCell.self, forCellReuseIdentifier: "BaseTableViewCell")
