@@ -41,6 +41,9 @@ class Client: NSObject, WebSocketDelegate {
             print(str)
             if(json!["message"] as? String == "loginfail" || json?["message"] as? String == "loginsuccess") {
                 LoginViewController().didReceiveData()
+            } else if(json!["message"] as? String == "deleteridesuccessful") {
+                print("Got into here")
+                RideViewController().goBack()
             }
         } else {
             print("not a valid UTF-8 sequence")
