@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.TreeSet;
 
 import javax.websocket.Session;
@@ -23,10 +24,11 @@ public class Application {
 	private Map<Integer, TreeSet<String>> rideList;
 	private Map<Integer, Integer> rideSize;
 	private Map<String, ArrayList<String>> previousSearches;
+//	private Map<>
 	public Application() {
 		rideList = new HashMap<Integer, TreeSet<String>>();
 		rideSize = new HashMap<Integer, Integer>();
-		previousSearches = new HashMap<String, ArrayList<String>>();
+		previousSearches = new TreeMap<String, ArrayList<String>>();
 		
 		/*
 		 * Initially, any rides in the database should be added into the maps when the
@@ -49,7 +51,7 @@ public class Application {
 			Statement st1 = conn.createStatement();
 			ResultSet rs1 = st1.executeQuery("SELECT * FROM TotalUsers");
 			while (rs1.next()) {
-				previousSearches.put(rs1.getString("Username"), new ArrayList<String>());
+				previousSearches.put(rs1.getString("Email"), new ArrayList<String>());
 			}
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
@@ -135,8 +137,6 @@ public class Application {
 	 * 		   "age",___
 	 * 		   "email",___
 	 * 		   "picture",___
-	 * 		   "isDriver",yes/no
-	 * 		   "phonenumber",___
 	 * Output - "message","signupsuccess"/"signupfail" 
 	 * 			if signupfail --> "signupfail",reason
 	 * 			User data returned along with feed data in JSON
@@ -164,10 +164,10 @@ public class Application {
 				signuppassword.replaceAll("\\s+","");
 				String signupage = (String)message.get("age");
 				String signuppicture = (String)message.get("picture");
-				String signupdriver = (String)message.get("isDriver");
+//				String signupdriver = (String)message.get("isDriver");
 				String signupphonenumber = (String)message.get("phonenumber");
 				
-				if (signupfirstname.equals("") || signuplastname.equals("") || signuppassword.equals("") || signupage.equals("") || signupemail.equals("") || signuppicture.equals("") || signupphonenumber.equals("") || signupdriver.equals("")) {
+				if (signupfirstname.equals("") || signuplastname.equals("") || signuppassword.equals("") || signupage.equals("") || signupemail.equals("") || signuppicture.equals("") || signupphonenumber.equals("")) {
 					response.put("message", "signupfail");
 					response.put("signupfail", "Please fill in all of the fields.");
 					return response;
@@ -198,13 +198,13 @@ public class Application {
 //					//return failed sign up message
 //				}
 				
-				int signupdriverint = 0;
-				if (signupdriver.equals("yes")) {
-					signupdriverint = 1;
-				}
+//				int signupdriverint = 0;
+//				if (signupdriver.equals("yes")) {
+//					signupdriverint = 1;
+//				}
 				
 				//Account has successful inputs and is now entered into the database.
-				String addUser = "('" + signupfirstname + "', '" + signuplastname + "', '" + signuppassword + "', " + signupemail + ", '" + signupage + "', '" + signupphonenumber + "', '" + signuppicture + "', " + signupdriverint + ")";
+				String addUser = "('" + signupfirstname + "', '" + signuplastname + "', '" + signuppassword + "', '" + signupemail + "', '" + signupage + "', '" + signupphonenumber + "', '" + signuppicture + "')";
 				st.execute(Constants.SQL_INSERT_USER + addUser + ";");
 				response.put("message", "signupsuccess");
 				response.put("signupsuccess", "Account was made.");
@@ -232,6 +232,7 @@ public class Application {
 			}
 		} catch (SQLException sqle) {
 			try {
+				sqle.printStackTrace();
 				response.put("message", "signupfail");
 				response.put("signupfail", "Sign up failed.");
 			} catch (JSONException e) {
@@ -331,6 +332,7 @@ public class Application {
 	 */
 	public JSONObject makeRide(JSONObject message, Connection conn) {
 		JSONObject response = new JSONObject();
+		System.out.println(message.toString());
 		String email = "";
 		try {
 			Statement st = conn.createStatement();
@@ -345,11 +347,11 @@ public class Application {
 			String hospitality = (String)message.getString("hospitality");
 			String food = (String)message.getString("food");
 			String luggage = (String)message.getString("luggage");
-			int totalseats = (int)message.getInt("totalseats");
+			String totalseatsstring = message.getString("totalseats");
 			
 			if (email.equals("") || origin.equals("") || destination.equals("") || carmodel.equals("") || licenseplate.equals("") || datetime.equals("") || detours.equals("") || hospitality.equals("") || food.equals("") || luggage.equals("")) {
 				response.put("message", "addridefail");
-				response.put("addridefail", "Adding ride failed.");
+				response.put("addridefail", "Adding ride failed, fill in the inputs.");
 				JSONObject userDetails = addUserToJSON(email, conn);
 				for (String key : JSONObject.getNames(userDetails)) {
 					try {
@@ -370,15 +372,23 @@ public class Application {
 			}
 			Statement st1 = conn.createStatement();
 			ResultSet rs1 = st1.executeQuery("SELECT * FROM TotalUsers WHERE Email='" + email + "';");
-			String firstname = rs1.getString("FirstName");
-			String lastname = rs1.getString("LastName");
-			String addRide = "('" + firstname + "', '" + lastname + "', '" + email + "', '" + origin + "', '" + destination + "', '" + carmodel + "', '" + licenseplate + "', " + cost + ", '" + datetime + "', '" + detours + "', '" + hospitality + "', '" + food + "', '" + luggage + "', " + totalseats + ", " + (totalseats-1) + ")";
+			String firstname = "";
+			String lastname = "";
+			int userid = 0;
+			if (rs1.next()) {
+				firstname = rs1.getString("FirstName");
+				lastname = rs1.getString("LastName");
+				userid = rs1.getInt("userID");
+			}
+			int totalseats = Integer.parseInt(totalseatsstring);
+			String addRide = "(" + userid + ", '" + firstname + "', '" + lastname + "', '" + email + "', '" + origin + "', '" + destination + "', '" + carmodel + "', '" + licenseplate + "', " + cost + ", '" + datetime + "', '" + detours + "', '" + hospitality + "', '" + food + "', '" + luggage + "', " + totalseats + ", " + (totalseats-1) + ")";
 			st.execute(Constants.SQL_INSERT_RIDE + addRide + ";");
-			
+			st.close();
 			ResultSet rs = null;
-			rs = st.executeQuery("SELECT * FROM CurrentRides");
+			st = conn.createStatement();
+			rs = st.executeQuery("SELECT * FROM CurrentTrips");
 			while (rs.next()) {
-				if (email.equals(rs.getString("Email")) && origin.equals(rs.getString("Origin")) && destination.equals(rs.getString("Destination")) && carmodel.equals(rs.getString("CarModel")) && hospitality.equals(rs.getString("Hospitality"))) {
+				if (email.equals(rs.getString("Email")) && origin.equals(rs.getString("StartingPoint")) && destination.equals(rs.getString("DestinationPoint")) && carmodel.equals(rs.getString("CarModel")) && hospitality.equals(rs.getString("Hospitality"))) {
 					rideSize.put(rs.getInt("rideID"), totalseats-1);
 					TreeSet<String> riders = new TreeSet<String>();
 					riders.add(email);
@@ -398,8 +408,9 @@ public class Application {
 			return response;
 		} catch (SQLException sqle) {
 			try {
+				sqle.printStackTrace();
 				response.put("message", "addridefail");
-				response.put("addridefail", "Adding ride failed.");
+				response.put("addridefail", "Adding ride failed, SQLException.");
 				JSONObject userDetails = addUserToJSON(email, conn);
 				for (String key : JSONObject.getNames(userDetails)) {
 					try {
@@ -437,6 +448,7 @@ public class Application {
 	 * 			returns feed + currentuser
 	 */
 	public JSONObject joinRide(JSONObject message, Connection conn) {
+		System.out.println(message.toString());
 		JSONObject response = new JSONObject();
 		try {
 			Statement st = conn.createStatement();
@@ -497,6 +509,7 @@ public class Application {
 	 * 			returns feed and user info
 	 */
 	public JSONObject deleteRide(JSONObject message, Connection conn) {
+		System.out.println(message.toString());
 		String currentuser = "";
 		JSONObject response = new JSONObject();
 		try {
@@ -625,10 +638,30 @@ public class Application {
 		try {
 			currentuser = message.getString("email");
 			String searchquery = message.getString("search");
-			previousSearches.get(currentuser).add(searchquery);
+			boolean add = true;
+			for (int i=0; i<previousSearches.get(currentuser).size(); i++) {
+				if (searchquery.equals(previousSearches.get(currentuser).get(i))) {
+					add = false;
+				}
+			}
+			if (add) {
+				previousSearches.get(currentuser).add(searchquery);
+			}
+//			System.out.println(previousSearches.get(currentuser).toString());
 			if (previousSearches.get(currentuser).size()>6) {
 				previousSearches.get(currentuser).remove(0);
 			}
+			//String s = searchquery.substring(searchquery.indexOf(","), searchquery.length());
+//			System.out.println(s);
+//			s = s.substring(2);
+//			int indextodelete = 0;
+//			for (int i=0; i<s.length(); i++) {
+//				if (Character.isDigit(s.charAt(i))) {
+//					indextodelete = i;
+//				}
+//			}
+//			s = s.substring(0,indextodelete);
+//			System.out.println(s);
 			Statement st = conn.createStatement();
 			ResultSet rs = null;
 			rs = st.executeQuery("SELECT * FROM CurrentTrips");
@@ -667,7 +700,7 @@ public class Application {
 					currFeed.put("food", rs.getString("Food"));
 					currFeed.put("luggage", rs.getString("Luggage"));
 					currFeed.put("totalseats", rs.getString("TotalSeats"));
-					currFeed.put("seatsavailable", rs.getString("SeatsAvailable"));
+					currFeed.put("seatsavailable", Integer.toString(rs.getInt("SeatsAvailable")));
 
 					String users = "";
 //					for (int i=0; i<rideList.get(rs.getInt("rideID")).size(); i++) {
@@ -811,8 +844,6 @@ public class Application {
 	 * 			"password"
 	 * 			"age"
 	 * 			"picture"
-	 * 			"phonenumber"
-	 * 			"isDriver","yes"/"no"
 	 */
 	public JSONObject addUserToJSON(String email, Connection conn) {
 		JSONObject user = new JSONObject();
@@ -829,13 +860,19 @@ public class Application {
 				user.put("picture", rs.getString("Picture"));
 				user.put("email", rs.getString("Email"));
 				user.put("phonenumber", rs.getString("PhoneNumber"));
-				if (rs.getBoolean("isDriver")) {
-					user.put("isDriver", "yes");
-				}
-				else {
-					user.put("isDriver", "no");
-				}
+//				if (rs.getBoolean("isDriver")) {
+//					user.put("isDriver", "yes");
+//				}
+//				else {
+//					user.put("isDriver", "no");
+//				}
 			}
+			String currentuser = rs.getString("Email");
+			ArrayList<String> searches = previousSearches.get(currentuser);
+			for (int i=0; i<searches.size(); i++) {
+				user.put("previoussearch" + (i+1), searches.get(searches.size()-1-i));
+			}
+			user.put("previoussearchsize", searches.size());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (JSONException e) {
@@ -906,7 +943,7 @@ public class Application {
 				currFeed.put("food", rs.getString("Food"));
 				currFeed.put("luggage", rs.getString("Luggage"));
 				currFeed.put("totalseats", rs.getString("TotalSeats"));
-				currFeed.put("seatsavailable", rs.getString("SeatsAvailable"));
+				currFeed.put("seatsavailable", Integer.toString(rs.getInt("SeatsAvailable")));
 
 				String users = "";
 //				for (int i=0; i<rideList.get(rs.getInt("rideID")).size(); i++) {
@@ -950,31 +987,38 @@ public class Application {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
+	/*	Input
+	 * 		   "message","signup"
+	 * 		   "firstname",___
+	 * 		   "lastname",___
+	 * 		   "password",___
+	 * 		   "age",___
+	 * 		   "email",___
+	 * 		   "phonenumber",___
+	*/
+
 	public JSONObject signUp(JSONObject message, Connection conn) {
+		System.out.println(message.toString());
 		JSONObject response = new JSONObject();
 		try {
 			Statement st = conn.createStatement();
 			ResultSet rs = null;
-			String signupusername = (String) message.get("username");
-			if (signupusername.length() > 0) {
+			String signupemail = (String) message.get("email");
+			if (signupemail.length() > 0) {
 				rs = st.executeQuery("SELECT * from TotalUsers");
 				while (rs.next()) {
-					if (rs.getString("Username").equals(signupusername)) {
+					if (rs.getString("Email").equals(signupemail)) {
 						response.put("message", "signupfail");
-						response.put("signupfail", "Username already exists.");
+						response.put("signupfail", "Email already exists.");
 						return response;
 						//return failed sign up message
 					}
 				}
+				String signupfirstname = message.getString("firstname");
+				String signuplastname = message.getString("lastname");
 				String signuppassword = (String)message.get("password");
 				String signupage = (String)message.get("age");
-				String signupemail = (String)message.get("email");
+//				String signupemail = (String)message.get("email");
 				String signuppicture = (String)message.get("picture");
 				String signupdriver = (String)message.get("isDriver");
 				String signupphonenumber = (String)message.get("phonenumber");
@@ -1006,14 +1050,15 @@ public class Application {
 				
 				//Account has successful inputs and is now entered into the database.
 //				String addUser = "('" + signupusername + "', '" + signuppassword + "', " + signupage + ", '" + signupemail + "', '" + signuppicture + "', " + signupdriverbool + ")";
-				String addUser = "('" + signupusername + "', '" + signuppassword + "', '" + signupemail + "', " + signupage + ", '" + signupphonenumber + "', '" + signuppicture + "', " + signupdriverint + ")";
+//				String addUser = "('" + signupusername + "', '" + signuppassword + "', '" + signupemail + "', " + signupage + ", '" + signupphonenumber + "', '" + signuppicture + "', " + signupdriverint + ")";
 //				System.out.println(Constants.SQL_INSERT_USER + addUser);
+				String addUser = "('" + signupfirstname + "', '" + signuplastname + "', '" + signuppassword + "', " + signupemail + ", '" + signupage + "', '" + signupphonenumber + "', '" + signuppicture + "', " + signupdriverint + ")";
 				st.execute(Constants.SQL_INSERT_USER + addUser + ";");
 				response.put("message", "signupsuccess");
 				response.put("signupsuccess", "Account was made.");
 				
 				//User details for front-end.
-				JSONObject userDetails = addUserToJSON(signupusername, conn);
+				JSONObject userDetails = addUserToJSON(signupemail, conn);
 				for (String key : JSONObject.getNames(userDetails)) {
 					response.put(key, userDetails.get(key));
 				}
@@ -1033,6 +1078,8 @@ public class Application {
 			}
 		} catch (SQLException sqle) {
 			try {
+				sqle.printStackTrace();
+				System.out.println("why");
 				response.put("message", "signupfail");
 				response.put("signupfail", "Sign up failed.");
 			} catch (JSONException e) {
