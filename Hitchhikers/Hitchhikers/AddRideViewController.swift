@@ -18,10 +18,22 @@ class AddRideViewController: UIViewController, UITextFieldDelegate, GMSAutocompl
     var activeField: UITextField?
     var current = Bool();
     
+    @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var currentLocationTextField: UITextField!
     @IBOutlet weak var destinationLocationTextField: UITextField!
     @IBOutlet weak var searchCurrent: UIButton!
     @IBOutlet weak var searchDestination: UIButton!
+    @IBOutlet weak var inputDollars: UITextField!
+    @IBOutlet weak var maxLuggage: UITextField!
+    @IBOutlet weak var foodOnTrip: UITextField!
+    @IBOutlet weak var hospitalities: UITextField!
+    @IBOutlet weak var detouring: UITextField!
+    @IBOutlet weak var carModel: UITextField!
+    @IBOutlet weak var licensePlate: UITextField!
+    @IBOutlet weak var dateAndTime: UITextField!
+    @IBOutlet weak var totalSeats: UITextField!
+    @IBOutlet weak var submit: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +56,9 @@ class AddRideViewController: UIViewController, UITextFieldDelegate, GMSAutocompl
         
         NotificationCenter.default.addObserver(self, selector: #selector(AddRideViewController.keyboardUp), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(AddRideViewController.keyboardDown), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
+        scrollView.frame = view.bounds
+        self.scrollView.contentSize = self.contentView.bounds.size;
         
         // Do any additional setup after loading the view.
     }
