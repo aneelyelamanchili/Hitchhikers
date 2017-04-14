@@ -50,7 +50,8 @@ class Client: NSObject, WebSocketDelegate {
             } else if(json!["message"] as? String == "addridesuccess") {
                 let vc = UIApplication.topViewController() as? AddRideViewController
                 vc?.goBack()
-
+            } else if(json!["message"] as? String == "signupsuccess" || json!["message"] as? String == "signupfail") {
+                SignUpViewController().didReceiveData()
             }
         } else {
             print("not a valid UTF-8 sequence")

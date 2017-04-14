@@ -13,6 +13,15 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var btn: UIButton!
     var activeField: UITextField?
 
+    @IBOutlet weak var firstname: UITextField!
+    @IBOutlet weak var lastname: UITextField!
+    @IBOutlet weak var email: UITextField!
+    @IBOutlet weak var age: UITextField!
+    @IBOutlet weak var phonenumber: UITextField!
+    @IBOutlet weak var password: UITextField!
+    @IBOutlet weak var profileURL: UITextField!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -46,15 +55,13 @@ class SignUpViewController: UIViewController {
                 self.view.frame.origin.y -= 0
             } else if(activeField?.restorationIdentifier == "email") {
                 self.view.frame.origin.y -= 0
-            } else if(activeField?.restorationIdentifier == "month") {
+            } else if(activeField?.restorationIdentifier == "age") {
                 self.view.frame.origin.y -= 253
-            } else if(activeField?.restorationIdentifier == "day") {
-                self.view.frame.origin.y -= 253
-            } else if(activeField?.restorationIdentifier == "year") {
+            } else if(activeField?.restorationIdentifier == "phone") {
                 self.view.frame.origin.y -= 253
             } else if(activeField?.restorationIdentifier == "password") {
                 self.view.frame.origin.y -= 253
-            } else if(activeField?.restorationIdentifier == "retype") {
+            } else if(activeField?.restorationIdentifier == "profile") {
                 self.view.frame.origin.y -= 253
             }
         }
@@ -80,6 +87,56 @@ class SignUpViewController: UIViewController {
     func dismissKeyboard() {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
+    }
+
+    @IBAction func signUpUser(_ sender: Any) {
+        let json:NSMutableDictionary = NSMutableDictionary()
+        json.setValue("signup", forKey: "message")
+        json.setValue(firstname.text, forKey: "firstname")
+        json.setValue(lastname.text, forKey: "lastname")
+        json.setValue(password.text, forKey: "password")
+        json.setValue(age.text, forKey: "age")
+        json.setValue(email.text, forKey: "email")
+        json.setValue(phonenumber.text, forKey: "phonenumber")
+        json.setValue(profileURL.text, forKey: "picture")
+        let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
+        let jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
+        //print(jsonString)
+        
+        Client.sharedInstance.socket.write(data: jsonData)
+        
+    }
+    
+    public func didReceiveData() {
+        print(Client.sharedInstance.json?["message"])
+        
+        if (Client.sharedInstance.json?["message"] as! String == "signupfail") {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            
+            
+            let myAlert = UIAlertView()
+            myAlert.title = "Signup Failure"
+            myAlert.message = Client.sharedInstance.json?["signupfail"] as! String?
+            myAlert.addButton(withTitle: "Dismiss")
+            myAlert.delegate = self
+            myAlert.show()
+        } else {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            
+            
+            let mainViewController = storyboard.instantiateViewController(withIdentifier: "FeedTableViewController") as! FeedTableViewController
+            let leftViewController = storyboard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
+            let nvc: UINavigationController = UINavigationController(rootViewController: mainViewController)
+            
+            let slideMenuController = SlideController(mainViewController: nvc, leftMenuViewController: leftViewController)
+            UIApplication.shared.delegate?.window??.rootViewController = slideMenuController
+            
+            
+            self.navigationController?.pushViewController(mainViewController, animated: true)
+            
+        }
+        
+        
     }
 
     
