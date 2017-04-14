@@ -26,6 +26,7 @@ class RideViewController: UIViewController, UIScrollViewDelegate, MKMapViewDeleg
     @IBOutlet weak var hospitality: UILabel!
     @IBOutlet weak var detours: UILabel!
     @IBOutlet weak var deleteRide: UIButton!
+    @IBOutlet weak var seatsLeft: UILabel!
     
     var dName = String();
     var dImage = String();
@@ -41,6 +42,7 @@ class RideViewController: UIViewController, UIScrollViewDelegate, MKMapViewDeleg
     var yCoordinate = Float();
     var initialCoord = CLLocationCoordinate2D();
     var destinationCoord = CLLocationCoordinate2D();
+    var seatsAvailable = String();
     var cellID = String();
     
     override func viewDidLoad() {
@@ -85,6 +87,7 @@ class RideViewController: UIViewController, UIScrollViewDelegate, MKMapViewDeleg
         food.text = eat;
         hospitality.text = hospitalities;
         detours.text = detour;
+        seatsLeft.text = seatsAvailable;
         scrollView.frame = view.bounds
         scrollView.isUserInteractionEnabled = true
         scrollView.isExclusiveTouch = true

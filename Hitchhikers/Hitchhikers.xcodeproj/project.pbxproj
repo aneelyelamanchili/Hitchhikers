@@ -67,6 +67,9 @@
 		B955DF121EA0B766001CCE21 /* date.png in Resources */ = {isa = PBXBuildFile; fileRef = B955DF0F1EA0B766001CCE21 /* date.png */; };
 		B955DF131EA0B766001CCE21 /* seat.png in Resources */ = {isa = PBXBuildFile; fileRef = B955DF101EA0B766001CCE21 /* seat.png */; };
 		B955DF151EA0B89D001CCE21 /* license.png in Resources */ = {isa = PBXBuildFile; fileRef = B955DF141EA0B89D001CCE21 /* license.png */; };
+		B955DF171EA0D359001CCE21 /* submit_trip.png in Resources */ = {isa = PBXBuildFile; fileRef = B955DF161EA0D359001CCE21 /* submit_trip.png */; };
+		B955DF191EA0D433001CCE21 /* join_ride.png in Resources */ = {isa = PBXBuildFile; fileRef = B955DF181EA0D433001CCE21 /* join_ride.png */; };
+		B955DF1B1EA0D465001CCE21 /* delete_ride.png in Resources */ = {isa = PBXBuildFile; fileRef = B955DF1A1EA0D465001CCE21 /* delete_ride.png */; };
 		B970B7D91E97B5AB0084428A /* RideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B970B7D81E97B5AB0084428A /* RideViewController.swift */; };
 		B9C349F21E9716F6008B85CC /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C349F11E9716F6008B85CC /* FeedTableViewCell.swift */; };
 		B9C349F41E971AC4008B85CC /* dude_pic.png in Resources */ = {isa = PBXBuildFile; fileRef = B9C349F31E971AC4008B85CC /* dude_pic.png */; };
@@ -162,6 +165,9 @@
 		B955DF0F1EA0B766001CCE21 /* date.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = date.png; sourceTree = "<group>"; };
 		B955DF101EA0B766001CCE21 /* seat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = seat.png; sourceTree = "<group>"; };
 		B955DF141EA0B89D001CCE21 /* license.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = license.png; sourceTree = "<group>"; };
+		B955DF161EA0D359001CCE21 /* submit_trip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = submit_trip.png; sourceTree = "<group>"; };
+		B955DF181EA0D433001CCE21 /* join_ride.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = join_ride.png; sourceTree = "<group>"; };
+		B955DF1A1EA0D465001CCE21 /* delete_ride.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete_ride.png; sourceTree = "<group>"; };
 		B970B7D81E97B5AB0084428A /* RideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideViewController.swift; sourceTree = "<group>"; };
 		B9C349F11E9716F6008B85CC /* FeedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell.swift; sourceTree = "<group>"; };
 		B9C349F31E971AC4008B85CC /* dude_pic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dude_pic.png; sourceTree = "<group>"; };
@@ -222,6 +228,9 @@
 		B91FF28E1E8DD93B00A7E766 /* img */ = {
 			isa = PBXGroup;
 			children = (
+				B955DF1A1EA0D465001CCE21 /* delete_ride.png */,
+				B955DF181EA0D433001CCE21 /* join_ride.png */,
+				B955DF161EA0D359001CCE21 /* submit_trip.png */,
 				B955DF141EA0B89D001CCE21 /* license.png */,
 				B955DF0E1EA0B766001CCE21 /* car.png */,
 				B955DF0F1EA0B766001CCE21 /* date.png */,
@@ -452,6 +461,7 @@
 				B91FF2B21E8DDA8800A7E766 /* login_gplus.png in Resources */,
 				B92989FA1E8DCA9800CF8287 /* Assets.xcassets in Resources */,
 				B91FF2B91E8DDA8800A7E766 /* ticket.png in Resources */,
+				B955DF1B1EA0D465001CCE21 /* delete_ride.png in Resources */,
 				B91FF2BD1E8DDA8800A7E766 /* crossroads.png in Resources */,
 				B91FF2BF1E8DDA8800A7E766 /* suitcase_icon.png in Resources */,
 				B91FF2AE1E8DDA8800A7E766 /* nice_car_trunk.png in Resources */,
@@ -474,6 +484,8 @@
 				B91FF2AA1E8DDA8800A7E766 /* building_small.png in Resources */,
 				B91FF2B11E8DDA8800A7E766 /* login_fb.png in Resources */,
 				B91FF2AF1E8DDA8800A7E766 /* snowy_mountains.png in Resources */,
+				B955DF191EA0D433001CCE21 /* join_ride.png in Resources */,
+				B955DF171EA0D359001CCE21 /* submit_trip.png in Resources */,
 				B91FF2C31E8DDA8800A7E766 /* map_pin_small.png in Resources */,
 				B91FF2BB1E8DDA8800A7E766 /* girl_on_hill.png in Resources */,
 				B91FF2BE1E8DDA8800A7E766 /* spotify_icon.png in Resources */,

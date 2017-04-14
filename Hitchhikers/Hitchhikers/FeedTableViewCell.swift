@@ -34,6 +34,7 @@ class FeedTableViewCell: UITableViewCell, MKMapViewDelegate {
     var hospitalities = String();
     var detour = String();
     var departureTime = String();
+    var seatsAvailable = String();
     var cellID: String?
     
     override func awakeFromNib() {
@@ -92,6 +93,8 @@ class FeedTableViewCell: UITableViewCell, MKMapViewDelegate {
         destinationLabel.text = destinationPlace;
         departureTime = populate["datetime"] as! String;
         departureTimeLabel.text = departureTime;
+        
+        seatsAvailable = populate["seatsavailable"] as! String;
         
 //        let initialLocation = CLLocation(latitude: 21.282778, longitude: -157.829444)
 //        xCoordinate = Float(21.282778);

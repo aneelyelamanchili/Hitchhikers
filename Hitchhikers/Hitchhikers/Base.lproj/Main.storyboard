@@ -395,7 +395,7 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="976"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="daf-0Y-9OJ">
-                                        <rect key="frame" x="0.0" y="-5" width="375" height="936"/>
+                                        <rect key="frame" x="0.0" y="-64" width="375" height="936"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ride Posting" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C0v-nS-Fp5">
@@ -566,21 +566,21 @@
                                                 <rect key="frame" x="13" y="658" width="70" height="69"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </imageView>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="seat.png" translatesAutoresizingMaskIntoConstraints="NO" id="XrK-1W-7oU">
+                                                <rect key="frame" x="17" y="819" width="62" height="62"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gHh-OA-51p">
-                                                <rect key="frame" x="131" y="895" width="101" height="33"/>
+                                                <rect key="frame" x="76" y="889" width="243" height="33"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
-                                                <state key="normal" title="Submit Trip">
+                                                <state key="normal" backgroundImage="submit_trip.png">
                                                     <color key="titleColor" red="0.23137254900000001" green="0.26274509800000001" blue="0.31372549020000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="writeText:" destination="fdX-1o-uNK" eventType="touchUpInside" id="sBi-Ky-WcH"/>
                                                 </connections>
                                             </button>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="seat.png" translatesAutoresizingMaskIntoConstraints="NO" id="XrK-1W-7oU">
-                                                <rect key="frame" x="17" y="819" width="62" height="62"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
@@ -1007,7 +1007,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WKW-bq-nlx">
-                                <rect key="frame" x="0.0" y="64" width="375" height="383"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="1136"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Llb-ty-3pY">
                                         <rect key="frame" x="0.0" y="-64" width="375" height="1136"/>
@@ -1016,13 +1016,6 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="379"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </mapView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Toyota Prius 7TWC807" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QJJ-f5-7tY">
-                                                <rect key="frame" x="143" y="417" width="205" height="24"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="jeffrey_miller.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="gfG-Bx-MtA">
                                                 <rect key="frame" x="18" y="387" width="91" height="91"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1050,10 +1043,6 @@
                                             </imageView>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="food.png" translatesAutoresizingMaskIntoConstraints="NO" id="9jW-qS-fvg">
                                                 <rect key="frame" x="15" y="925" width="70" height="70"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            </imageView>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="crossroads.png" translatesAutoresizingMaskIntoConstraints="NO" id="xbz-Rh-Mmt">
-                                                <rect key="frame" x="15" y="1040" width="70" height="62"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Departure:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lEE-IE-vCl">
@@ -1085,7 +1074,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Detours:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WVm-0t-xWm">
-                                                <rect key="frame" x="92" y="1054" width="89" height="24"/>
+                                                <rect key="frame" x="92" y="1042" width="89" height="24"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
                                                 <nil key="textColor"/>
@@ -1113,7 +1102,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Yes" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n79-xi-L8W">
-                                                <rect key="frame" x="93" y="1076" width="38" height="26"/>
+                                                <rect key="frame" x="189" y="1042" width="38" height="26"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                                 <nil key="textColor"/>
@@ -1161,15 +1150,37 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jZv-HS-hDs">
-                                                <rect key="frame" x="131" y="1106" width="112" height="22"/>
+                                                <rect key="frame" x="66" y="1098" width="243" height="33"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="Delete Ride">
-                                                    <color key="titleColor" red="1" green="0.039067388580000001" blue="0.074659437219999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <state key="normal" backgroundImage="delete_ride.png">
+                                                    <color key="titleColor" red="1" green="0.039215686274509803" blue="0.074509803921568626" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="deleteThisRideWithSender:" destination="ktG-xx-3su" eventType="touchUpInside" id="pdV-n6-TPA"/>
                                                 </connections>
                                             </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Toyota Prius 7TWC807" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QJJ-f5-7tY">
+                                                <rect key="frame" x="161" y="416" width="205" height="24"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="seat.png" translatesAutoresizingMaskIntoConstraints="NO" id="oc0-M0-qND">
+                                                <rect key="frame" x="120" y="419" width="18" height="19"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DWS-lZ-P3w">
+                                                <rect key="frame" x="142" y="418" width="14" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
+                                                <color key="textColor" red="0.0019935293230523041" green="0.75433593750000005" blue="0.14554380427782285" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="crossroads.png" translatesAutoresizingMaskIntoConstraints="NO" id="xbz-Rh-Mmt">
+                                                <rect key="frame" x="14" y="1023" width="70" height="62"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
@@ -1236,7 +1247,7 @@
         <scene sceneID="0Hy-rg-2NR">
             <objects>
                 <navigationController id="gM0-AA-z6p" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="NTH-pC-CgG">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="NTH-pC-CgG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1450,7 +1461,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="oin-sj-3iW" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0HE-ed-S2c">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="0HE-ed-S2c">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1468,7 +1479,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xJR-Cq-Rlb" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="QMD-Q8-PGp">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="QMD-Q8-PGp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1506,6 +1517,7 @@
         <image name="contact_user.png" width="243" height="32"/>
         <image name="crossroads.png" width="70" height="70"/>
         <image name="date.png" width="128" height="128"/>
+        <image name="delete_ride.png" width="243" height="32"/>
         <image name="down_arrow.png" width="200" height="200"/>
         <image name="food.png" width="70" height="70"/>
         <image name="girl_on_hill.png" width="1002" height="668"/>
@@ -1518,6 +1530,7 @@
         <image name="login_gplus.png" width="257" height="32"/>
         <image name="map_pin_big.png" width="62" height="62"/>
         <image name="seat.png" width="400" height="400"/>
+        <image name="submit_trip.png" width="243" height="32"/>
         <image name="suitcase_icon.png" width="62" height="62"/>
         <image name="ticket.png" width="62" height="62"/>
         <image name="welcome.png" width="264" height="43"/>
