@@ -13,6 +13,7 @@ import CoreImage
 
 class ProfileViewController: UIViewController {
     @IBOutlet weak var profileImage: UIImageView!
+    let toPopulate = Client.sharedInstance.json
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +29,15 @@ class ProfileViewController: UIViewController {
         
         self.navigationController?.navigationBar.tintColor = UIColor.white
         
-        let img = CIImage(image: UIImage(named: "JeffreyMiller.jpg")!)
+        let imageString = toPopulate?["picture"] as! String;
+        let url = URL(string: toPopulate?["picture"] as! String)
+        let data = try? Data(contentsOf: url!)
+        
+        
+        let image = UIImage(data: data!)
+        
+        
+        let img = CIImage(image: image!)
         
         let vignette = CIFilter(name: "CIVignette")
         vignette?.setValue(img, forKey:kCIInputImageKey)
@@ -38,9 +47,7 @@ class ProfileViewController: UIViewController {
         
         self.profileImage.layer.cornerRadius = profileImage.frame.size.width/2
         self.profileImage.clipsToBounds = true
-//        profileImage.autoresizingMask = [.flexibleWidth, .flexibleHeight, .flexibleBottomMargin, .flexibleRightMargin, .flexibleLeftMargin, .flexibleTopMargin]
-//        profileImage.contentMode = .scaleAspectFit
-//        profileImage.clipsToBounds = true
+
 
         
     }

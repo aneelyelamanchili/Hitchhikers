@@ -74,7 +74,15 @@ class LoginViewController: UIViewController {
         print(Client.sharedInstance.json?["message"])
         
         if (Client.sharedInstance.json?["message"] as! String == "loginfail") {
-            print("ALERT")
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            
+            
+            let myAlert = UIAlertView()
+            myAlert.title = "Login Failure"
+            myAlert.message = Client.sharedInstance.json?["loginfail"] as! String? 
+            myAlert.addButton(withTitle: "Dismiss")
+            myAlert.delegate = self
+            myAlert.show()
         } else {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             
@@ -98,7 +106,7 @@ class LoginViewController: UIViewController {
             UIApplication.shared.delegate?.window??.rootViewController = slideMenuController
             
             mainViewController.toPopulate = sendMessage
-            leftViewController.toPopulate = sendMessage
+            
             self.navigationController?.pushViewController(mainViewController, animated: true)
             
         }
