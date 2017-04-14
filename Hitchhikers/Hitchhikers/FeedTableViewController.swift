@@ -78,11 +78,11 @@ class FeedTableViewController: UITableViewController {
         super.viewWillAppear(animated)
         self.setNavigationBarItem(viewController: "FeedTableViewController")
         
-//        DispatchQueue.main.async{
-//            self.tableView.reloadData()
-            
-//        }
-        self.viewDidLoad()
+        print("GOT TO VIEW WILL APPEAR")
+        toPopulate = Client.sharedInstance.json
+        print(toPopulate?["feedsize"])
+        
+        self.tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {

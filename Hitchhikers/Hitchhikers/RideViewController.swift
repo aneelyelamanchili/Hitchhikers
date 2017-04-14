@@ -205,16 +205,15 @@ class RideViewController: UIViewController, UIScrollViewDelegate, MKMapViewDeleg
         let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
 
         Client.sharedInstance.socket.write(data: jsonData)
-        
-        usleep(3000000)
-        
+    
+    }
+    
+    func goBack() {
+        print("Got into here 2")
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let mainViewController = storyboard.instantiateViewController(withIdentifier: "FeedTableViewController") as! FeedTableViewController
         
-        mainViewController.toPopulate = Client.sharedInstance.json
-        
-        _ = navigationController?.popViewController(animated: true)
-    
+        self.navigationController?.popToViewController(mainViewController, animated: true);
     }
 
     /*
