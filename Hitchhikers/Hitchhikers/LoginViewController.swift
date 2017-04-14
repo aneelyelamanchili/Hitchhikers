@@ -59,6 +59,26 @@ class LoginViewController: UIViewController {
         
     }
     
+    @IBAction func goToGuest(_ sender: UIButton) {
+        let json:NSMutableDictionary = NSMutableDictionary()
+        json.setValue("guestview", forKey: "message")
+        let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
+        
+        Client.sharedInstance.socket.write(data: jsonData as Data)
+
+    }
+    
+    public func guestView() {
+        print("SEGUEING TO GUEST")
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let guestViewController = storyboard.instantiateViewController(withIdentifier: "GuestTableViewController") as! GuestTableViewController
+        let nvc: UINavigationController = UINavigationController(rootViewController: guestViewController)
+        
+        UIApplication.shared.delegate?.window??.rootViewController = nvc
+        
+        self.navigationController?.present(guestViewController, animated: true, completion: nil)
+    }
+    
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 //       //if  segue.identifier == "loginSegue",
 //          if  let destination = segue.destination as? FeedTableViewController

@@ -255,6 +255,7 @@ class GMSMapViewController: UIViewController, CLLocationManagerDelegate, UITable
         
         var PSIndex: String = "previoussearch" + String(indexPath.row + 1);
         cell.addressLabel.text = toPopulate?[PSIndex] as! String;
+
         return cell
     }
     

@@ -53,6 +53,8 @@ class Client: NSObject, WebSocketDelegate {
                 SignUpViewController().didReceiveData()
             } else if(json!["message"] as? String == "getdatasuccess") {
                 FeedTableViewController().didReceiveData()
+            } else if(json!["message"] as? String == "guestviewsuccess") {
+                LoginViewController().guestView()
             }
         } else {
             print("not a valid UTF-8 sequence")
