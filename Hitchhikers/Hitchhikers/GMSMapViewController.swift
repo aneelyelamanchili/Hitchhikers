@@ -15,6 +15,8 @@ class GMSMapViewController: UIViewController, CLLocationManagerDelegate, UITable
     
     // OUTLETS
     
+    var toPopulate = Client.sharedInstance.json
+    
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var previousSearchTableView: UITableView!
     @IBOutlet weak var currentLocation: UILabel!
@@ -244,13 +246,15 @@ class GMSMapViewController: UIViewController, CLLocationManagerDelegate, UITable
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        
+        return toPopulate!["previoussearchsize"] as! Int
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "searchCell", for: indexPath as IndexPath) as! SearchTableViewCell
         
-        cell.addressLabel.text = "3025 Royal Street, Los Angeles, CA 90007"
+        var PSIndex: String = "previoussearch" + String(describing: indexPath);
+        cell.addressLabel.text = toPopulate["previoussearchsize"][PSIndex]
         return cell
     }
     
