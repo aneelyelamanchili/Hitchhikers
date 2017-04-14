@@ -70,7 +70,7 @@ class FeedTableViewCell: UITableViewCell, MKMapViewDelegate {
         profileImage.image = UIImage(data: data!);
         carModel = populate["carmodel"] as! String;
         departurePlace = populate["origin"] as! String;
-        dollars = "$" + (populate["costs"] as! String);
+        dollars = "$" + (populate["cost"] as! String);
         destinationPlace = populate["destination"] as! String;
         stuffToBring = populate["luggage"] as! String;
         eat = populate["food"] as! String;
