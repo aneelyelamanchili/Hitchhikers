@@ -44,6 +44,8 @@ class Client: NSObject, WebSocketDelegate {
             } else if(json!["message"] as? String == "deleteridesuccessful") {
                 print("Got into here")
                 RideViewController().goBack()
+            } else if(json!["message"] as? String == "makeridesuccess") {
+                AddRideViewController().goBack()
             }
         } else {
             print("not a valid UTF-8 sequence")

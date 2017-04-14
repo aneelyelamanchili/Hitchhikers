@@ -121,6 +121,7 @@ class GuestTableViewController: UITableViewController {
         cell.configureCell(feed: "temp", populate: toPopulate!);
         cell.selectionStyle = UITableViewCellSelectionStyle.none;
         
+        
         return cell
     }
     

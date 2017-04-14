@@ -181,20 +181,41 @@ class AddRideViewController: UIViewController, UITextFieldDelegate, GMSAutocompl
     
     // MARK: Write Text Action
     
-    @IBAction func writeText(_ sender: UIButton) {
-        sharedModel.socket.write(string: "hello there!")
+    @IBAction func submitRide(_ sender: Any) {
+        let json:NSMutableDictionary = NSMutableDictionary()
+        json.setValue("makeride", forKey: "message")
+        json.setValue(Client.sharedInstance.json?["email"], forKey: "email")
+        json.setValue(currentLocationTextField.text, forKey: "origin")
+        json.setValue(destinationLocationTextField.text, forKey: "destination")
+        json.setValue(Int(inputDollars.text!), forKey: "cost")
+        json.setValue(maxLuggage.text, forKey: "luggage")
+        json.setValue(foodOnTrip.text, forKey: "food")
+        json.setValue(hospitalities.text, forKey: "hospitality")
+        json.setValue(detouring.text, forKey: "detours")
+        json.setValue(carModel.text, forKey: "carmodel")
+        json.setValue(licensePlate.text, forKey: "licenseplate")
+        json.setValue(dateAndTime.text, forKey: "datetime")
+        json.setValue(totalSeats.text, forKey: "totalseats")
+        let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
+        let jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
+        //print(jsonString)
+        
+        Client.sharedInstance.socket.write(data: jsonData)
     }
+    
+    func goBack() {
+        print("Got into here 2")
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let mainViewController = storyboard.instantiateViewController(withIdentifier: "FeedTableViewController") as! FeedTableViewController
+        
+        self.navigationController?.popToViewController(mainViewController, animated: true);
+    }
+
     
     // MARK: Disconnect Action
     
     @IBAction func disconnect(_ sender: UIButton) {
-        if sharedModel.socket.isConnected {
-            //sender.currentTitle = "Connect"
-            sharedModel.socket.disconnect()
-        } else {
-            //sender.currentTitle = "Disconnect"
-            sharedModel.socket.connect()
-        }
+
     }
     
 

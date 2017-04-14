@@ -392,7 +392,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JEq-Wr-8sr">
-                                <rect key="frame" x="0.0" y="64" width="375" height="976"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="1028"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="daf-0Y-9OJ">
                                         <rect key="frame" x="0.0" y="-64" width="375" height="936"/>
@@ -578,7 +578,7 @@
                                                     <color key="titleColor" red="0.23137254900000001" green="0.26274509800000001" blue="0.31372549020000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="writeText:" destination="fdX-1o-uNK" eventType="touchUpInside" id="sBi-Ky-WcH"/>
+                                                    <action selector="submitRide:" destination="fdX-1o-uNK" eventType="touchUpInside" id="BSJ-71-aIX"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -1020,11 +1020,6 @@
                                                 <rect key="frame" x="18" y="387" width="91" height="91"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </imageView>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1co-8k-uJM">
-                                                <rect key="frame" x="124" y="446" width="243" height="32"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" backgroundImage="contact_user.png"/>
-                                            </button>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="world.png" translatesAutoresizingMaskIntoConstraints="NO" id="pNI-8g-W5i">
                                                 <rect key="frame" x="19" y="504" width="62" height="62"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1043,6 +1038,10 @@
                                             </imageView>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="food.png" translatesAutoresizingMaskIntoConstraints="NO" id="9jW-qS-fvg">
                                                 <rect key="frame" x="15" y="925" width="70" height="70"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="crossroads.png" translatesAutoresizingMaskIntoConstraints="NO" id="xbz-Rh-Mmt">
+                                                <rect key="frame" x="14" y="1023" width="70" height="62"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Departure:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lEE-IE-vCl">
@@ -1136,9 +1135,9 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$25 - $30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rix-Bb-YZ4">
-                                                <rect key="frame" x="93" y="592" width="282" height="54"/>
+                                                <rect key="frame" x="92" y="597" width="282" height="44"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="50"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="45"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -1150,7 +1149,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jZv-HS-hDs">
-                                                <rect key="frame" x="66" y="1098" width="243" height="33"/>
+                                                <rect key="frame" x="66" y="1093" width="243" height="33"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" backgroundImage="delete_ride.png">
                                                     <color key="titleColor" red="1" green="0.039215686274509803" blue="0.074509803921568626" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -1177,10 +1176,11 @@
                                                 <color key="textColor" red="0.0019935293230523041" green="0.75433593750000005" blue="0.14554380427782285" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="crossroads.png" translatesAutoresizingMaskIntoConstraints="NO" id="xbz-Rh-Mmt">
-                                                <rect key="frame" x="14" y="1023" width="70" height="62"/>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ewi-g7-paI">
+                                                <rect key="frame" x="124" y="447" width="243" height="33"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            </imageView>
+                                                <state key="normal" backgroundImage="join_ride.png"/>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
@@ -1205,7 +1205,6 @@
                     <size key="freeformSize" width="375" height="1200"/>
                     <connections>
                         <outlet property="carModelLicense" destination="QJJ-f5-7tY" id="HRP-IG-KHH"/>
-                        <outlet property="contactUser" destination="1co-8k-uJM" id="Q0e-2X-Bw4"/>
                         <outlet property="contentView" destination="Llb-ty-3pY" id="R3K-Kg-DkR"/>
                         <outlet property="deleteRide" destination="jZv-HS-hDs" id="78D-T9-oSA"/>
                         <outlet property="departure" destination="aCF-Gx-z7h" id="XzB-xO-P8A"/>
@@ -1219,6 +1218,7 @@
                         <outlet property="mapView" destination="5Cv-hc-g3U" id="fYN-QU-9vF"/>
                         <outlet property="price" destination="Rix-Bb-YZ4" id="aCd-kh-mhb"/>
                         <outlet property="scrollView" destination="WKW-bq-nlx" id="7cH-S3-Rva"/>
+                        <outlet property="seatsLeft" destination="DWS-lZ-P3w" id="IjD-hZ-Qi1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IOi-tB-VOg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1514,7 +1514,6 @@
         <image name="3_people.png" width="353" height="179"/>
         <image name="adventure_girl.png" width="385" height="166"/>
         <image name="car.png" width="512" height="307"/>
-        <image name="contact_user.png" width="243" height="32"/>
         <image name="crossroads.png" width="70" height="70"/>
         <image name="date.png" width="128" height="128"/>
         <image name="delete_ride.png" width="243" height="32"/>
@@ -1524,6 +1523,7 @@
         <image name="hamburger_menu.png" width="24" height="18"/>
         <image name="ice_cream.png" width="73" height="73"/>
         <image name="jeffrey_miller.jpg" width="100" height="100"/>
+        <image name="join_ride.png" width="243" height="32"/>
         <image name="license.png" width="200" height="200"/>
         <image name="login.png" width="243" height="32"/>
         <image name="login_fb.png" width="257" height="32"/>

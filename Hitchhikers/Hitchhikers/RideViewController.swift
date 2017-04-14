@@ -17,7 +17,6 @@ class RideViewController: UIViewController, UIScrollViewDelegate, MKMapViewDeleg
     @IBOutlet weak var driverName: UILabel!
     @IBOutlet weak var driverImage: UIImageView!
     @IBOutlet weak var carModelLicense: UILabel!
-    @IBOutlet weak var contactUser: UIButton!
     @IBOutlet weak var departure: UILabel!
     @IBOutlet weak var price: UILabel!
     @IBOutlet weak var destination: UILabel!
