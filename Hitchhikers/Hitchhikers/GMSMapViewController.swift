@@ -254,7 +254,7 @@ class GMSMapViewController: UIViewController, CLLocationManagerDelegate, UITable
         let cell = tableView.dequeueReusableCell(withIdentifier: "searchCell", for: indexPath as IndexPath) as! SearchTableViewCell
         
         var PSIndex: String = "previoussearch" + String(describing: indexPath);
-        cell.addressLabel.text = toPopulate["previoussearchsize"][PSIndex]
+        //cell.addressLabel.text = toPopulate?["previoussearchsize"][PSIndex]
         return cell
     }
     

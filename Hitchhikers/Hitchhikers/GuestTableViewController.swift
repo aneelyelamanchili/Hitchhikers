@@ -12,7 +12,7 @@ import SwiftIconFont
 class GuestTableViewController: UITableViewController {
 //    @IBOutlet weak var innerBarButtonItem: UIBarButtonItem?
     
-    var toPopulate: [String: Any]?
+    var toPopulate = Client.sharedInstance.json
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,7 +56,13 @@ class GuestTableViewController: UITableViewController {
     }
     
     @IBAction func dismissView(_ sender: UIBarButtonItem) {
-        self.dismiss(animated: true, completion: nil)
+        print("Pushing")
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+        
+        UIApplication.shared.delegate?.window??.rootViewController = loginViewController
+        
+        self.navigationController?.popToRootViewController(animated: true)
     }
     
 //    @IBAction func unwindToMenu(segue: UIStoryboardSegue) {
@@ -118,7 +124,8 @@ class GuestTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "feedCell", for: indexPath) as! FeedTableViewCell
         
         // Configure the cell...
-        cell.configureCell(feed: "temp", populate: toPopulate!);
+        var feedNum: String = "feed" + String(indexPath.row + 1);
+        cell.configureCell(feed: feedNum, populate: toPopulate?[feedNum] as! [String : Any]!);
         cell.selectionStyle = UITableViewCellSelectionStyle.none;
         
         
