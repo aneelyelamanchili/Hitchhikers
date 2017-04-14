@@ -12,7 +12,7 @@ import SwiftIconFont
 class GuestTableViewController: UITableViewController {
 //    @IBOutlet weak var innerBarButtonItem: UIBarButtonItem?
     
-    var toPopulate = Dictionary<String, Any>();
+    var toPopulate: [String: Any]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -118,7 +118,7 @@ class GuestTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "feedCell", for: indexPath) as! FeedTableViewCell
         
         // Configure the cell...
-        cell.configureCell(populate: toPopulate);
+        cell.configureCell(populate: toPopulate!);
         cell.selectionStyle = UITableViewCellSelectionStyle.none;
         
         return cell

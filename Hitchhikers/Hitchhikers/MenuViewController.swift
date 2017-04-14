@@ -93,6 +93,10 @@ class MenuViewController: UIViewController, LeftMenuProtocol {
             let leftViewController = storyboard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
             let nvc: UINavigationController = UINavigationController(rootViewController: mainViewController)
             let slideMenuController = SlideController(mainViewController: nvc, leftMenuViewController: leftViewController)
+            
+            let sendMessage = Client.sharedInstance.json
+            mainViewController.toPopulate = sendMessage
+            
             self.slideMenuController()?.changeMainViewController(slideMenuController, close: true)
         case .profile:
             self.slideMenuController()?.changeMainViewController(self.profileViewController, close: true)
