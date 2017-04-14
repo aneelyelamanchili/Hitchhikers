@@ -1208,6 +1208,9 @@
                                                 <rect key="frame" x="124" y="447" width="243" height="33"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" backgroundImage="join_ride.png"/>
+                                                <connections>
+                                                    <action selector="joinRideWithSender:" destination="ktG-xx-3su" eventType="touchUpInside" id="RVk-Ur-Cj7"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1242,6 +1245,7 @@
                         <outlet property="driverName" destination="ugR-hC-ISq" id="8km-DS-hg2"/>
                         <outlet property="food" destination="9u9-td-GaK" id="XJL-aw-KDR"/>
                         <outlet property="hospitality" destination="lze-VJ-nMu" id="Bsj-mV-neR"/>
+                        <outlet property="joinRide" destination="ewi-g7-paI" id="GiZ-hZ-Rcs"/>
                         <outlet property="luggage" destination="eNt-zH-YLg" id="aCa-4f-4Ur"/>
                         <outlet property="mapView" destination="5Cv-hc-g3U" id="fYN-QU-9vF"/>
                         <outlet property="price" destination="Rix-Bb-YZ4" id="aCd-kh-mhb"/>
@@ -1536,6 +1540,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cRX-J3-T0h" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-1015" y="-234"/>
         </scene>
     </scenes>
     <resources>

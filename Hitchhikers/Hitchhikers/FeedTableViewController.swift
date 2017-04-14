@@ -17,8 +17,6 @@ class FeedTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //self.tableView.backgroundColor = UIColor.gray
-        
         let logo = UIImage(named: "mountain_icon.png")
         let imageView = UIImageView(image:logo)
         self.navigationItem.titleView = imageView
@@ -37,10 +35,36 @@ class FeedTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        // set up the refresh control
+        let rc = UIRefreshControl()
+        rc.addTarget(self, action: #selector(self.refresh(refreshControl:)), for: UIControlEvents.valueChanged)
+        tableView.refreshControl = rc
+        tableView.reloadData();
+//        view.addSubview(tableView)
+    }
+    
+    func refresh(refreshControl: UIRefreshControl) {
+        let json:NSMutableDictionary = NSMutableDictionary()
+        json.setValue("refreshdata", forKey: "message")
+        json.setValue(Client.sharedInstance.json?["email"], forKey: "email")
+        let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
+        let jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
+        //print(jsonString)
+        
+        Client.sharedInstance.socket.write(data: jsonData)
+        
+        tableView.reloadData()
+        self.viewDidLoad()
+        refreshControl.endRefreshing()
     }
     
     @IBAction func unwindToMenu(segue: UIStoryboardSegue) {
         
+    }
+    
+    public func didReceiveData() {
+        tableView.reloadData();
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -134,7 +158,7 @@ class FeedTableViewController: UITableViewController {
     }
     */
 
-    
+    /*
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
@@ -148,7 +172,7 @@ class FeedTableViewController: UITableViewController {
         }
         tableView.reloadData();
     }
- 
+    */
 
     /*
     // Override to support rearranging the table view.

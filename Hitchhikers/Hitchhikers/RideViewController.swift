@@ -25,6 +25,7 @@ class RideViewController: UIViewController, UIScrollViewDelegate, MKMapViewDeleg
     @IBOutlet weak var hospitality: UILabel!
     @IBOutlet weak var detours: UILabel!
     @IBOutlet weak var deleteRide: UIButton!
+    @IBOutlet weak var joinRide: UIButton!
     @IBOutlet weak var seatsLeft: UILabel!
     
     var dName = String();
@@ -91,6 +92,7 @@ class RideViewController: UIViewController, UIScrollViewDelegate, MKMapViewDeleg
         scrollView.isUserInteractionEnabled = true
         scrollView.isExclusiveTouch = true
         scrollView.addSubview(deleteRide)
+        scrollView.addSubview(joinRide)
         self.scrollView.contentSize = self.contentView.bounds.size;
 //        scrollView.contentSize = CGSize(width: 375, height: 1136);
     }
@@ -197,6 +199,7 @@ class RideViewController: UIViewController, UIScrollViewDelegate, MKMapViewDeleg
     }
     
     @IBAction func deleteThisRide(sender: UIButton) {
+        
         let json:NSMutableDictionary = NSMutableDictionary()
         json.setValue("deleteride", forKey: "message")
         json.setValue(Client.sharedInstance.json?["email"], forKey: "email")
@@ -205,6 +208,17 @@ class RideViewController: UIViewController, UIScrollViewDelegate, MKMapViewDeleg
 
         Client.sharedInstance.socket.write(data: jsonData)
     
+    }
+    
+    @IBAction func joinRide(sender: UIButton) {
+        print("HELLO")
+        let json:NSMutableDictionary = NSMutableDictionary()
+        json.setValue("joinride", forKey: "message")
+        json.setValue(Client.sharedInstance.json?["email"], forKey: "email")
+        json.setValue(cellID, forKey: "joinrideid")
+        let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
+        
+        Client.sharedInstance.socket.write(data: jsonData)
     }
     
     public func goBack() {
