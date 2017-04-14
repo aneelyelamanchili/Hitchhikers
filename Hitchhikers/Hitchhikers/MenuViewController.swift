@@ -25,6 +25,8 @@ class MenuViewController: UIViewController, LeftMenuProtocol {
     var mainViewController: UIViewController!
     var profileViewController: UIViewController!
     
+    var toPopulate: [String: Any]?
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -37,7 +39,13 @@ class MenuViewController: UIViewController, LeftMenuProtocol {
         let viewSize:CGSize = self.view.frame.size;
         let newView = UIView(frame: CGRect(x: 0, y: 0, width: viewSize.width-105, height: 150))
         newView.backgroundColor = UIColor(red:0.19, green:0.27, blue:0.31, alpha:1.0)
-        let image = UIImage(named: "JeffreyMiller.jpg")
+        
+        let imageString = toPopulate?["picture"] as! String;
+        let url = URL(string: toPopulate?["picture"] as! String)
+        let data = try? Data(contentsOf: url!)
+        
+        
+        let image = UIImage(data: data!)
         let imageView = UIImageView(image: image!)
         imageView.frame = CGRect(x: 15, y: 20, width: 100, height: 100)
         imageView.layer.borderWidth = 0.1
@@ -50,7 +58,7 @@ class MenuViewController: UIViewController, LeftMenuProtocol {
         let label = UILabel(frame: CGRect(x: 190, y: 75, width: 200, height: 21))
         label.center = CGPoint(x: 190, y: 75)
         label.textAlignment = .center
-        label.text = "Jeffrey Miller, Ph.D"
+        label.text = (toPopulate?["firstname"] as? String)! + " " + (toPopulate?["lastname"] as? String)!
         label.textColor = UIColor.white
         newView.addSubview(label)
         

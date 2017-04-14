@@ -98,6 +98,7 @@ class LoginViewController: UIViewController {
             UIApplication.shared.delegate?.window??.rootViewController = slideMenuController
             
             mainViewController.toPopulate = sendMessage
+            leftViewController.toPopulate = sendMessage
             self.navigationController?.pushViewController(mainViewController, animated: true)
             
         }
