@@ -65,7 +65,13 @@ class RideViewController: UIViewController, UIScrollViewDelegate, MKMapViewDeleg
         
         driverName.text = dName;
         
-        driverImage.image = UIImage(named: dImage);
+        let imageString = dImage;
+        let url = URL(string: imageString)
+        let data = try? Data(contentsOf: url!)
+        
+        
+        let image = UIImage(data: data!)
+        driverImage.image = image;
         driverImage.layer.cornerRadius = 45.5;
         driverImage.layer.masksToBounds = true;
         

@@ -13,7 +13,7 @@ class FeedTableViewController: UITableViewController {
     @IBOutlet weak var innerBarButtonItem: UIBarButtonItem?
     
     var toPopulate: [String: Any]?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -53,16 +53,16 @@ class FeedTableViewController: UITableViewController {
             print(rowIndex);
             let indexPath = IndexPath(row: rowIndex, section: sectionIndex);
             let cell = tableView.cellForRow(at: indexPath) as! FeedTableViewCell;
-            destination.dName = "Jeffrey Miller,PhD";
+            destination.dName = cell.dName;
             destination.dImage = cell.imageString;
-            destination.carModel = "Toyota Prius 7TWC807";
-            destination.departurePlace = "3025 Royal Street, Los Angeles, CA 90007";
-            destination.dollars = "$25-$30";
-            destination.destinationPlace = "Voodoo Doughnut 22 SW 3rd Ave, Portland, OR 97204";
-            destination.stuffToBring = "1-2 bags maximum";
-            destination.eat = "Will make stops; Feel free to bring snacks";
-            destination.hospitalities = "Will make frequent pit stops for bathroom; Camping out doors at night";
-            destination.detour = "Yes";
+            destination.carModel = cell.carModel;
+            destination.departurePlace = cell.departurePlace;
+            destination.dollars = cell.dollars;
+            destination.destinationPlace = cell.destinationPlace;
+            destination.stuffToBring = cell.stuffToBring;
+            destination.eat = cell.eat;
+            destination.hospitalities = cell.hospitalities;
+            destination.detour = cell.detour;
             destination.initialCoord = cell.initialCoord;
             destination.destinationCoord = cell.destinationCoord;
             
@@ -126,17 +126,21 @@ class FeedTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
+            toPopulate?["feedsize"] = (toPopulate?["feedsize"] as! Int) - 1;
+//            toPopulate?.removeValue(forKey: (tableView.cellForRow(at: indexPath)).
             tableView.deleteRows(at: [indexPath], with: .fade)
+            
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
+        tableView.reloadData();
     }
-    */
+ 
 
     /*
     // Override to support rearranging the table view.
