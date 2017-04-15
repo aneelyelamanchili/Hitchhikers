@@ -101,7 +101,9 @@ public class Application {
 			else if (message.get("message").equals("refreshdata")) {
 				wsep.sendToSession(session, toBinary(refreshData(message, conn)));
 			}
-	        
+			else if (message.get("message").equals("editprofile")) {
+				wsep.sendToSession(session, toBinary(editProfile(message, conn)));
+			}
 		} catch (ClassNotFoundException | SQLException | JSONException e) {
 			JSONObject response = new JSONObject();
 			try {
@@ -829,6 +831,85 @@ public class Application {
 			try {
 				response.put("message", "getdatafail");
 			} catch (JSONException e1) {
+				e1.printStackTrace();
+			}
+			return response;
+		}
+	}
+	/*
+	 * Edit profile - include all of them (even if unchanged)
+	 * input - message,editprofile
+	 * 		   "oldemail"
+	 * 		   "newemail"
+	 * 			"firstname"
+	 * 			"lastname"
+	 * 			"password"
+	 * 			"age" - as string
+	 * 			"picture"
+	 * output - new user details
+	 * 			+ new feed details
+	 * 			message,editprofilesuccess
+	 */
+	public JSONObject editProfile(JSONObject message, Connection conn) {
+		JSONObject response = new JSONObject();
+		String newemail = "";
+		try {
+			newemail = message.getString("newemail");
+			newemail = newemail.trim();
+			String oldemail = message.getString("oldemail");
+			oldemail = oldemail.trim();
+			String firstname = message.getString("firstname");
+			firstname = firstname.trim();
+			String lastname = message.getString("lastname");
+			lastname = lastname.trim();
+			String password = (String)message.get("password");
+			password.replaceAll("\\s+","");
+			String age = (String)message.get("age");
+			age = age.trim();
+			String picture = (String)message.get("picture");
+			picture = picture.trim();
+			String phonenumber = (String)message.get("phonenumber");
+			phonenumber = phonenumber.trim();
+			int ageint = Integer.valueOf(age);
+			Statement st = conn.createStatement();
+			String toexecute = "UPDATE CurrentUsers SET Email='" + newemail + "', FirstName='" + firstname + "', LastName='" + lastname + "', Password='" + password + "', `PhoneNumber`='" + phonenumber + "', Picture='" + picture + "', Age=" + ageint + ";";
+			
+			st.execute(toexecute);
+			
+			JSONObject userDetails = addUserToJSON(newemail, conn);
+			for (String key : JSONObject.getNames(userDetails)) {
+				response.put(key, userDetails.get(key));
+			}
+			JSONObject feedDetails = addFeedToJSON(conn);
+			for (String key : JSONObject.getNames(feedDetails)) {
+				response.put(key, feedDetails.get(key));
+			}
+			response.put("message", "editprofilesuccess");
+			return response;
+		} catch (SQLException | JSONException e) {
+			e.printStackTrace();
+			JSONObject userDetails = addUserToJSON(newemail, conn);
+			for (String key : JSONObject.getNames(userDetails)) {
+				try {
+					response.put(key, userDetails.get(key));
+				} catch (JSONException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+			JSONObject feedDetails = addFeedToJSON(conn);
+			for (String key : JSONObject.getNames(feedDetails)) {
+				try {
+					response.put(key, feedDetails.get(key));
+				} catch (JSONException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+			try {
+				response.put("message", "editprofilefail");
+			} catch (JSONException e1) {
+				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			return response;
