@@ -4,7 +4,7 @@
 [![Language: Java 1.8.0](https://img.shields.io/badge/java-1.8.0-brown.svg?style=flat)](https://www.java.com/en/) 
 [![License: MIT License](https://img.shields.io/github/license/mashape/apistatus.svg)](https://opensource.org/licenses/MIT)
 
-An on-demand application to allow ride sharing between users across longer distances than is feasible for common ride-sharing applications in today's market.
+*Hitchhikers* is an on-demand application to allow ride sharing between users across longer distances than is feasible for common ride-sharing applications in today's market.
 
 ## Video Walkthrough 
 
