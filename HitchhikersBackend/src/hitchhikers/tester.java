@@ -1,3 +1,4 @@
+package hitchhikers;
 import org.json.JSONException;
 import org.json.JSONObject;
 

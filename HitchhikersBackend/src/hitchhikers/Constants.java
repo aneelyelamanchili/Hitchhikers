@@ -1,3 +1,4 @@
+package hitchhikers;
 
 public class Constants {
 	public static final String SQL_INSERT_USER = "INSERT INTO TotalUsers(FirstName, Lastname, Password, Email, Age, PhoneNumber, Picture) VALUES ";

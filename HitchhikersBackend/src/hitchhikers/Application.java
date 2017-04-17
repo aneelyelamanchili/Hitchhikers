@@ -1,3 +1,4 @@
+package hitchhikers;
 import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -450,7 +451,6 @@ public class Application {
 	 * 			returns feed + currentuser
 	 */
 	public JSONObject joinRide(JSONObject message, Connection conn) {
-		System.out.println(message.toString());
 		JSONObject response = new JSONObject();
 		try {
 			Statement st = conn.createStatement();
@@ -463,11 +463,12 @@ public class Application {
 //					notonride = false;
 //				}
 //			}
+			System.out.println(currentriders.size() + " " + rideSize.get(rideid));
 			if (!currentriders.add(email)) {
 				response.put("message", "addriderfail");
 				response.put("addriderfail", "This user is already on the trip");
 			}
-			else if (currentriders.size() < rideSize.get(rideid)) {
+			else if (currentriders.size() <= rideSize.get(rideid)) {
 				currentriders.add(email);
 				rideList.put(rideid, currentriders);
 				response.put("message", "addridersuccessful");
