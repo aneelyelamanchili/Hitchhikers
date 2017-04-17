@@ -24,18 +24,24 @@ class SlideController: SlideMenuController {
 }
 
 extension UIApplication {
-    class func topViewController(controller: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
-        if let navigationController = controller as? UINavigationController {
-            return topViewController(controller: navigationController.visibleViewController)
+    
+    class func topViewController(_ viewController: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
+        if let nav = viewController as? UINavigationController {
+            return topViewController(nav.visibleViewController)
         }
-        if let tabController = controller as? UITabBarController {
-            if let selected = tabController.selectedViewController {
-                return topViewController(controller: selected)
+        if let tab = viewController as? UITabBarController {
+            if let selected = tab.selectedViewController {
+                return topViewController(selected)
             }
         }
-        if let presented = controller?.presentedViewController {
-            return topViewController(controller: presented)
+        if let presented = viewController?.presentedViewController {
+            return topViewController(presented)
         }
-        return controller
+        
+        if let slide = viewController as? SlideMenuController {
+            return topViewController(slide.mainViewController)
+        }
+        return viewController
     }
 }
+

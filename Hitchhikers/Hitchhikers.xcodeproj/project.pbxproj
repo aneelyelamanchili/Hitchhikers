@@ -7,14 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		117B48181E9CD3CC00B0799C /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117B48171E9CD3CC00B0799C /* ProfileTableViewController.swift */; };
+		117B481C1E9CE04700B0799C /* vertical_dots.png in Resources */ = {isa = PBXBuildFile; fileRef = 117B481B1E9CE04700B0799C /* vertical_dots.png */; };
+		117B481E1E9CE27500B0799C /* JeffreyMiller.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 117B481D1E9CE27500B0799C /* JeffreyMiller.jpg */; };
+		117B48221E9CEEAB00B0799C /* down_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 117B48211E9CEEAB00B0799C /* down_arrow.png */; };
 		117EAC611E8DD9FE008BEE42 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117EAC601E8DD9FE008BEE42 /* Client.swift */; };
 		11BF99921E94E810000E393C /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BF99911E94E810000E393C /* MenuViewController.swift */; };
 		11BF99961E94E8F2000E393C /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BF99951E94E8F2000E393C /* UIViewController.swift */; };
 		11BF99981E94E981000E393C /* SlideController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BF99971E94E981000E393C /* SlideController.swift */; };
 		11BF999A1E94E9AB000E393C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BF99991E94E9AB000E393C /* ProfileViewController.swift */; };
 		11BF999C1E94ED6F000E393C /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BF999B1E94ED6F000E393C /* BaseTableViewCell.swift */; };
+		11BF99A01E95188C000E393C /* jeffrey_miller.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 11BF999F1E95188C000E393C /* jeffrey_miller.jpg */; };
 		3F959DC2A77D48CD9C01830D /* Pods_Hitchhikers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1892EB6D4B294B6253EBBFDD /* Pods_Hitchhikers.framework */; };
 		7755C0185E6452AFD2C8710A /* Pods_HitchhikersTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 469962EC67B5D23BCE188CD4 /* Pods_HitchhikersTests.framework */; };
+		B90799211E9D8E2D0008A12F /* GuestTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90799201E9D8E2D0008A12F /* GuestTableViewController.swift */; };
+		B90799271E9DAF9D0008A12F /* GMSMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90799261E9DAF9D0008A12F /* GMSMapViewController.swift */; };
+		B907992B1E9DD0E00008A12F /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B907992A1E9DD0E00008A12F /* SearchTableViewCell.swift */; };
+		B9143A3B1E95BF860081D002 /* AddRideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9143A3A1E95BF860081D002 /* AddRideViewController.swift */; };
+		B9143A3D1E95D8CF0081D002 /* SearchRidesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9143A3C1E95D8CF0081D002 /* SearchRidesViewController.swift */; };
+		B9143A3F1E95F0E10081D002 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9143A3E1E95F0E10081D002 /* SignUpViewController.swift */; };
+		B9143A411E95F40A0081D002 /* welcome.png in Resources */ = {isa = PBXBuildFile; fileRef = B9143A401E95F40A0081D002 /* welcome.png */; };
 		B918278F1E8DFF5500FFE83E /* FeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B918278E1E8DFF5500FFE83E /* FeedTableViewController.swift */; };
 		B91FF28D1E8DD8C700A7E766 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91FF28C1E8DD8C700A7E766 /* LoginViewController.swift */; };
 		B91FF2AA1E8DDA8800A7E766 /* building_small.png in Resources */ = {isa = PBXBuildFile; fileRef = B91FF28F1E8DDA8800A7E766 /* building_small.png */; };
@@ -50,8 +62,17 @@
 		B92989F81E8DCA9800CF8287 /* Hitchhikers.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B92989F61E8DCA9800CF8287 /* Hitchhikers.xcdatamodeld */; };
 		B92989FA1E8DCA9800CF8287 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B92989F91E8DCA9800CF8287 /* Assets.xcassets */; };
 		B92989FD1E8DCA9800CF8287 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B92989FB1E8DCA9800CF8287 /* LaunchScreen.storyboard */; };
-		B9298A081E8DCA9900CF8287 /* HitchhikersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9298A071E8DCA9900CF8287 /* HitchhikersTests.swift */; };
 		B9298A131E8DCA9900CF8287 /* HitchhikersUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9298A121E8DCA9900CF8287 /* HitchhikersUITests.swift */; };
+		B955DF111EA0B766001CCE21 /* car.png in Resources */ = {isa = PBXBuildFile; fileRef = B955DF0E1EA0B766001CCE21 /* car.png */; };
+		B955DF121EA0B766001CCE21 /* date.png in Resources */ = {isa = PBXBuildFile; fileRef = B955DF0F1EA0B766001CCE21 /* date.png */; };
+		B955DF131EA0B766001CCE21 /* seat.png in Resources */ = {isa = PBXBuildFile; fileRef = B955DF101EA0B766001CCE21 /* seat.png */; };
+		B955DF151EA0B89D001CCE21 /* license.png in Resources */ = {isa = PBXBuildFile; fileRef = B955DF141EA0B89D001CCE21 /* license.png */; };
+		B955DF171EA0D359001CCE21 /* submit_trip.png in Resources */ = {isa = PBXBuildFile; fileRef = B955DF161EA0D359001CCE21 /* submit_trip.png */; };
+		B955DF191EA0D433001CCE21 /* join_ride.png in Resources */ = {isa = PBXBuildFile; fileRef = B955DF181EA0D433001CCE21 /* join_ride.png */; };
+		B955DF1B1EA0D465001CCE21 /* delete_ride.png in Resources */ = {isa = PBXBuildFile; fileRef = B955DF1A1EA0D465001CCE21 /* delete_ride.png */; };
+		B970B7D91E97B5AB0084428A /* RideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B970B7D81E97B5AB0084428A /* RideViewController.swift */; };
+		B9C349F21E9716F6008B85CC /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C349F11E9716F6008B85CC /* FeedTableViewCell.swift */; };
+		B9C349F41E971AC4008B85CC /* dude_pic.png in Resources */ = {isa = PBXBuildFile; fileRef = B9C349F31E971AC4008B85CC /* dude_pic.png */; };
 		C0811622FEB689CEC8F6A796 /* Pods_HitchhikersUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95EECFE92C501098AAB66E61 /* Pods_HitchhikersUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -74,12 +95,17 @@
 
 /* Begin PBXFileReference section */
 		0B20C2CE7461E8A91A41C4D4 /* Pods-HitchhikersTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HitchhikersTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HitchhikersTests/Pods-HitchhikersTests.release.xcconfig"; sourceTree = "<group>"; };
+		117B48171E9CD3CC00B0799C /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
+		117B481B1E9CE04700B0799C /* vertical_dots.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vertical_dots.png; sourceTree = "<group>"; };
+		117B481D1E9CE27500B0799C /* JeffreyMiller.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = JeffreyMiller.jpg; sourceTree = "<group>"; };
+		117B48211E9CEEAB00B0799C /* down_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down_arrow.png; sourceTree = "<group>"; };
 		117EAC601E8DD9FE008BEE42 /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		11BF99911E94E810000E393C /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		11BF99951E94E8F2000E393C /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		11BF99971E94E981000E393C /* SlideController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideController.swift; sourceTree = "<group>"; };
 		11BF99991E94E9AB000E393C /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		11BF999B1E94ED6F000E393C /* BaseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
+		11BF999F1E95188C000E393C /* jeffrey_miller.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = jeffrey_miller.jpg; sourceTree = "<group>"; };
 		1892EB6D4B294B6253EBBFDD /* Pods_Hitchhikers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hitchhikers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		30EABE6987A56A6969E73E96 /* Pods-Hitchhikers.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hitchhikers.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hitchhikers/Pods-Hitchhikers.debug.xcconfig"; sourceTree = "<group>"; };
 		469962EC67B5D23BCE188CD4 /* Pods_HitchhikersTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HitchhikersTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -87,6 +113,13 @@
 		87317CEC1E2AD2F8D06FA52F /* Pods-HitchhikersTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HitchhikersTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HitchhikersTests/Pods-HitchhikersTests.debug.xcconfig"; sourceTree = "<group>"; };
 		92C0871AD102DBC05FE09FFE /* Pods-Hitchhikers.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hitchhikers.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hitchhikers/Pods-Hitchhikers.release.xcconfig"; sourceTree = "<group>"; };
 		95EECFE92C501098AAB66E61 /* Pods_HitchhikersUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HitchhikersUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B90799201E9D8E2D0008A12F /* GuestTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuestTableViewController.swift; sourceTree = "<group>"; };
+		B90799261E9DAF9D0008A12F /* GMSMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GMSMapViewController.swift; sourceTree = "<group>"; };
+		B907992A1E9DD0E00008A12F /* SearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
+		B9143A3A1E95BF860081D002 /* AddRideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRideViewController.swift; sourceTree = "<group>"; };
+		B9143A3C1E95D8CF0081D002 /* SearchRidesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchRidesViewController.swift; sourceTree = "<group>"; };
+		B9143A3E1E95F0E10081D002 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		B9143A401E95F40A0081D002 /* welcome.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcome.png; sourceTree = "<group>"; };
 		B918278E1E8DFF5500FFE83E /* FeedTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedTableViewController.swift; sourceTree = "<group>"; };
 		B91FF28C1E8DD8C700A7E766 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		B91FF28F1E8DDA8800A7E766 /* building_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = building_small.png; sourceTree = "<group>"; };
@@ -125,11 +158,19 @@
 		B92989FC1E8DCA9800CF8287 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B92989FE1E8DCA9800CF8287 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B9298A031E8DCA9900CF8287 /* HitchhikersTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HitchhikersTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B9298A071E8DCA9900CF8287 /* HitchhikersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitchhikersTests.swift; sourceTree = "<group>"; };
-		B9298A091E8DCA9900CF8287 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B9298A0E1E8DCA9900CF8287 /* HitchhikersUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HitchhikersUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9298A121E8DCA9900CF8287 /* HitchhikersUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitchhikersUITests.swift; sourceTree = "<group>"; };
 		B9298A141E8DCA9900CF8287 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B955DF0E1EA0B766001CCE21 /* car.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car.png; sourceTree = "<group>"; };
+		B955DF0F1EA0B766001CCE21 /* date.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = date.png; sourceTree = "<group>"; };
+		B955DF101EA0B766001CCE21 /* seat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = seat.png; sourceTree = "<group>"; };
+		B955DF141EA0B89D001CCE21 /* license.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = license.png; sourceTree = "<group>"; };
+		B955DF161EA0D359001CCE21 /* submit_trip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = submit_trip.png; sourceTree = "<group>"; };
+		B955DF181EA0D433001CCE21 /* join_ride.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = join_ride.png; sourceTree = "<group>"; };
+		B955DF1A1EA0D465001CCE21 /* delete_ride.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete_ride.png; sourceTree = "<group>"; };
+		B970B7D81E97B5AB0084428A /* RideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideViewController.swift; sourceTree = "<group>"; };
+		B9C349F11E9716F6008B85CC /* FeedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell.swift; sourceTree = "<group>"; };
+		B9C349F31E971AC4008B85CC /* dude_pic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dude_pic.png; sourceTree = "<group>"; };
 		BED6C55008737DF9FE444FFA /* Pods-HitchhikersUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HitchhikersUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HitchhikersUITests/Pods-HitchhikersUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -187,6 +228,19 @@
 		B91FF28E1E8DD93B00A7E766 /* img */ = {
 			isa = PBXGroup;
 			children = (
+				B955DF1A1EA0D465001CCE21 /* delete_ride.png */,
+				B955DF181EA0D433001CCE21 /* join_ride.png */,
+				B955DF161EA0D359001CCE21 /* submit_trip.png */,
+				B955DF141EA0B89D001CCE21 /* license.png */,
+				B955DF0E1EA0B766001CCE21 /* car.png */,
+				B955DF0F1EA0B766001CCE21 /* date.png */,
+				B955DF101EA0B766001CCE21 /* seat.png */,
+				117B48211E9CEEAB00B0799C /* down_arrow.png */,
+				117B481D1E9CE27500B0799C /* JeffreyMiller.jpg */,
+				117B481B1E9CE04700B0799C /* vertical_dots.png */,
+				B9C349F31E971AC4008B85CC /* dude_pic.png */,
+				B9143A401E95F40A0081D002 /* welcome.png */,
+				11BF999F1E95188C000E393C /* jeffrey_miller.jpg */,
 				B91FF28F1E8DDA8800A7E766 /* building_small.png */,
 				B91FF2901E8DDA8800A7E766 /* credit_card.png */,
 				B91FF2911E8DDA8800A7E766 /* id.png */,
@@ -222,7 +276,6 @@
 			isa = PBXGroup;
 			children = (
 				B92989EE1E8DCA9800CF8287 /* Hitchhikers */,
-				B9298A061E8DCA9900CF8287 /* HitchhikersTests */,
 				B9298A111E8DCA9900CF8287 /* HitchhikersUITests */,
 				B92989ED1E8DCA9800CF8287 /* Products */,
 				50686AA10A46B5CD747C4353 /* Pods */,
@@ -248,6 +301,9 @@
 				117EAC601E8DD9FE008BEE42 /* Client.swift */,
 				B92989F11E8DCA9800CF8287 /* ViewController.swift */,
 				B92989F31E8DCA9800CF8287 /* Main.storyboard */,
+				B90799261E9DAF9D0008A12F /* GMSMapViewController.swift */,
+				B970B7D81E97B5AB0084428A /* RideViewController.swift */,
+				B9143A3E1E95F0E10081D002 /* SignUpViewController.swift */,
 				B92989F91E8DCA9800CF8287 /* Assets.xcassets */,
 				B92989FB1E8DCA9800CF8287 /* LaunchScreen.storyboard */,
 				B92989FE1E8DCA9800CF8287 /* Info.plist */,
@@ -255,21 +311,18 @@
 				B91FF28C1E8DD8C700A7E766 /* LoginViewController.swift */,
 				11BF999B1E94ED6F000E393C /* BaseTableViewCell.swift */,
 				B918278E1E8DFF5500FFE83E /* FeedTableViewController.swift */,
+				B90799201E9D8E2D0008A12F /* GuestTableViewController.swift */,
 				11BF99911E94E810000E393C /* MenuViewController.swift */,
 				11BF99951E94E8F2000E393C /* UIViewController.swift */,
 				11BF99971E94E981000E393C /* SlideController.swift */,
 				11BF99991E94E9AB000E393C /* ProfileViewController.swift */,
+				B9143A3A1E95BF860081D002 /* AddRideViewController.swift */,
+				B9143A3C1E95D8CF0081D002 /* SearchRidesViewController.swift */,
+				B9C349F11E9716F6008B85CC /* FeedTableViewCell.swift */,
+				117B48171E9CD3CC00B0799C /* ProfileTableViewController.swift */,
+				B907992A1E9DD0E00008A12F /* SearchTableViewCell.swift */,
 			);
 			path = Hitchhikers;
-			sourceTree = "<group>";
-		};
-		B9298A061E8DCA9900CF8287 /* HitchhikersTests */ = {
-			isa = PBXGroup;
-			children = (
-				B9298A071E8DCA9900CF8287 /* HitchhikersTests.swift */,
-				B9298A091E8DCA9900CF8287 /* Info.plist */,
-			);
-			path = HitchhikersTests;
 			sourceTree = "<group>";
 		};
 		B9298A111E8DCA9900CF8287 /* HitchhikersUITests */ = {
@@ -359,15 +412,18 @@
 					B92989EB1E8DCA9800CF8287 = {
 						CreatedOnToolsVersion = 8.3;
 						DevelopmentTeam = CKF73J7D4M;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 					B9298A021E8DCA9900CF8287 = {
 						CreatedOnToolsVersion = 8.3;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 						TestTargetID = B92989EB1E8DCA9800CF8287;
 					};
 					B9298A0D1E8DCA9900CF8287 = {
 						CreatedOnToolsVersion = 8.3;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 						TestTargetID = B92989EB1E8DCA9800CF8287;
 					};
@@ -405,29 +461,42 @@
 				B91FF2B21E8DDA8800A7E766 /* login_gplus.png in Resources */,
 				B92989FA1E8DCA9800CF8287 /* Assets.xcassets in Resources */,
 				B91FF2B91E8DDA8800A7E766 /* ticket.png in Resources */,
+				B955DF1B1EA0D465001CCE21 /* delete_ride.png in Resources */,
 				B91FF2BD1E8DDA8800A7E766 /* crossroads.png in Resources */,
 				B91FF2BF1E8DDA8800A7E766 /* suitcase_icon.png in Resources */,
 				B91FF2AE1E8DDA8800A7E766 /* nice_car_trunk.png in Resources */,
+				117B481E1E9CE27500B0799C /* JeffreyMiller.jpg in Resources */,
+				B9143A411E95F40A0081D002 /* welcome.png in Resources */,
+				B9C349F41E971AC4008B85CC /* dude_pic.png in Resources */,
 				B91FF2B61E8DDA8800A7E766 /* adventure_girl.png in Resources */,
 				B91FF2B81E8DDA8800A7E766 /* world.png in Resources */,
 				B91FF2B31E8DDA8800A7E766 /* contact_user.png in Resources */,
 				B91FF2B41E8DDA8800A7E766 /* connect_spotify.png in Resources */,
+				11BF99A01E95188C000E393C /* jeffrey_miller.jpg in Resources */,
+				B955DF111EA0B766001CCE21 /* car.png in Resources */,
 				B91FF2AB1E8DDA8800A7E766 /* credit_card.png in Resources */,
+				B955DF131EA0B766001CCE21 /* seat.png in Resources */,
 				B91FF2B71E8DDA8800A7E766 /* ice_cream.png in Resources */,
 				B91FF2C11E8DDA8800A7E766 /* search.png in Resources */,
 				B91FF2BC1E8DDA8800A7E766 /* food.png in Resources */,
 				B91FF2C21E8DDA8800A7E766 /* add.png in Resources */,
+				B955DF151EA0B89D001CCE21 /* license.png in Resources */,
 				B91FF2AA1E8DDA8800A7E766 /* building_small.png in Resources */,
 				B91FF2B11E8DDA8800A7E766 /* login_fb.png in Resources */,
 				B91FF2AF1E8DDA8800A7E766 /* snowy_mountains.png in Resources */,
+				B955DF191EA0D433001CCE21 /* join_ride.png in Resources */,
+				B955DF171EA0D359001CCE21 /* submit_trip.png in Resources */,
 				B91FF2C31E8DDA8800A7E766 /* map_pin_small.png in Resources */,
 				B91FF2BB1E8DDA8800A7E766 /* girl_on_hill.png in Resources */,
 				B91FF2BE1E8DDA8800A7E766 /* spotify_icon.png in Resources */,
 				B91FF2B51E8DDA8800A7E766 /* 3_people.png in Resources */,
+				B955DF121EA0B766001CCE21 /* date.png in Resources */,
 				B91FF2C41E8DDA8800A7E766 /* map_pin_big.png in Resources */,
 				B91FF2AC1E8DDA8800A7E766 /* id.png in Resources */,
 				B91FF2C01E8DDA8800A7E766 /* hamburger_menu.png in Resources */,
 				B92989F51E8DCA9800CF8287 /* Main.storyboard in Resources */,
+				117B481C1E9CE04700B0799C /* vertical_dots.png in Resources */,
+				117B48221E9CEEAB00B0799C /* down_arrow.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -591,12 +660,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				B91FF28D1E8DD8C700A7E766 /* LoginViewController.swift in Sources */,
+				B90799271E9DAF9D0008A12F /* GMSMapViewController.swift in Sources */,
+				B9143A3D1E95D8CF0081D002 /* SearchRidesViewController.swift in Sources */,
 				B918278F1E8DFF5500FFE83E /* FeedTableViewController.swift in Sources */,
+				B9143A3B1E95BF860081D002 /* AddRideViewController.swift in Sources */,
 				11BF999A1E94E9AB000E393C /* ProfileViewController.swift in Sources */,
 				B92989F21E8DCA9800CF8287 /* ViewController.swift in Sources */,
+				B970B7D91E97B5AB0084428A /* RideViewController.swift in Sources */,
+				117B48181E9CD3CC00B0799C /* ProfileTableViewController.swift in Sources */,
+				B907992B1E9DD0E00008A12F /* SearchTableViewCell.swift in Sources */,
 				11BF99921E94E810000E393C /* MenuViewController.swift in Sources */,
 				11BF999C1E94ED6F000E393C /* BaseTableViewCell.swift in Sources */,
+				B90799211E9D8E2D0008A12F /* GuestTableViewController.swift in Sources */,
+				B9143A3F1E95F0E10081D002 /* SignUpViewController.swift in Sources */,
 				B92989F81E8DCA9800CF8287 /* Hitchhikers.xcdatamodeld in Sources */,
+				B9C349F21E9716F6008B85CC /* FeedTableViewCell.swift in Sources */,
 				117EAC611E8DD9FE008BEE42 /* Client.swift in Sources */,
 				11BF99961E94E8F2000E393C /* UIViewController.swift in Sources */,
 				11BF99981E94E981000E393C /* SlideController.swift in Sources */,
@@ -608,7 +686,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B9298A081E8DCA9900CF8287 /* HitchhikersTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -759,7 +836,7 @@
 				INFOPLIST_FILE = Hitchhikers/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = usc.Hitchhikers;
+				PRODUCT_BUNDLE_IDENTIFIER = will.Hitchhikers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -774,7 +851,7 @@
 				INFOPLIST_FILE = Hitchhikers/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = usc.Hitchhikers;
+				PRODUCT_BUNDLE_IDENTIFIER = will.Hitchhikers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

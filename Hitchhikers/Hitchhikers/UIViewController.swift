@@ -10,8 +10,12 @@ import UIKit
 
 extension UIViewController {
     
-    func setNavigationBarItem() {
-        self.addLeftBarButtonWithImage(UIImage(named: "hamburger_menu.png")!)
+    func setNavigationBarItem(viewController: String) {
+        if(viewController == "FeedTableViewController") {
+            self.addLeftBarButtonWithImage(UIImage(named: "hamburger_menu.png")!)
+        } else {
+            self.addLeftBarButtonWithImage(UIImage(named: "vertical_dots.png")!)
+        }
 //        self.navigationItem.leftBarButtonItem?.tintColor = UIColor(red:0.25, green:0.72, blue:0.91, alpha:1.0)
 //        self.navigationItem.rightBarButtonItem?.tintColor = UIColor(red:0.25, green:0.72, blue:0.91, alpha:1.0)
         //self.addRightBarButtonWithImage(UIImage(named: "ic_notifications_black_24dp")!)

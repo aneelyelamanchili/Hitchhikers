@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Alamofire.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Hitchhikers.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -24,7 +29,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Socket.IO-Client-Swift.xcscheme</key>
+		<key>Starscream.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -37,7 +42,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>14EB539874D475D7120048631527E484</key>
+		<key>0C137551E010ACDB80DA9350CE54CA5E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>33F89456C9C3EA200DF7FAF9F37E7535</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -47,22 +57,42 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>54097CC40951A9C94CA7CB92317DF2A8</key>
+		<key>7658C070930D9BCCBCE238A6C77AAECE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5EE2BCF3C783AD598580346DFDEB12C0</key>
+		<key>777465B5D2EDD7F1F4873D48D4469BEC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9E840259CB5A870BAA116AAC48A6524E</key>
+		<key>88E9EC28B8B46C3631E6B242B50F4442</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>A9C26D70CC82CB380D60B7B1D8D133F4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BB58EA727DB8A19BC22839A1345D14CD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C5A87FB0641F53E426780BCA6F5CB752</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CB7079142EFE9CCE3D130E59DB1C1AC9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F77024DCDC67343B4B55310D9090A015</key>
 		<dict>
 			<key>primary</key>
 			<true/>

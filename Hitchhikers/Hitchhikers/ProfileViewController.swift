@@ -7,8 +7,13 @@
 //
 
 import UIKit
+import SwiftIconFont
+import SlideMenuControllerSwift
+import CoreImage
 
 class ProfileViewController: UIViewController {
+    @IBOutlet weak var profileImage: UIImageView!
+    let toPopulate = Client.sharedInstance.json
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,8 +28,28 @@ class ProfileViewController: UIViewController {
         self.navigationController?.navigationBar.isTranslucent = false;
         
         self.navigationController?.navigationBar.tintColor = UIColor.white
-        //        self.navigationItem.leftBarButtonItem?.tintColor = UIColor(red:0.00, green:0.00, blue:0.00, alpha:1.0)
-        //        self.navigationItem.rightBarButtonItem?.tintColor = UIColor(red:0.00, green:0.00, blue:0.00, alpha:1.0)
+        
+        let imageString = toPopulate?["picture"] as! String;
+        let url = URL(string: toPopulate?["picture"] as! String)
+        let data = try? Data(contentsOf: url!)
+        
+        
+        let image = UIImage(data: data!)
+        
+        
+        let img = CIImage(image: image!)
+        
+        let vignette = CIFilter(name: "CIVignette")
+        vignette?.setValue(img, forKey:kCIInputImageKey)
+        vignette?.setValue(2, forKey:kCIInputIntensityKey)
+        
+        self.profileImage.image = UIImage(ciImage: (vignette?.outputImage)!)
+        
+        self.profileImage.layer.cornerRadius = profileImage.frame.size.width/2
+        self.profileImage.clipsToBounds = true
+
+
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -34,7 +59,17 @@ class ProfileViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.setNavigationBarItem()
+        self.setNavigationBarItem(viewController: "ProfileViewController")
+    }
+    
+    func dismissView(_ sender: UIBarButtonItem) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let mainViewController = storyboard.instantiateViewController(withIdentifier: "FeedTableViewController") as! FeedTableViewController
+        let leftViewController = storyboard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
+        let nvc: UINavigationController = UINavigationController(rootViewController: mainViewController)
+        let slideMenuController = SlideController(mainViewController: nvc, leftMenuViewController: leftViewController)
+        self.slideMenuController()?.changeMainViewController(slideMenuController, close: true)
+    
     }
     
     

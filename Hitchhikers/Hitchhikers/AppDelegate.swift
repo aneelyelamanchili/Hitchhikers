@@ -9,6 +9,8 @@
 import UIKit
 import CoreData
 import SlideMenuControllerSwift
+import GoogleMaps
+import GooglePlaces
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -40,6 +42,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         self.showMainView()
+        GMSServices.provideAPIKey("AIzaSyDHICTXuYimrIqCpSaWb1h1D-DBhih4ySY");
+        GMSPlacesClient.provideAPIKey("AIzaSyDHICTXuYimrIqCpSaWb1h1D-DBhih4ySY");
         return true
     }
 
@@ -62,7 +66,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         
-        Client.sharedInstance.establishConnection()
+        Client.sharedInstance.establishConnection() {
+            
+        }
+        
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
