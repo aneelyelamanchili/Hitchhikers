@@ -11,7 +11,9 @@ import SwiftIconFont
 
 class FeedTableViewController: UITableViewController {
     @IBOutlet weak var innerBarButtonItem: UIBarButtonItem?
-
+    
+    var toPopulate = Client.sharedInstance.json
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -33,6 +35,64 @@ class FeedTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        // set up the refresh control
+        let rc = UIRefreshControl()
+        rc.addTarget(self, action: #selector(self.refresh(refreshControl:)), for: UIControlEvents.valueChanged)
+        tableView.refreshControl = rc
+        tableView.reloadData();
+//        view.addSubview(tableView)
+    }
+    
+    func refresh(refreshControl: UIRefreshControl) {
+        let json:NSMutableDictionary = NSMutableDictionary()
+        json.setValue("refreshdata", forKey: "message")
+        json.setValue(Client.sharedInstance.json?["email"], forKey: "email")
+        let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
+        let jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
+        //print(jsonString)
+        
+        Client.sharedInstance.socket.write(data: jsonData)
+        
+        tableView.reloadData()
+        self.viewDidLoad()
+        refreshControl.endRefreshing()
+    }
+    
+    @IBAction func unwindToMenu(segue: UIStoryboardSegue) {
+        
+    }
+    
+    public func didReceiveData() {
+        tableView.reloadData();
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if  segue.identifier == "showRide",
+            let destination = segue.destination as? RideViewController,
+            let rowIndex = tableView.indexPathForSelectedRow?.row,
+            let sectionIndex = tableView.indexPathForSelectedRow?.section
+        {
+            print("GOT HERE");
+            print(rowIndex);
+            let indexPath = IndexPath(row: rowIndex, section: sectionIndex);
+            let cell = tableView.cellForRow(at: indexPath) as! FeedTableViewCell;
+            destination.dName = cell.dName;
+            destination.dImage = cell.imageString;
+            destination.carModel = cell.carModel;
+            destination.departurePlace = cell.departurePlace;
+            destination.dollars = cell.dollars;
+            destination.destinationPlace = cell.destinationPlace;
+            destination.stuffToBring = cell.stuffToBring;
+            destination.eat = cell.eat;
+            destination.hospitalities = cell.hospitalities;
+            destination.detour = cell.detour;
+            destination.initialCoord = cell.initialCoord;
+            destination.destinationCoord = cell.destinationCoord;
+            destination.cellID = cell.cellID!;
+            destination.seatsAvailable = cell.seatsAvailable;
+            print(cell.seatsAvailable);
+        }
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -41,7 +101,13 @@ class FeedTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.setNavigationBarItem()
+        self.setNavigationBarItem(viewController: "FeedTableViewController")
+        
+        print("GOT TO VIEW WILL APPEAR")
+        toPopulate = Client.sharedInstance.json
+        print(toPopulate?["feedsize"])
+        
+        self.tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -53,23 +119,36 @@ class FeedTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        // Return the number of rows in the feed
+        return toPopulate?["feedsize"] as! Int
     }
+    
+//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 300
+//    }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "feedCell", for: indexPath) as! FeedTableViewCell
 
         // Configure the cell...
-
+        print(toPopulate?["picture"])
+        var feedNum: String = "feed" + String(indexPath.row + 1);
+        print(feedNum);
+        cell.configureCell(feed: feedNum, populate: toPopulate?[feedNum] as! [String : Any]);
+        cell.selectionStyle = UITableViewCellSelectionStyle.none;
+        
         return cell
     }
-    */
+    
+//    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+//        tableView.deselectRow(at: indexPath as IndexPath, animated: true)
+//    }
+    
 
     /*
     // Override to support conditional editing of the table view.
@@ -84,10 +163,14 @@ class FeedTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
+            toPopulate?["feedsize"] = (toPopulate?["feedsize"] as! Int) - 1;
+//            toPopulate?.removeValue(forKey: (tableView.cellForRow(at: indexPath)).
             tableView.deleteRows(at: [indexPath], with: .fade)
+            
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
+        tableView.reloadData();
     }
     */
 
