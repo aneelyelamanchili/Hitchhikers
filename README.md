@@ -1,5 +1,13 @@
 # Hitchhikers
 
+## Video Walkthrough 
+
+Here's a walkthrough of implemented user stories:
+
+![](http://i.imgur.com/MPPWvCj.gifv "Video Walkthrough")
+
+GIF created with [LiceCap](http://www.cockos.com/licecap/).
+
 ## License
 
     Copyright [2017] [Aneel Yelamanchili]
