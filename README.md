@@ -4,7 +4,7 @@
 
 Here's a walkthrough of implemented user stories:
 
-![](https://github.com/aneelyelamanchili/Flix/blob/master/demo.gif "Video Walkthrough")
+![](https://github.com/aneelyelamanchili/Hitchhikers/blob/master/demo.gif "Video Walkthrough")
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
