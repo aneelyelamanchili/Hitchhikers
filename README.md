@@ -4,7 +4,7 @@
 
 Here's a walkthrough of implemented user stories:
 
-![](http://i.imgur.com/MPPWvCj.gifv "Video Walkthrough")
+![](http://i.imgur.com/MPPWvCj.gif "Video Walkthrough")
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
