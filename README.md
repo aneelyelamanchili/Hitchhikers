@@ -1,8 +1,18 @@
 # Hitchhikers
-<<<<<<< HEAD
-#babuji
-=======
-#zayum
+
+[![Language: Swift 3.0](https://img.shields.io/badge/swift-3.0-orange.svg?style=flat)](https://developer.apple.com/swift) 
+[![Language: Java 1.8.0](https://img.shields.io/badge/java-1.8.0-brown.svg?style=flat)](https://www.java.com/en/) 
+[![License: MIT License](https://img.shields.io/github/license/mashape/apistatus.svg)](https://opensource.org/licenses/MIT)
+
+*Hitchhikers* is an on-demand application to allow ride sharing between users across longer distances than is feasible for common ride-sharing applications in today's market.
+
+## Video Walkthrough 
+
+Here's a walkthrough of implemented user stories:
+
+![](https://github.com/aneelyelamanchili/Hitchhikers/blob/master/demo.gif "Video Walkthrough")
+
+GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## License
 
@@ -19,4 +29,3 @@
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
->>>>>>> Client

@@ -13,7 +13,11 @@ class Client: NSObject, WebSocketDelegate {
     static let sharedInstance = Client()
     
     var json: [String: Any]?
+<<<<<<< HEAD
     var socket = WebSocket(url: URL(string: "ws://5120d80a.ngrok.io/HitchhikersBackend/ws")!)
+=======
+    var socket = WebSocket(url: URL(string: "ws://84d3ede7.ngrok.io/HitchhikersBackend/ws")!)
+>>>>>>> 9b612de6f63e9d846d88eab5cb5e085cae202f44
     
     // MARK: Websocket Delegate Methods.
     
