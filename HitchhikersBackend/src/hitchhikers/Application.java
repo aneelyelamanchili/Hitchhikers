@@ -25,8 +25,10 @@ public class Application {
 	private Map<Integer, TreeSet<String>> rideList;
 	private Map<Integer, Integer> rideSize;
 	private Map<String, ArrayList<String>> previousSearches;
+	private Map<String, Session> emailSessions;
 //	private Map<>
 	public Application() {
+		emailSessions = new HashMap<String, Session>();
 		rideList = new HashMap<Integer, TreeSet<String>>();
 		rideSize = new HashMap<Integer, Integer>();
 		previousSearches = new TreeMap<String, ArrayList<String>>();
@@ -48,6 +50,7 @@ public class Application {
 				rideList.put(rs.getInt("rideID"), new TreeSet<String>());
 				rideList.get(rs.getInt("rideID")).add(rs.getString("Email"));
 				rideSize.put(rs.getInt("rideID"), rs.getInt("TotalSeats"));
+				System.out.println(rs.getInt("SeatsAvailable"));
 			}
 			Statement st1 = conn.createStatement();
 			ResultSet rs1 = st1.executeQuery("SELECT * FROM TotalUsers");
@@ -82,10 +85,10 @@ public class Application {
 				wsep.sendToSession(session, toBinary(signIn(message, session, conn)));
 			}
 			else if (message.get("message").equals("makeride")) {
-				wsep.sendToSession(session, toBinary(makeRide(message, conn)));
+				wsep.sendToSession(session, toBinary(makeRide(message, conn, session, wsep)));
 			}
 			else if (message.get("message").equals("joinride")) {
-				wsep.sendToSession(session, toBinary(joinRide(message, conn)));
+				wsep.sendToSession(session, toBinary(joinRide(message, conn, wsep)));
 			}
 			else if (message.get("message").equals("deleteride")) {
 				wsep.sendToSession(session, toBinary(deleteRide(message, conn)));
@@ -209,6 +212,7 @@ public class Application {
 				//Account has successful inputs and is now entered into the database.
 				String addUser = "('" + signupfirstname + "', '" + signuplastname + "', '" + signuppassword + "', '" + signupemail + "', '" + signupage + "', '" + signupphonenumber + "', '" + signuppicture + "')";
 				st.execute(Constants.SQL_INSERT_USER + addUser + ";");
+				emailSessions.put(signupemail, session);
 				response.put("message", "signupsuccess");
 				response.put("signupsuccess", "Account was made.");
 				
@@ -272,7 +276,7 @@ public class Application {
 					if (rs.getString("Password").equals(signinpassword)) {
 						response.put("message", "loginsuccess");
 						response.put("loginsuccess", "Logged in.");
-						
+						emailSessions.put(signinemail, session);
 						//User details for front-end.
 						JSONObject userDetails = addUserToJSON(signinemail, conn);
 						for (String key : JSONObject.getNames(userDetails)) {
@@ -333,7 +337,7 @@ public class Application {
 	 * Output - "message","makeridefail"/"makeridesuccess"
 	 * 			all of the feed and the user's profile returned
 	 */
-	public JSONObject makeRide(JSONObject message, Connection conn) {
+	public JSONObject makeRide(JSONObject message, Connection conn, Session session, WebSocketEndpoint wsep) {
 		JSONObject response = new JSONObject();
 		System.out.println(message.toString());
 		String email = "";
@@ -351,6 +355,11 @@ public class Application {
 			String food = (String)message.getString("food");
 			String luggage = (String)message.getString("luggage");
 			String totalseatsstring = message.getString("totalseats");
+			
+			detours = detours.replaceAll("'", "");
+			hospitality = hospitality.replaceAll("'", "");
+			food = food.replaceAll("'", "");
+			luggage = luggage.replaceAll("'", "");
 			
 			if (email.equals("") || origin.equals("") || destination.equals("") || carmodel.equals("") || licenseplate.equals("") || datetime.equals("") || detours.equals("") || hospitality.equals("") || food.equals("") || luggage.equals("")) {
 				response.put("message", "addridefail");
@@ -392,7 +401,7 @@ public class Application {
 			rs = st.executeQuery("SELECT * FROM CurrentTrips");
 			while (rs.next()) {
 				if (email.equals(rs.getString("Email")) && origin.equals(rs.getString("StartingPoint")) && destination.equals(rs.getString("DestinationPoint")) && carmodel.equals(rs.getString("CarModel")) && hospitality.equals(rs.getString("Hospitality"))) {
-					rideSize.put(rs.getInt("rideID"), totalseats-1);
+					rideSize.put(rs.getInt("rideID"), totalseats);
 					TreeSet<String> riders = new TreeSet<String>();
 					riders.add(email);
 					rideList.put(rs.getInt("rideID"), riders);
@@ -408,8 +417,15 @@ public class Application {
 			for (String key : JSONObject.getNames(feedDetails)) {
 				response.put(key, feedDetails.get(key));
 			}
+			
+			//send 
+//			JSONObject sendToUsers = new JSONObject();
+//			sendToUsers.put("message", "NewRideNotification");
+//			sendToUsers.put("NewRideNotification", "A new ride to " + destination + " was added.");
+//			wsep.sendToSessions(session, toBinary(sendToUsers));
+			
 			return response;
-		} catch (SQLException sqle) {
+		} catch (SQLException | NumberFormatException sqle) {
 			try {
 				sqle.printStackTrace();
 				response.put("message", "addridefail");
@@ -450,9 +466,10 @@ public class Application {
 	 * 			if "addriderfail" --> "addriderfail",reason
 	 * 			returns feed + currentuser
 	 */
-	public JSONObject joinRide(JSONObject message, Connection conn) {
+	public JSONObject joinRide(JSONObject message, Connection conn, WebSocketEndpoint wsep) {
 		JSONObject response = new JSONObject();
 		try {
+			System.out.println(message);
 			Statement st = conn.createStatement();
 			int rideid = message.getInt("joinrideid");
 			String email = message.getString("email");
@@ -463,21 +480,60 @@ public class Application {
 //					notonride = false;
 //				}
 //			}
-			System.out.println(currentriders.size() + " " + rideSize.get(rideid));
-			if (!currentriders.add(email)) {
-				response.put("message", "addriderfail");
-				response.put("addriderfail", "This user is already on the trip");
+			System.out.println(currentriders + " + " + rideSize.get(rideid) + " + " + currentriders.size());
+			boolean added = true;
+			
+			if (currentriders.size() < rideSize.get(rideid)) {
+				if (!currentriders.add(email)) {
+					response.put("message", "addriderfail");
+					response.put("addriderfail", "You are already on the trip");
+				}
+				else {
+					System.out.println("added to ride");
+					currentriders.add(email);
+					rideList.put(rideid, currentriders);
+					response.put("message", "addridersuccessful");
+					String poster = "";
+					String dest = "";
+					String fname = "", lname = "";
+					Statement st1 = conn.createStatement();
+					ResultSet rs1 = st1.executeQuery("SELECT * FROM TotalUsers WHERE Email='" + email + "';");
+					if (rs1.next()) {
+						fname = rs1.getString("FirstName");
+						lname = rs1.getString("LastName");
+					}
+					ResultSet rs = st.executeQuery("SELECT * FROM CurrentTrips WHERE rideID=" + rideid + ";");
+					if (rs.next()) {
+						poster = rs.getString("Email");
+						dest = rs.getString("DestinationPoint");
+						st.executeUpdate("UPDATE CurrentTrips set SeatsAvailable = " + (rs.getInt("SeatsAvailable")-1) + " WHERE rideID=" + rideid + ";");
+					}
+					JSONObject toPoster = new JSONObject();
+					
+					JSONObject uD = addUserToJSON(poster, conn);
+					for (String key : JSONObject.getNames(uD)) {
+						toPoster.put(key, uD.get(key));
+					}
+					JSONObject fD = addFeedToJSON(conn);
+					for (String key : JSONObject.getNames(fD)) {
+						toPoster.put(key, fD.get(key));
+					}
+					
+					toPoster.put("message", "someonejoinedride");
+					toPoster.put("someonejoinedride", fname + " " + lname + " (" + email + ") joined your ride to " + dest + ".");
+					System.out.println(emailSessions);
+					wsep.sendToSession(poster, toBinary(toPoster));
+					System.out.println(toPoster);
+				}
 			}
-			else if (currentriders.size() <= rideSize.get(rideid)) {
-				currentriders.add(email);
-				rideList.put(rideid, currentriders);
-				response.put("message", "addridersuccessful");
-				ResultSet rs = st.executeQuery("SELECT * FROM CurrentTrips WHERE rideID=" + rideid + ";");
-				if (rs.next()) {
-					st.executeUpdate("UPDATE CurrentTrips set SeatsAvailable = " + (rs.getInt("SeatsAvailable")-1) + " WHERE rideID=" + rideid + ";");
+			else if (currentriders.size() == rideSize.get(rideid)) {
+				if (!currentriders.add(email)) {
+					response.put("message", "addriderfail");
+					response.put("addriderfail", "You are already on the trip");
 				}
 			}
 			else {
+				System.out.println("in here");
 				response.put("message", "addriderfail");
 				response.put("addriderfail", "There is no space");
 			}
@@ -533,6 +589,7 @@ public class Application {
 			}
 			if (!email.equals(currentuser)) {
 				response.put("message", "deleteridefail");
+				response.put("deleteridefail", "You cannot delete a ride you didn't post.");
 				JSONObject userDetails = addUserToJSON(currentuser, conn);
 				for (String key : JSONObject.getNames(userDetails)) {
 					response.put(key, userDetails.get(key));
@@ -815,6 +872,7 @@ public class Application {
 	 */
 	public JSONObject refreshData(JSONObject message, Connection conn) {
 		JSONObject response = new JSONObject();
+		System.out.println(message);
 		try {
 			String email = message.getString("email");
 			JSONObject userDetails = addUserToJSON(email, conn);
@@ -826,6 +884,7 @@ public class Application {
 				response.put(key, feedDetails.get(key));
 			}
 			response.put("message", "getdatasuccess");
+			System.out.println(response);
 			return response;
 		} catch(JSONException e) {
 			e.printStackTrace();
@@ -940,7 +999,7 @@ public class Application {
 				user.put("password", rs.getString("Password"));
 				user.put("age", rs.getString("Age"));
 				user.put("picture", rs.getString("Picture"));
-				user.put("email", rs.getString("Email"));
+//				user.put("email", rs.getString("Email"));
 				user.put("phonenumber", rs.getString("PhoneNumber"));
 //				if (rs.getBoolean("isDriver")) {
 //					user.put("isDriver", "yes");
@@ -1026,6 +1085,7 @@ public class Application {
 				currFeed.put("luggage", rs.getString("Luggage"));
 				currFeed.put("totalseats", rs.getString("TotalSeats"));
 				currFeed.put("seatsavailable", Integer.toString(rs.getInt("SeatsAvailable")));
+				System.out.println(rs.getInt("SeatsAvailable"));
 
 				String users = "";
 //				for (int i=0; i<rideList.get(rs.getInt("rideID")).size(); i++) {
@@ -1066,6 +1126,16 @@ public class Application {
 			e.printStackTrace();
 		}
 		return converted;
+	}
+	public Session getSession(String email) {
+		return emailSessions.get(email);
+	}
+	public void removeSession(Session session) {
+		for (String key : emailSessions.keySet()) {
+		    if (emailSessions.get(key) == session) {
+		    	emailSessions.remove(key);
+		    }
+		}
 	}
 	
 	
@@ -1242,9 +1312,9 @@ public class Application {
 			else if (message.get("message").equals("login")) {
 				return signIn(message, conn);
 			}
-			else if (message.get("message").equals("joinride")) {
-				return joinRide(message, conn);
-			}
+//			else if (message.get("message").equals("joinride")) {
+//				return joinRide(message, conn, );
+//			}
 			else if (message.get("message").equals("deleteride")) {
 				return deleteRide(message, conn);
 			}
