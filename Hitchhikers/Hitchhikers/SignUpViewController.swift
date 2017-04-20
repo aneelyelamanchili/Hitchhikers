@@ -131,7 +131,7 @@ class SignUpViewController: UIViewController {
             let slideMenuController = SlideController(mainViewController: nvc, leftMenuViewController: leftViewController)
             UIApplication.shared.delegate?.window??.rootViewController = slideMenuController
             
-            dismissKeyboard()
+            self.dismissKeyboard()
             
             self.navigationController?.pushViewController(mainViewController, animated: true)
             

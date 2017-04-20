@@ -52,7 +52,9 @@ class Client: NSObject, WebSocketDelegate {
                 let vc = UIApplication.topViewController() as? AddRideViewController
                 vc?.goBack()
             } else if(json!["message"] as? String == "signupsuccess" || json!["message"] as? String == "signupfail") {
-                SignUpViewController().didReceiveData()
+                //SignUpViewController().didReceiveData()
+                let vc = UIApplication.topViewController() as? SignUpViewController
+                vc?.didReceiveData()
             } else if(json!["message"] as? String == "guestviewsuccess") {
                 LoginViewController().guestView()
             } else if(json!["message"] as? String == "addridersuccessful" || json!["message"] as? String == "addriderfail") {
