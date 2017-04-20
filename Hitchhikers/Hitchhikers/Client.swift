@@ -42,12 +42,12 @@ class Client: NSObject, WebSocketDelegate {
             print(str)
             if(json!["message"] as? String == "loginfail" || json?["message"] as? String == "loginsuccess") {
                 LoginViewController().didReceiveData()
-            } else if(json!["message"] as? String == "deleteridesuccessful") {
+            } else if(json!["message"] as? String == "deleteridesuccessful" || json!["message"] as? String == "deleteridefail") {
                 print("Got into here")
                 let vc = UIApplication.topViewController() as? RideViewController
                 vc?.goBack()
                 
-            } else if(json!["message"] as? String == "addridesuccess") {
+            } else if(json!["message"] as? String == "addridesuccess" || json!["message"] as? String == "addridefail") {
                 let vc = UIApplication.topViewController() as? AddRideViewController
                 vc?.goBack()
             } else if(json!["message"] as? String == "signupsuccess" || json!["message"] as? String == "signupfail") {
@@ -56,6 +56,9 @@ class Client: NSObject, WebSocketDelegate {
                 FeedTableViewController().didReceiveData()
             } else if(json!["message"] as? String == "guestviewsuccess") {
                 LoginViewController().guestView()
+            } else if(json!["message"] as? String == "addridersuccessful" || json!["message"] as? String == "addriderfail") {
+                let vc = UIApplication.topViewController() as? RideViewController
+                vc?.displayAlert()
             }
         } else {
             print("not a valid UTF-8 sequence")

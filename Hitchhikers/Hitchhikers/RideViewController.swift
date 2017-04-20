@@ -218,13 +218,50 @@ class RideViewController: UIViewController, UIScrollViewDelegate, MKMapViewDeleg
         json.setValue(cellID, forKey: "joinrideid")
         let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
         
+        
         Client.sharedInstance.socket.write(data: jsonData)
     }
     
+    public func displayAlert() {
+        let myAlert = UIAlertView()
+        if(Client.sharedInstance.json?["message"] as? String == "addridersuccessful") {
+            myAlert.title = "Joined ride"
+            myAlert.message = "Successfully joined ride"
+            myAlert.addButton(withTitle: "Dismiss")
+            myAlert.delegate = self
+            myAlert.show()
+            let i : Int!
+            
+            let s = self.seatsLeft.text
+            if let x = Int(s!) {
+                    i = x - 1
+                    self.seatsLeft.text = i.description
+            }
+        } else {
+            myAlert.title = "Could not join ride"
+            myAlert.message = Client.sharedInstance.json?["addriderfail"] as! String?
+            myAlert.addButton(withTitle: "Dismiss")
+            myAlert.delegate = self
+            myAlert.show()
+        }
+    }
+    
     public func goBack() {
-        print("Got into here 2")
-        
-        navigationController?.popViewController(animated: true)
+        let myAlert = UIAlertView()
+        if(Client.sharedInstance.json?["message"] as? String == "deleteridesuccessful") {
+            myAlert.title = "Deleted ride"
+            myAlert.message = "Successfully deleted ride"
+            myAlert.addButton(withTitle: "Dismiss")
+            myAlert.delegate = self
+            myAlert.show()
+            navigationController?.popViewController(animated: true)
+        } else {
+            myAlert.title = "Could not delete ride"
+            myAlert.message = Client.sharedInstance.json?["deleteridefail"] as! String?
+            myAlert.addButton(withTitle: "Dismiss")
+            myAlert.delegate = self
+            myAlert.show()
+        }
     }
 
     /*
