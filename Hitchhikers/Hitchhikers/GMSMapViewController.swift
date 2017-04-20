@@ -303,21 +303,21 @@ class GMSMapViewController: UIViewController, CLLocationManagerDelegate, UITable
         self.dismiss(animated: true, completion: nil)
     }
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
-        let imageURL = info[UIImagePickerControllerReferenceURL] as NSURL
-        let imageName = imageURL.path!.lastPathComponent
-        let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
-        let localPath = documentDirectory.stringByAppendingPathComponent(imageName)
-        
-        let image = info[UIImagePickerControllerOriginalImage] as UIImage
-        let data = UIImagePNGRepresentation(image)
-        data.writeToFile(localPath, atomically: true)
-        
-        let imageData = NSData(contentsOfFile: localPath)!
-        let photoURL = NSURL(fileURLWithPath: localPath)
-        let imageWithData = UIImage(data: imageData)!
-        
-        picker.dismiss(animated: true, completion: nil)
-    }
+//    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+//        let imageURL = info[UIImagePickerControllerReferenceURL] as NSURL
+//        let imageName = imageURL.path!.lastPathComponent
+//        let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
+//        let localPath = documentDirectory.stringByAppendingPathComponent(imageName)
+//        
+//        let image = info[UIImagePickerControllerOriginalImage] as UIImage
+//        let data = UIImagePNGRepresentation(image)
+//        data.writeToFile(localPath, atomically: true)
+//        
+//        let imageData = NSData(contentsOfFile: localPath)!
+//        let photoURL = NSURL(fileURLWithPath: localPath)
+//        let imageWithData = UIImage(data: imageData)!
+//        
+//        picker.dismiss(animated: true, completion: nil)
+//    }
 }
 
