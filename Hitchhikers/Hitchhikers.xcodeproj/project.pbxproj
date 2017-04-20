@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1114638A1EA8A04400722C07 /* mountain_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 111463891EA8A04400722C07 /* mountain_icon.png */; };
 		117B48181E9CD3CC00B0799C /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117B48171E9CD3CC00B0799C /* ProfileTableViewController.swift */; };
 		117EAC611E8DD9FE008BEE42 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117EAC601E8DD9FE008BEE42 /* Client.swift */; };
 		11BF99921E94E810000E393C /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BF99911E94E810000E393C /* MenuViewController.swift */; };
@@ -33,7 +34,6 @@
 		B9298A131E8DCA9900CF8287 /* HitchhikersUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9298A121E8DCA9900CF8287 /* HitchhikersUITests.swift */; };
 		B970B7D91E97B5AB0084428A /* RideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B970B7D81E97B5AB0084428A /* RideViewController.swift */; };
 		B97B61871EA83E2A0099B103 /* 3_people.png in Resources */ = {isa = PBXBuildFile; fileRef = B97B61861EA83E2A0099B103 /* 3_people.png */; };
-		B97B61891EA861A70099B103 /* mountain_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B97B61881EA861A70099B103 /* mountain_icon.png */; };
 		B9A043541EA8280C0075ABB8 /* add.png in Resources */ = {isa = PBXBuildFile; fileRef = B9A0432C1EA8280C0075ABB8 /* add.png */; };
 		B9A043551EA8280C0075ABB8 /* adventure_girl.png in Resources */ = {isa = PBXBuildFile; fileRef = B9A0432D1EA8280C0075ABB8 /* adventure_girl.png */; };
 		B9A043561EA8280C0075ABB8 /* building_small.png in Resources */ = {isa = PBXBuildFile; fileRef = B9A0432E1EA8280C0075ABB8 /* building_small.png */; };
@@ -95,6 +95,7 @@
 
 /* Begin PBXFileReference section */
 		0B20C2CE7461E8A91A41C4D4 /* Pods-HitchhikersTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HitchhikersTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HitchhikersTests/Pods-HitchhikersTests.release.xcconfig"; sourceTree = "<group>"; };
+		111463891EA8A04400722C07 /* mountain_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mountain_icon.png; sourceTree = "<group>"; };
 		117B48171E9CD3CC00B0799C /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		117EAC601E8DD9FE008BEE42 /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		11BF99911E94E810000E393C /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
@@ -131,7 +132,6 @@
 		B9298A141E8DCA9900CF8287 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B970B7D81E97B5AB0084428A /* RideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideViewController.swift; sourceTree = "<group>"; };
 		B97B61861EA83E2A0099B103 /* 3_people.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3_people.png; sourceTree = "<group>"; };
-		B97B61881EA861A70099B103 /* mountain_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mountain_icon.png; path = ../../../../Downloads/mountain_icon.png; sourceTree = "<group>"; };
 		B9A0432C1EA8280C0075ABB8 /* add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add.png; sourceTree = "<group>"; };
 		B9A0432D1EA8280C0075ABB8 /* adventure_girl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = adventure_girl.png; sourceTree = "<group>"; };
 		B9A0432E1EA8280C0075ABB8 /* building_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = building_small.png; sourceTree = "<group>"; };
@@ -228,7 +228,7 @@
 		B91FF28E1E8DD93B00A7E766 /* img */ = {
 			isa = PBXGroup;
 			children = (
-				B97B61881EA861A70099B103 /* mountain_icon.png */,
+				111463891EA8A04400722C07 /* mountain_icon.png */,
 				B97B61861EA83E2A0099B103 /* 3_people.png */,
 				B9A0432C1EA8280C0075ABB8 /* add.png */,
 				B9A0432D1EA8280C0075ABB8 /* adventure_girl.png */,
@@ -484,7 +484,7 @@
 				B9A043731EA8280C0075ABB8 /* snowy_mountains.png in Resources */,
 				B9A043691EA8280C0075ABB8 /* license.png in Resources */,
 				B9A0435A1EA8280C0075ABB8 /* contact_user.png in Resources */,
-				B97B61891EA861A70099B103 /* mountain_icon.png in Resources */,
+				1114638A1EA8A04400722C07 /* mountain_icon.png in Resources */,
 				B9A043781EA8280C0075ABB8 /* vertical_dots.png in Resources */,
 				B9A043581EA8280C0075ABB8 /* compass.png in Resources */,
 				B9A043621EA8280C0075ABB8 /* girl_on_hill.png in Resources */,
