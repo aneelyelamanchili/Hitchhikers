@@ -121,6 +121,7 @@ class MenuViewController: UIViewController, LeftMenuProtocol {
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             appDelegate.window?.rootViewController = mainViewController
             self.dismiss(animated: true) {
+                Client.sharedInstance.closeConnection()
                 let _ = self.navigationController?.popToRootViewController(animated: true)
             }
         }

@@ -34,6 +34,14 @@ class LoginViewController: UIViewController {
         
 
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        Client.sharedInstance.establishConnection {
+            
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
