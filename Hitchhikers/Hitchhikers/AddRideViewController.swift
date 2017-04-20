@@ -204,9 +204,21 @@ class AddRideViewController: UIViewController, UITextFieldDelegate, GMSAutocompl
     }
     
     func goBack() {
-        print("Got into here 2")
-        
-        navigationController?.popViewController(animated: true)
+        let myAlert = UIAlertView()
+        if(Client.sharedInstance.json?["message"] as? String == "addridesuccess") {
+            myAlert.title = "Ride added"
+            myAlert.message = "Successfully created a ride"
+            myAlert.addButton(withTitle: "Dismiss")
+            myAlert.delegate = self
+            myAlert.show()
+            navigationController?.popViewController(animated: true)
+        } else {
+            myAlert.title = "Could not create ride"
+            myAlert.message = Client.sharedInstance.json?["addridefail"] as! String?
+            myAlert.addButton(withTitle: "Dismiss")
+            myAlert.delegate = self
+            myAlert.show()
+        }
     }
 
     
