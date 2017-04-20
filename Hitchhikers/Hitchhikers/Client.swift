@@ -39,7 +39,8 @@ class Client: NSObject, WebSocketDelegate {
         
         if let str = String(data: data, encoding: String.Encoding.utf8) {
             json = convertToDictionary(text: str)
-            print(str)
+            //print(str)
+            print(json!["message"])
             if(json!["message"] as? String == "loginfail" || json?["message"] as? String == "loginsuccess") {
                 LoginViewController().didReceiveData()
             } else if(json!["message"] as? String == "deleteridesuccessful" || json!["message"] as? String == "deleteridefail") {
@@ -52,18 +53,16 @@ class Client: NSObject, WebSocketDelegate {
                 vc?.goBack()
             } else if(json!["message"] as? String == "signupsuccess" || json!["message"] as? String == "signupfail") {
                 SignUpViewController().didReceiveData()
-            } else if(json!["message"] as? String == "getdatasuccess") {
-                FeedTableViewController().didReceiveData()
             } else if(json!["message"] as? String == "guestviewsuccess") {
                 LoginViewController().guestView()
             } else if(json!["message"] as? String == "addridersuccessful" || json!["message"] as? String == "addriderfail") {
                 let vc = UIApplication.topViewController() as? RideViewController
                 vc?.displayAlert()
             } else if(json!["message"] as? String == "getdatasuccess") {
+                print("GOT HERE")
                 let vc = UIApplication.topViewController() as? FeedTableViewController
                 vc?.refreshData()
             } else if(json!["message"] as? String == "someonejoinedride") {
-                print("Got here")
                 let vc = UIApplication.topViewController()
                 
                 let alertController = UIAlertController(title: "New rider", message: json!["someonejoinedride"] as? String, preferredStyle: .alert)

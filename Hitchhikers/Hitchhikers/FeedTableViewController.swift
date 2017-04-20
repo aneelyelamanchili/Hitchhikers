@@ -59,10 +59,11 @@ class FeedTableViewController: UITableViewController {
     
     func refreshData() {
         toPopulate = Client.sharedInstance.json
+        print("REFRESH DATA")
         do {
             let data1 =  try JSONSerialization.data(withJSONObject: toPopulate!, options: JSONSerialization.WritingOptions.prettyPrinted)
             let convertedString = String(data: data1, encoding: String.Encoding.utf8) // the data will be converted to the string
-            print(convertedString) // <-- here is ur string
+            print(convertedString! + "\n\n\n\n\n") // <-- here is ur string
             DispatchQueue.main.async{
                 self.tableView.reloadData()
             }
@@ -134,6 +135,14 @@ class FeedTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         // Return the number of rows in the feed
+//        print("RELOADED DATA")
+//        do {
+//            let data1 =  try JSONSerialization.data(withJSONObject: toPopulate!, options: JSONSerialization.WritingOptions.prettyPrinted)
+//            let convertedString = String(data: data1, encoding: String.Encoding.utf8) // the data will be converted to the string
+//            print(convertedString! + "\n\n\n\n\n") // <-- here is ur string
+//        } catch let myJSONError {
+//            print(myJSONError)
+//        }
         return toPopulate?["feedsize"] as! Int
     }
     
