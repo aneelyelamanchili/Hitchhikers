@@ -42,7 +42,6 @@ class FeedTableViewController: UITableViewController {
         tableView.refreshControl = rc
         tableView.reloadData();
         tableView.addSubview(rc)
-//        view.addSubview(tableView)
     }
     
     func refresh(refreshControl: UIRefreshControl) {
@@ -51,7 +50,6 @@ class FeedTableViewController: UITableViewController {
         json.setValue(Client.sharedInstance.json?["email"], forKey: "email")
         let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
         let jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
-        //print(jsonString)
         
         Client.sharedInstance.socket.write(data: jsonData)
         
@@ -87,7 +85,6 @@ class FeedTableViewController: UITableViewController {
             let rowIndex = tableView.indexPathForSelectedRow?.row,
             let sectionIndex = tableView.indexPathForSelectedRow?.section
         {
-            print("GOT HERE");
             print(rowIndex);
             let indexPath = IndexPath(row: rowIndex, section: sectionIndex);
             let cell = tableView.cellForRow(at: indexPath) as! FeedTableViewCell;
@@ -117,9 +114,7 @@ class FeedTableViewController: UITableViewController {
         super.viewWillAppear(animated)
         self.setNavigationBarItem(viewController: "FeedTableViewController")
         
-        print("GOT TO VIEW WILL APPEAR")
         toPopulate = Client.sharedInstance.json
-        print(toPopulate?["feedsize"])
         
         self.tableView.reloadData()
     }
@@ -150,7 +145,6 @@ class FeedTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "feedCell", for: indexPath) as! FeedTableViewCell
 
         // Configure the cell...
-        print(toPopulate?["picture"])
         var feedNum: String = "feed" + String(indexPath.row + 1);
         print(feedNum);
         cell.configureCell(feed: feedNum, populate: toPopulate?[feedNum] as! [String : Any]);

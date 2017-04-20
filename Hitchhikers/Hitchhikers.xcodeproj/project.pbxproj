@@ -32,8 +32,8 @@
 		B92989FD1E8DCA9800CF8287 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B92989FB1E8DCA9800CF8287 /* LaunchScreen.storyboard */; };
 		B9298A131E8DCA9900CF8287 /* HitchhikersUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9298A121E8DCA9900CF8287 /* HitchhikersUITests.swift */; };
 		B970B7D91E97B5AB0084428A /* RideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B970B7D81E97B5AB0084428A /* RideViewController.swift */; };
-		B97B61811EA82D4A0099B103 /* mountain_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B97B61801EA82D4A0099B103 /* mountain_icon.png */; };
-		B9A043531EA8280C0075ABB8 /* 3_people.png in Resources */ = {isa = PBXBuildFile; fileRef = B9A0432B1EA8280C0075ABB8 /* 3_people.png */; };
+		B97B61831EA83D070099B103 /* mountain_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B97B61821EA83D070099B103 /* mountain_icon.png */; };
+		B97B61871EA83E2A0099B103 /* 3_people.png in Resources */ = {isa = PBXBuildFile; fileRef = B97B61861EA83E2A0099B103 /* 3_people.png */; };
 		B9A043541EA8280C0075ABB8 /* add.png in Resources */ = {isa = PBXBuildFile; fileRef = B9A0432C1EA8280C0075ABB8 /* add.png */; };
 		B9A043551EA8280C0075ABB8 /* adventure_girl.png in Resources */ = {isa = PBXBuildFile; fileRef = B9A0432D1EA8280C0075ABB8 /* adventure_girl.png */; };
 		B9A043561EA8280C0075ABB8 /* building_small.png in Resources */ = {isa = PBXBuildFile; fileRef = B9A0432E1EA8280C0075ABB8 /* building_small.png */; };
@@ -130,8 +130,8 @@
 		B9298A121E8DCA9900CF8287 /* HitchhikersUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitchhikersUITests.swift; sourceTree = "<group>"; };
 		B9298A141E8DCA9900CF8287 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B970B7D81E97B5AB0084428A /* RideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideViewController.swift; sourceTree = "<group>"; };
-		B97B61801EA82D4A0099B103 /* mountain_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mountain_icon.png; sourceTree = "<group>"; };
-		B9A0432B1EA8280C0075ABB8 /* 3_people.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3_people.png; sourceTree = "<group>"; };
+		B97B61821EA83D070099B103 /* mountain_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mountain_icon.png; sourceTree = "<group>"; };
+		B97B61861EA83E2A0099B103 /* 3_people.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3_people.png; sourceTree = "<group>"; };
 		B9A0432C1EA8280C0075ABB8 /* add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add.png; sourceTree = "<group>"; };
 		B9A0432D1EA8280C0075ABB8 /* adventure_girl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = adventure_girl.png; sourceTree = "<group>"; };
 		B9A0432E1EA8280C0075ABB8 /* building_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = building_small.png; sourceTree = "<group>"; };
@@ -228,8 +228,8 @@
 		B91FF28E1E8DD93B00A7E766 /* img */ = {
 			isa = PBXGroup;
 			children = (
-				B97B61801EA82D4A0099B103 /* mountain_icon.png */,
-				B9A0432B1EA8280C0075ABB8 /* 3_people.png */,
+				B97B61861EA83E2A0099B103 /* 3_people.png */,
+				B97B61821EA83D070099B103 /* mountain_icon.png */,
 				B9A0432C1EA8280C0075ABB8 /* add.png */,
 				B9A0432D1EA8280C0075ABB8 /* adventure_girl.png */,
 				B9A0432E1EA8280C0075ABB8 /* building_small.png */,
@@ -469,11 +469,11 @@
 				B9A043671EA8280C0075ABB8 /* JeffreyMiller.jpg in Resources */,
 				B9A0435B1EA8280C0075ABB8 /* credit_card.png in Resources */,
 				B9A0436E1EA8280C0075ABB8 /* map_pin_small.png in Resources */,
+				B97B61871EA83E2A0099B103 /* 3_people.png in Resources */,
 				B9A043551EA8280C0075ABB8 /* adventure_girl.png in Resources */,
 				B92989FD1E8DCA9800CF8287 /* LaunchScreen.storyboard in Resources */,
 				B9A043761EA8280C0075ABB8 /* suitcase_icon.png in Resources */,
 				B92989FA1E8DCA9800CF8287 /* Assets.xcassets in Resources */,
-				B9A043531EA8280C0075ABB8 /* 3_people.png in Resources */,
 				B9A043541EA8280C0075ABB8 /* add.png in Resources */,
 				B9A043611EA8280C0075ABB8 /* food.png in Resources */,
 				B9A0436B1EA8280C0075ABB8 /* login_gplus.png in Resources */,
@@ -484,7 +484,7 @@
 				B9A043731EA8280C0075ABB8 /* snowy_mountains.png in Resources */,
 				B9A043691EA8280C0075ABB8 /* license.png in Resources */,
 				B9A0435A1EA8280C0075ABB8 /* contact_user.png in Resources */,
-				B97B61811EA82D4A0099B103 /* mountain_icon.png in Resources */,
+				B97B61831EA83D070099B103 /* mountain_icon.png in Resources */,
 				B9A043781EA8280C0075ABB8 /* vertical_dots.png in Resources */,
 				B9A043581EA8280C0075ABB8 /* compass.png in Resources */,
 				B9A043621EA8280C0075ABB8 /* girl_on_hill.png in Resources */,
