@@ -52,12 +52,8 @@ class FeedTableViewCell: UITableViewCell, MKMapViewDelegate {
     // Read in from the database to configure the cell. Database json will be passed into this function
     // and will be used to set up the cell's properties and stored values
     func configureCell(feed: String, populate: [String: Any]) {
-        
-        print("FEED STUFF")
 
         cellID = populate["rideid"] as! String
-        
-        print(cellID)
         
         
         dName = (populate["firstname"] as? String)! + " " + (populate["lastname"] as? String)!
@@ -84,9 +80,6 @@ class FeedTableViewCell: UITableViewCell, MKMapViewDelegate {
         
         seatsAvailable = populate["seatsavailable"] as! String;
         
-        print("ABOUT TO PRINT DEPARTURE")
-        print(departurePlace);
-        
         // Dispatch groups to fix asynchronous calls
         let myGroup = DispatchGroup()
         myGroup.enter()
@@ -103,18 +96,12 @@ class FeedTableViewCell: UITableViewCell, MKMapViewDelegate {
             myGroup.leave()
         })
         
-        print("ABOUT TO PRINT DESTINATION")
-        print(destinationPlace);
-        
         myGroup.enter()
         var geocoder2 = CLGeocoder();
         geocoder2.geocodeAddressString(destinationPlace, completionHandler: {(placemarks, error) -> Void in
             if let placemark2 = placemarks?[0] {
                 //                self.mapView.addAnnotation(MKPlacemark(placemark: placemark))
                 self.destinationCoord = (placemark2.location?.coordinate)!;
-                print("ABOUT TO PRINT DESTINATION COORD")
-                print(self.destinationCoord.latitude);
-                print(self.destinationCoord.longitude);
             }
             myGroup.leave()
         })
@@ -142,11 +129,6 @@ class FeedTableViewCell: UITableViewCell, MKMapViewDelegate {
     
     func displayCellRoutes(initialCoord: CLLocationCoordinate2D, destinationCoord: CLLocationCoordinate2D) {
         // Remove all previous annotatations
-        print("DISPLAY CELL ROUTES")
-        print(initialCoord.latitude)
-        print(initialCoord.longitude)
-        print(destinationCoord.latitude)
-        print(destinationCoord.longitude)
         let annotations = self.mapView.annotations;
         
         for annotation in annotations {
@@ -224,9 +206,6 @@ class FeedTableViewCell: UITableViewCell, MKMapViewDelegate {
             self.mapView.showAnnotations(self.mapView.annotations, animated: true)
         }
     }
-
-    
-    
-    
+  
 }
 
