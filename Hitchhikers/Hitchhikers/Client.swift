@@ -14,7 +14,7 @@ class Client: NSObject, WebSocketDelegate {
     
     var json: [String: Any]?
     
-    var socket = WebSocket(url: URL(string: "ws://localhost:8080/HitchhikersBackend/ws")!)
+    var socket = WebSocket(url: URL(string: "ws://5120d80a.ngrok.io/HitchhikersBackend/ws")!)
     
     // MARK: Websocket Delegate Methods.
     
