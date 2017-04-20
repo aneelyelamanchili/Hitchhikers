@@ -1396,7 +1396,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="244"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="T79-nc-sPn" id="bir-lZ-5Vg">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="244"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="243.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xrv-o8-1ZR">

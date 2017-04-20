@@ -81,11 +81,16 @@ class RideViewController: UIViewController, UIScrollViewDelegate, MKMapViewDeleg
         
         carModelLicense.text = carModel;
         departure.text = departurePlace;
+        departure.sizeToFit();
         price.text = dollars;
         destination.text = destinationPlace;
+        destination.sizeToFit();
         luggage.text = stuffToBring;
+        luggage.sizeToFit();
         food.text = eat;
+        food.sizeToFit();
         hospitality.text = hospitalities;
+        hospitality.sizeToFit();
         detours.text = detour;
         seatsLeft.text = seatsAvailable;
         scrollView.frame = view.bounds
