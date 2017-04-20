@@ -59,6 +59,18 @@ class Client: NSObject, WebSocketDelegate {
             } else if(json!["message"] as? String == "addridersuccessful" || json!["message"] as? String == "addriderfail") {
                 let vc = UIApplication.topViewController() as? RideViewController
                 vc?.displayAlert()
+            } else if(json!["message"] as? String == "getdatasuccess") {
+                let vc = UIApplication.topViewController() as? FeedTableViewController
+                vc?.refreshData()
+            } else if(json!["message"] as? String == "someonejoinedride") {
+                print("Got here")
+                let vc = UIApplication.topViewController()
+                
+                let alertController = UIAlertController(title: "New rider", message: json!["someonejoinedride"] as? String, preferredStyle: .alert)
+                let action = UIAlertAction(title: "OK", style: .default) { (action) in}
+                alertController.addAction(action)
+                
+                vc?.present(alertController, animated: true, completion: nil)
             }
         } else {
             print("not a valid UTF-8 sequence")

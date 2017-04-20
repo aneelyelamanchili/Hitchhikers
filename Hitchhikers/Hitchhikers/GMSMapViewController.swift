@@ -160,7 +160,6 @@ class GMSMapViewController: UIViewController, CLLocationManagerDelegate, UITable
         var location = locationManager.location;
         
         CLGeocoder().reverseGeocodeLocation(location!, completionHandler: {(placemarks, error) -> Void in
-            print(location!)
             
             if error != nil {
                 print("Reverse geocoder failed with error" + (error?.localizedDescription)!)
@@ -169,11 +168,6 @@ class GMSMapViewController: UIViewController, CLLocationManagerDelegate, UITable
             
             if (placemarks?.count)! > 0 {
                 let pm = placemarks?[0]
-                print(String(describing: pm?.locality))
-                print(pm!.administrativeArea);
-                print(pm!.postalCode);
-                print(pm!.country);
-                
                 var partOne: String = pm!.locality! + ", " + pm!.administrativeArea!;
                 var partTwo: String = ", " + pm!.postalCode! + ", " + pm!.country!;
                 
@@ -208,9 +202,6 @@ class GMSMapViewController: UIViewController, CLLocationManagerDelegate, UITable
 //        mapView.isScrollEnabled = false;
 //        mapView.isUserInteractionEnabled = false;
         
-        print("Place name: \(place.name)")
-        print("Place address: \(place.formattedAddress)")
-        print("Place attributions: \(place.attributions)")
         self.dismiss(animated: true, completion: nil) // dismiss after select place
         
         self.currentLocation.text = "From: " + initialAddress + "\n" + "To: " + place.formattedAddress!;
@@ -262,7 +253,6 @@ class GMSMapViewController: UIViewController, CLLocationManagerDelegate, UITable
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath as IndexPath, animated: true)
         let cell = previousSearchTableView.cellForRow(at: indexPath) as! SearchTableViewCell
-        print(cell.addressLabel.text!);
         var address = cell.addressLabel.text!;
         self.currentLocation.text = "From: " + initialAddress + "\n" + "To: " + address;
         var geocoder = CLGeocoder()
@@ -285,7 +275,6 @@ class GMSMapViewController: UIViewController, CLLocationManagerDelegate, UITable
     
     @IBAction func showSearchResults(_ sender: Any) {
         var destination = self.currentLocation.text?.components(separatedBy: ":").last
-        print(destination)
         destination?.remove(at: (destination?.startIndex)!)
         
         let json:NSMutableDictionary = NSMutableDictionary()

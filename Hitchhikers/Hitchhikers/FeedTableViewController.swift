@@ -41,6 +41,7 @@ class FeedTableViewController: UITableViewController {
         rc.addTarget(self, action: #selector(self.refresh(refreshControl:)), for: UIControlEvents.valueChanged)
         tableView.refreshControl = rc
         tableView.reloadData();
+        tableView.addSubview(rc)
 //        view.addSubview(tableView)
     }
     
@@ -54,9 +55,22 @@ class FeedTableViewController: UITableViewController {
         
         Client.sharedInstance.socket.write(data: jsonData)
         
-        tableView.reloadData()
-        self.viewDidLoad()
+        //self.tableView.reloadData()
         refreshControl.endRefreshing()
+    }
+    
+    func refreshData() {
+        toPopulate = Client.sharedInstance.json
+        do {
+            let data1 =  try JSONSerialization.data(withJSONObject: toPopulate!, options: JSONSerialization.WritingOptions.prettyPrinted)
+            let convertedString = String(data: data1, encoding: String.Encoding.utf8) // the data will be converted to the string
+            print(convertedString) // <-- here is ur string
+            DispatchQueue.main.async{
+                self.tableView.reloadData()
+            }
+        } catch let myJSONError {
+            print(myJSONError)
+        }
     }
     
     @IBAction func unwindToMenu(segue: UIStoryboardSegue) {

@@ -84,9 +84,6 @@ class FeedTableViewCell: UITableViewCell, MKMapViewDelegate {
         
         seatsAvailable = populate["seatsavailable"] as! String;
         
-        print("ABOUT TO PRINT DEPARTURE")
-        print(departurePlace);
-        
         // Dispatch groups to fix asynchronous calls
         let myGroup = DispatchGroup()
         myGroup.enter()
@@ -96,15 +93,10 @@ class FeedTableViewCell: UITableViewCell, MKMapViewDelegate {
             if let placemark = placemarks?[0] {
 
                 self.initialCoord = (placemark.location?.coordinate)!;
-                print("ABOUT TO PRINT INITIAL COORD")
-                print(self.initialCoord.latitude);
-                print(self.initialCoord.longitude);
+
             }
             myGroup.leave()
         })
-        
-        print("ABOUT TO PRINT DESTINATION")
-        print(destinationPlace);
         
         myGroup.enter()
         var geocoder2 = CLGeocoder();
@@ -112,9 +104,6 @@ class FeedTableViewCell: UITableViewCell, MKMapViewDelegate {
             if let placemark2 = placemarks?[0] {
                 //                self.mapView.addAnnotation(MKPlacemark(placemark: placemark))
                 self.destinationCoord = (placemark2.location?.coordinate)!;
-                print("ABOUT TO PRINT DESTINATION COORD")
-                print(self.destinationCoord.latitude);
-                print(self.destinationCoord.longitude);
             }
             myGroup.leave()
         })
@@ -142,11 +131,6 @@ class FeedTableViewCell: UITableViewCell, MKMapViewDelegate {
     
     func displayCellRoutes(initialCoord: CLLocationCoordinate2D, destinationCoord: CLLocationCoordinate2D) {
         // Remove all previous annotatations
-        print("DISPLAY CELL ROUTES")
-        print(initialCoord.latitude)
-        print(initialCoord.longitude)
-        print(destinationCoord.latitude)
-        print(destinationCoord.longitude)
         let annotations = self.mapView.annotations;
         
         for annotation in annotations {
