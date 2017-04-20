@@ -30,11 +30,7 @@ CREATE TABLE `TotalPreviousTrips` (
     `CarModel` VARCHAR(50) NOT NULL,
     `LicensePlate` VARCHAR(50) NOT NULL,
     `Cost` INT(11) NOT NULL, 
-<<<<<<< HEAD
     `Date/Time` VARCHAR(100) NOT NULL,
-=======
-    `Date/Time` VARCHAR(50) NOT NULL,
->>>>>>> BackEnd
     `Detours` VARCHAR(200) NOT NULL,
     `Hospitality` VARCHAR(200) NOT NULL,
     `Food` VARCHAR(200) NOT NULL,
@@ -55,11 +51,7 @@ CREATE TABLE `CurrentTrips` (
     `CarModel` VARCHAR(50) NOT NULL,
     `LicensePlate` VARCHAR(50) NOT NULL,
     `Cost` INT(11) NOT NULL, 
-<<<<<<< HEAD
     `Date/Time` VARCHAR(100) NOT NULL,
-=======
-    `Date/Time` VARCHAR(50) NOT NULL,
->>>>>>> BackEnd
     `Detours` VARCHAR(200) NOT NULL,
     `Hospitality` VARCHAR(200) NOT NULL,
     `Food` VARCHAR(200) NOT NULL,
