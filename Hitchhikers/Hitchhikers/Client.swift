@@ -13,7 +13,8 @@ class Client: NSObject, WebSocketDelegate {
     static let sharedInstance = Client()
     
     var json: [String: Any]?
-    var socket = WebSocket(url: URL(string: "ws://84d3ede7.ngrok.io/HitchhikersBackend/ws")!)
+    
+    var socket = WebSocket(url: URL(string: "ws://5120d80a.ngrok.io/HitchhikersBackend/ws")!)
     
     // MARK: Websocket Delegate Methods.
     
@@ -38,23 +39,40 @@ class Client: NSObject, WebSocketDelegate {
         
         if let str = String(data: data, encoding: String.Encoding.utf8) {
             json = convertToDictionary(text: str)
-            print(str)
+            //print(str)
+            print(json!["message"])
             if(json!["message"] as? String == "loginfail" || json?["message"] as? String == "loginsuccess") {
                 LoginViewController().didReceiveData()
-            } else if(json!["message"] as? String == "deleteridesuccessful") {
+            } else if(json!["message"] as? String == "deleteridesuccessful" || json!["message"] as? String == "deleteridefail") {
                 print("Got into here")
                 let vc = UIApplication.topViewController() as? RideViewController
                 vc?.goBack()
                 
-            } else if(json!["message"] as? String == "addridesuccess") {
+            } else if(json!["message"] as? String == "addridesuccess" || json!["message"] as? String == "addridefail") {
                 let vc = UIApplication.topViewController() as? AddRideViewController
                 vc?.goBack()
             } else if(json!["message"] as? String == "signupsuccess" || json!["message"] as? String == "signupfail") {
                 SignUpViewController().didReceiveData()
-            } else if(json!["message"] as? String == "getdatasuccess") {
-                FeedTableViewController().didReceiveData()
             } else if(json!["message"] as? String == "guestviewsuccess") {
                 LoginViewController().guestView()
+            } else if(json!["message"] as? String == "addridersuccessful" || json!["message"] as? String == "addriderfail") {
+                let vc = UIApplication.topViewController() as? RideViewController
+                vc?.displayAlert()
+            } else if(json!["message"] as? String == "getdatasuccess") {
+                print("GOT HERE")
+                let vc = UIApplication.topViewController() as? FeedTableViewController
+                vc?.refreshData()
+            } else if(json!["message"] as? String == "someonejoinedride") {
+                let vc = UIApplication.topViewController()
+                
+                let alertController = UIAlertController(title: "New rider", message: json!["someonejoinedride"] as? String, preferredStyle: .alert)
+                let action = UIAlertAction(title: "OK", style: .default) { (action) in}
+                alertController.addAction(action)
+                
+                vc?.present(alertController, animated: true, completion: nil)
+            } else if(json!["message"] as? String == "searchsuccess") {
+                let vc = UIApplication.topViewController() as? GMSMapViewController
+                vc?.goBack()
             }
         } else {
             print("not a valid UTF-8 sequence")

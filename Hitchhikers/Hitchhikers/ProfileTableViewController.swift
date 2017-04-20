@@ -12,13 +12,32 @@ import SwiftIconFont
 
 class ProfileTableViewController: UITableViewController {
     @IBOutlet var table: UITableView!
+    @IBOutlet weak var firstname: UILabel!
+    @IBOutlet weak var lastname: UILabel!
+    @IBOutlet weak var age: UILabel!
+    @IBOutlet weak var phoneNumber: UILabel!
+    @IBOutlet weak var email: UILabel!
+    @IBOutlet weak var password: UILabel!
+    
+    let toPopulate = Client.sharedInstance.json
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.table.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0);
         self.table.isScrollEnabled = false;
-
+        
+        firstname.text = toPopulate?["firstname"] as! String
+        lastname.text = toPopulate?["lastname"] as! String
+        age.text = toPopulate?["age"] as! String
+        phoneNumber.text = toPopulate?["phonenumber"] as! String
+        email.text = toPopulate?["email"] as! String
+        
+        var toSetPass:String = ""
+        for i in 0 ..< (toPopulate?["password"] as! String).length {
+            toSetPass += "•";
+        }
+        password.text = toSetPass;
     }
     
     override func didReceiveMemoryWarning() {

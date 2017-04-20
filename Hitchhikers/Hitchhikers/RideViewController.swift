@@ -49,17 +49,18 @@ class RideViewController: UIViewController, UIScrollViewDelegate, MKMapViewDeleg
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-//        let initialLocation = CLLocation(latitude: CLLocationDegrees(xCoordinate), longitude: CLLocationDegrees(yCoordinate))
-//        
-//        let regionRadius: CLLocationDistance = 1000
-//        let coordinateRegion = MKCoordinateRegionMakeWithDistance(initialLocation.coordinate,
-//                                                                  regionRadius * 2.0, regionRadius * 2.0)
-//        print(xCoordinate);
-//        print(yCoordinate);
-//        let annotation = MKPointAnnotation();
-//        annotation.coordinate = CLLocationCoordinate2D(latitude: CLLocationDegrees(xCoordinate), longitude: CLLocationDegrees(yCoordinate))
-//        mapView.addAnnotation(annotation)
-//        mapView.setRegion(coordinateRegion, animated: true)
+        let logo = UIImage(named: "mountain_icon.png")
+        let imageView = UIImageView(image:logo)
+        self.navigationItem.titleView = imageView
+        
+        self.navigationController?.navigationBar.barTintColor = UIColor(red:0.19, green:0.27, blue:0.31, alpha:1.0)
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = false;
+        
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+//        self.innerBarButtonItem?.icon(from: .Themify, code: "plus", ofSize: 25)
+//        self.navigationItem.rightBarButtonItem?.icon(from: .Themify, code: "search", ofSize: 25)
         
         displayRideRoute(initialCoord: initialCoord, destinationCoord: destinationCoord);
         
@@ -81,11 +82,16 @@ class RideViewController: UIViewController, UIScrollViewDelegate, MKMapViewDeleg
         
         carModelLicense.text = carModel;
         departure.text = departurePlace;
+        departure.sizeToFit();
         price.text = dollars;
         destination.text = destinationPlace;
+        destination.sizeToFit();
         luggage.text = stuffToBring;
+        luggage.sizeToFit();
         food.text = eat;
+        food.sizeToFit();
         hospitality.text = hospitalities;
+        hospitality.sizeToFit();
         detours.text = detour;
         seatsLeft.text = seatsAvailable;
         scrollView.frame = view.bounds
@@ -94,7 +100,6 @@ class RideViewController: UIViewController, UIScrollViewDelegate, MKMapViewDeleg
         scrollView.addSubview(deleteRide)
         scrollView.addSubview(joinRide)
         self.scrollView.contentSize = self.contentView.bounds.size;
-//        scrollView.contentSize = CGSize(width: 375, height: 1136);
     }
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
@@ -180,16 +185,13 @@ class RideViewController: UIViewController, UIScrollViewDelegate, MKMapViewDeleg
             self.mapView.add((route.polyline), level: MKOverlayLevel.aboveRoads)
             
             let rect = route.polyline.boundingMapRect
-            //            self.mapView.setRegion(MKCoordinateRegionForMapRect(rect), animated: true)
+
             self.mapView.showAnnotations(self.mapView.annotations, animated: true)
         }
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
-//        scrollView.frame = view.bounds
-//        contentView.frame = CGRect(0, 0, scrollView.contentSize.width, scrollView.contentSize.height);
     }
     
 
@@ -218,13 +220,50 @@ class RideViewController: UIViewController, UIScrollViewDelegate, MKMapViewDeleg
         json.setValue(cellID, forKey: "joinrideid")
         let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
         
+        
         Client.sharedInstance.socket.write(data: jsonData)
     }
     
+    public func displayAlert() {
+        let myAlert = UIAlertView()
+        if(Client.sharedInstance.json?["message"] as? String == "addridersuccessful") {
+            myAlert.title = "Joined ride"
+            myAlert.message = "Successfully joined ride"
+            myAlert.addButton(withTitle: "Dismiss")
+            myAlert.delegate = self
+            myAlert.show()
+            let i : Int!
+            
+            let s = self.seatsLeft.text
+            if let x = Int(s!) {
+                    i = x - 1
+                    self.seatsLeft.text = i.description
+            }
+        } else {
+            myAlert.title = "Could not join ride"
+            myAlert.message = Client.sharedInstance.json?["addriderfail"] as! String?
+            myAlert.addButton(withTitle: "Dismiss")
+            myAlert.delegate = self
+            myAlert.show()
+        }
+    }
+    
     public func goBack() {
-        print("Got into here 2")
-        
-        navigationController?.popViewController(animated: true)
+        let myAlert = UIAlertView()
+        if(Client.sharedInstance.json?["message"] as? String == "deleteridesuccessful") {
+            myAlert.title = "Deleted ride"
+            myAlert.message = "Successfully deleted ride"
+            myAlert.addButton(withTitle: "Dismiss")
+            myAlert.delegate = self
+            myAlert.show()
+            navigationController?.popViewController(animated: true)
+        } else {
+            myAlert.title = "Could not delete ride"
+            myAlert.message = Client.sharedInstance.json?["deleteridefail"] as! String?
+            myAlert.addButton(withTitle: "Dismiss")
+            myAlert.delegate = self
+            myAlert.show()
+        }
     }
 
     /*

@@ -31,9 +31,12 @@ class GMSMapViewController: UIViewController, CLLocationManagerDelegate, UITable
         super.viewDidLoad()
         
         let logo = UIImage(named: "mountain_icon.png")
+        
+//        imageView.frame = CGRect(x: 0, y: 0, width: 20, height: 40)
+
         let imageView = UIImageView(image:logo)
         self.navigationItem.titleView = imageView
-        
+
         self.navigationController?.navigationBar.barTintColor = UIColor(red:0.19, green:0.27, blue:0.31, alpha:1.0)
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
@@ -160,7 +163,6 @@ class GMSMapViewController: UIViewController, CLLocationManagerDelegate, UITable
         var location = locationManager.location;
         
         CLGeocoder().reverseGeocodeLocation(location!, completionHandler: {(placemarks, error) -> Void in
-            print(location!)
             
             if error != nil {
                 print("Reverse geocoder failed with error" + (error?.localizedDescription)!)
@@ -169,11 +171,6 @@ class GMSMapViewController: UIViewController, CLLocationManagerDelegate, UITable
             
             if (placemarks?.count)! > 0 {
                 let pm = placemarks?[0]
-                print(String(describing: pm?.locality))
-                print(pm!.administrativeArea);
-                print(pm!.postalCode);
-                print(pm!.country);
-                
                 var partOne: String = pm!.locality! + ", " + pm!.administrativeArea!;
                 var partTwo: String = ", " + pm!.postalCode! + ", " + pm!.country!;
                 
@@ -208,9 +205,6 @@ class GMSMapViewController: UIViewController, CLLocationManagerDelegate, UITable
 //        mapView.isScrollEnabled = false;
 //        mapView.isUserInteractionEnabled = false;
         
-        print("Place name: \(place.name)")
-        print("Place address: \(place.formattedAddress)")
-        print("Place attributions: \(place.attributions)")
         self.dismiss(animated: true, completion: nil) // dismiss after select place
         
         self.currentLocation.text = "From: " + initialAddress + "\n" + "To: " + place.formattedAddress!;
@@ -262,7 +256,6 @@ class GMSMapViewController: UIViewController, CLLocationManagerDelegate, UITable
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath as IndexPath, animated: true)
         let cell = previousSearchTableView.cellForRow(at: indexPath) as! SearchTableViewCell
-        print(cell.addressLabel.text!);
         var address = cell.addressLabel.text!;
         self.currentLocation.text = "From: " + initialAddress + "\n" + "To: " + address;
         var geocoder = CLGeocoder()
@@ -285,7 +278,6 @@ class GMSMapViewController: UIViewController, CLLocationManagerDelegate, UITable
     
     @IBAction func showSearchResults(_ sender: Any) {
         var destination = self.currentLocation.text?.components(separatedBy: ":").last
-        print(destination)
         destination?.remove(at: (destination?.startIndex)!)
         
         let json:NSMutableDictionary = NSMutableDictionary()
@@ -295,8 +287,40 @@ class GMSMapViewController: UIViewController, CLLocationManagerDelegate, UITable
         let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
         
         Client.sharedInstance.socket.write(data: jsonData)
-
+        
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        let mainViewController = storyboard.instantiateViewController(withIdentifier: "FeedTableViewController") as! FeedTableViewController
+//        let leftViewController = storyboard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
+//        let nvc: UINavigationController = UINavigationController(rootViewController: mainViewController)
+//        let slideMenuController = SlideController(mainViewController: nvc, leftMenuViewController: leftViewController)
+//        
+//        let sendMessage = Client.sharedInstance.json
+//        mainViewController.toPopulate = sendMessage
+//        
+//        self.slideMenuController()?.changeMainViewController(slideMenuController, close: true)
         
     }
+    
+    public func goBack() {
+        print("GOING BACK");
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+//    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+//        let imageURL = info[UIImagePickerControllerReferenceURL] as NSURL
+//        let imageName = imageURL.path!.lastPathComponent
+//        let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
+//        let localPath = documentDirectory.stringByAppendingPathComponent(imageName)
+//        
+//        let image = info[UIImagePickerControllerOriginalImage] as UIImage
+//        let data = UIImagePNGRepresentation(image)
+//        data.writeToFile(localPath, atomically: true)
+//        
+//        let imageData = NSData(contentsOfFile: localPath)!
+//        let photoURL = NSURL(fileURLWithPath: localPath)
+//        let imageWithData = UIImage(data: imageData)!
+//        
+//        picker.dismiss(animated: true, completion: nil)
+//    }
 }
 

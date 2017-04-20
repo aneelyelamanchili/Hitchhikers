@@ -52,25 +52,8 @@ class FeedTableViewCell: UITableViewCell, MKMapViewDelegate {
     // Read in from the database to configure the cell. Database json will be passed into this function
     // and will be used to set up the cell's properties and stored values
     func configureCell(feed: String, populate: [String: Any]) {
-        // Set up stored variables in the cell
-//        dName = "Jeffrey Miller,PhD";
-//        imageString = "JeffreyMiller.jpg";
-//        profileImage.image = UIImage(named:"JeffreyMiller.jpg");
-//        carModel = "Toyota Prius 7TWC807"
-//        departurePlace = "3025 Royal Street, Los Angeles, CA 90007";
-//        dollars = "$25-$30";
-//        destinationPlace = "Voodoo Doughnut 22 SW 3rd Ave, Portland, OR 97204";
-//        stuffToBring = "1-2 bags maximum";
-//        eat = "Will make stops; Feel free to bring snacks";
-//        hospitalities = "Will make frequent pit stops for bathroom; Camping out doors at night";
-//        detour = "Yes";
-        
-        print("FEED STUFF")
-        //print(Client.sharedInstance.json?[feed])
-//        let outer = Client.sharedInstance.json?[feed] as? [String : Any?]
+
         cellID = populate["rideid"] as! String
-        
-        print(cellID)
         
         
         dName = (populate["firstname"] as? String)! + " " + (populate["lastname"] as? String)!
@@ -91,16 +74,11 @@ class FeedTableViewCell: UITableViewCell, MKMapViewDelegate {
         profileImage.layer.cornerRadius = 31.5;
         profileImage.layer.masksToBounds = true;
         destinationLabel.text = destinationPlace;
+        destinationLabel.sizeToFit();
         departureTime = populate["datetime"] as! String;
         departureTimeLabel.text = departureTime;
         
         seatsAvailable = populate["seatsavailable"] as! String;
-        
-//        let initialLocation = CLLocation(latitude: 21.282778, longitude: -157.829444)
-//        xCoordinate = Float(21.282778);
-//        yCoordinate = Float(-157.829444);
-        print("ABOUT TO PRINT DEPARTURE")
-        print(departurePlace);
         
         // Dispatch groups to fix asynchronous calls
         let myGroup = DispatchGroup()
@@ -109,17 +87,12 @@ class FeedTableViewCell: UITableViewCell, MKMapViewDelegate {
         var geocoder = CLGeocoder();
         geocoder.geocodeAddressString(departurePlace, completionHandler: {(placemarks, error) -> Void in
             if let placemark = placemarks?[0] {
-//                self.mapView.addAnnotation(MKPlacemark(placemark: placemark))
+
                 self.initialCoord = (placemark.location?.coordinate)!;
-                print("ABOUT TO PRINT INITIAL COORD")
-                print(self.initialCoord.latitude);
-                print(self.initialCoord.longitude);
+
             }
             myGroup.leave()
         })
-        
-        print("ABOUT TO PRINT DESTINATION")
-        print(destinationPlace);
         
         myGroup.enter()
         var geocoder2 = CLGeocoder();
@@ -127,9 +100,6 @@ class FeedTableViewCell: UITableViewCell, MKMapViewDelegate {
             if let placemark2 = placemarks?[0] {
                 //                self.mapView.addAnnotation(MKPlacemark(placemark: placemark))
                 self.destinationCoord = (placemark2.location?.coordinate)!;
-                print("ABOUT TO PRINT DESTINATION COORD")
-                print(self.destinationCoord.latitude);
-                print(self.destinationCoord.longitude);
             }
             myGroup.leave()
         })
@@ -139,19 +109,8 @@ class FeedTableViewCell: UITableViewCell, MKMapViewDelegate {
             self.displayCellRoutes(initialCoord: self.initialCoord, destinationCoord: self.destinationCoord);
         })
         
-        // These coordinates will change depending on what the server sends back
-//        initialCoord = CLLocationCoordinate2D(latitude: 37.309927, longitude: -122.057035)
-//        destinationCoord = CLLocationCoordinate2D(latitude: 40.7128, longitude: -74.0059)
-        
-//        let tempController = GMSMapViewController();
         displayCellRoutes(initialCoord: self.initialCoord, destinationCoord: self.destinationCoord);
-//        let regionRadius: CLLocationDistance = 1000
-//        let coordinateRegion = MKCoordinateRegionMakeWithDistance(initialLocation.coordinate,
-//                                                                      regionRadius * 2.0, regionRadius * 2.0)
-//        let annotation = MKPointAnnotation();
-//        annotation.coordinate = CLLocationCoordinate2D(latitude: 21.282778, longitude: -157.829444)
-//        mapView.addAnnotation(annotation)
-//        mapView.setRegion(coordinateRegion, animated: true)
+
         mapView.isZoomEnabled = false;
         mapView.isScrollEnabled = false;
         mapView.isUserInteractionEnabled = false;
@@ -168,11 +127,6 @@ class FeedTableViewCell: UITableViewCell, MKMapViewDelegate {
     
     func displayCellRoutes(initialCoord: CLLocationCoordinate2D, destinationCoord: CLLocationCoordinate2D) {
         // Remove all previous annotatations
-        print("DISPLAY CELL ROUTES")
-        print(initialCoord.latitude)
-        print(initialCoord.longitude)
-        print(destinationCoord.latitude)
-        print(destinationCoord.longitude)
         let annotations = self.mapView.annotations;
         
         for annotation in annotations {
@@ -250,9 +204,6 @@ class FeedTableViewCell: UITableViewCell, MKMapViewDelegate {
             self.mapView.showAnnotations(self.mapView.annotations, animated: true)
         }
     }
-
-    
-    
-    
+  
 }
 
