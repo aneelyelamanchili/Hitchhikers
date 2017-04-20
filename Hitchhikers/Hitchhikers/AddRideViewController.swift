@@ -187,7 +187,7 @@ class AddRideViewController: UIViewController, UITextFieldDelegate, GMSAutocompl
         json.setValue(Client.sharedInstance.json?["email"], forKey: "email")
         json.setValue(currentLocationTextField.text, forKey: "origin")
         json.setValue(destinationLocationTextField.text, forKey: "destination")
-        json.setValue(Int(inputDollars.text!), forKey: "cost")
+        json.setValue(Int(inputDollars.text!) ?? -1, forKey: "cost")
         json.setValue(maxLuggage.text, forKey: "luggage")
         json.setValue(foodOnTrip.text, forKey: "food")
         json.setValue(hospitalities.text, forKey: "hospitality")
