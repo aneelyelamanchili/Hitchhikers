@@ -31,9 +31,12 @@ class GMSMapViewController: UIViewController, CLLocationManagerDelegate, UITable
         super.viewDidLoad()
         
         let logo = UIImage(named: "mountain_icon.png")
+        
+//        imageView.frame = CGRect(x: 0, y: 0, width: 20, height: 40)
+
         let imageView = UIImageView(image:logo)
         self.navigationItem.titleView = imageView
-        
+
         self.navigationController?.navigationBar.barTintColor = UIColor(red:0.19, green:0.27, blue:0.31, alpha:1.0)
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
@@ -303,21 +306,21 @@ class GMSMapViewController: UIViewController, CLLocationManagerDelegate, UITable
         self.dismiss(animated: true, completion: nil)
     }
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
-        let imageURL = info[UIImagePickerControllerReferenceURL] as NSURL
-        let imageName = imageURL.path!.lastPathComponent
-        let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
-        let localPath = documentDirectory.stringByAppendingPathComponent(imageName)
-        
-        let image = info[UIImagePickerControllerOriginalImage] as UIImage
-        let data = UIImagePNGRepresentation(image)
-        data.writeToFile(localPath, atomically: true)
-        
-        let imageData = NSData(contentsOfFile: localPath)!
-        let photoURL = NSURL(fileURLWithPath: localPath)
-        let imageWithData = UIImage(data: imageData)!
-        
-        picker.dismiss(animated: true, completion: nil)
-    }
+//    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+//        let imageURL = info[UIImagePickerControllerReferenceURL] as NSURL
+//        let imageName = imageURL.path!.lastPathComponent
+//        let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
+//        let localPath = documentDirectory.stringByAppendingPathComponent(imageName)
+//        
+//        let image = info[UIImagePickerControllerOriginalImage] as UIImage
+//        let data = UIImagePNGRepresentation(image)
+//        data.writeToFile(localPath, atomically: true)
+//        
+//        let imageData = NSData(contentsOfFile: localPath)!
+//        let photoURL = NSURL(fileURLWithPath: localPath)
+//        let imageWithData = UIImage(data: imageData)!
+//        
+//        picker.dismiss(animated: true, completion: nil)
+//    }
 }
 
