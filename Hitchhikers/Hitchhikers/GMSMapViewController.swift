@@ -284,8 +284,40 @@ class GMSMapViewController: UIViewController, CLLocationManagerDelegate, UITable
         let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
         
         Client.sharedInstance.socket.write(data: jsonData)
-
         
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        let mainViewController = storyboard.instantiateViewController(withIdentifier: "FeedTableViewController") as! FeedTableViewController
+//        let leftViewController = storyboard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
+//        let nvc: UINavigationController = UINavigationController(rootViewController: mainViewController)
+//        let slideMenuController = SlideController(mainViewController: nvc, leftMenuViewController: leftViewController)
+//        
+//        let sendMessage = Client.sharedInstance.json
+//        mainViewController.toPopulate = sendMessage
+//        
+//        self.slideMenuController()?.changeMainViewController(slideMenuController, close: true)
+        
+    }
+    
+    public func goBack() {
+        print("GOING BACK");
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+        let imageURL = info[UIImagePickerControllerReferenceURL] as NSURL
+        let imageName = imageURL.path!.lastPathComponent
+        let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
+        let localPath = documentDirectory.stringByAppendingPathComponent(imageName)
+        
+        let image = info[UIImagePickerControllerOriginalImage] as UIImage
+        let data = UIImagePNGRepresentation(image)
+        data.writeToFile(localPath, atomically: true)
+        
+        let imageData = NSData(contentsOfFile: localPath)!
+        let photoURL = NSURL(fileURLWithPath: localPath)
+        let imageWithData = UIImage(data: imageData)!
+        
+        picker.dismiss(animated: true, completion: nil)
     }
 }
 

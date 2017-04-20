@@ -71,6 +71,9 @@ class Client: NSObject, WebSocketDelegate {
                 alertController.addAction(action)
                 
                 vc?.present(alertController, animated: true, completion: nil)
+            } else if(json!["message"] as? String == "searchsuccess") {
+                let vc = UIApplication.topViewController() as? GMSMapViewController
+                vc?.goBack()
             }
         } else {
             print("not a valid UTF-8 sequence")
