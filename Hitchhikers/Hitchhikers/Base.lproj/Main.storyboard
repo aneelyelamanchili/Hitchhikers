@@ -202,7 +202,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" April 8, 2017 11:00 am" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ue8-Ps-dCZ">
-                                            <rect key="frame" x="206" y="254" width="164" height="21"/>
+                                            <rect key="frame" x="206" y="252" width="164" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="Ttb-NX-dGM"/>
                                                 <constraint firstAttribute="width" constant="163.5" id="a20-Ee-Ep7"/>
@@ -218,7 +218,7 @@
                                     <constraints>
                                         <constraint firstItem="Xge-0x-Lrq" firstAttribute="leading" secondItem="Xuu-eh-xo6" secondAttribute="leading" id="3jQ-on-ImB"/>
                                         <constraint firstItem="4UU-ch-4zC" firstAttribute="leading" secondItem="mVu-0D-Yt8" secondAttribute="trailing" constant="8" id="AbO-oo-xBb"/>
-                                        <constraint firstAttribute="bottom" secondItem="Ue8-Ps-dCZ" secondAttribute="bottom" constant="22.5" id="GsS-Ry-wSG"/>
+                                        <constraint firstAttribute="bottom" secondItem="Ue8-Ps-dCZ" secondAttribute="bottom" constant="24.5" id="GsS-Ry-wSG"/>
                                         <constraint firstItem="Xge-0x-Lrq" firstAttribute="leading" secondItem="JsA-ba-rUl" secondAttribute="leading" id="MhD-7f-AnP"/>
                                         <constraint firstItem="Ue8-Ps-dCZ" firstAttribute="leading" secondItem="4UU-ch-4zC" secondAttribute="trailing" constant="4" id="Zuk-eb-lWr"/>
                                         <constraint firstAttribute="trailing" secondItem="Ue8-Ps-dCZ" secondAttribute="trailing" constant="5.5" id="d5F-kz-jAm"/>
