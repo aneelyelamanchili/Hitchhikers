@@ -315,7 +315,6 @@ class GMSMapViewController: UIViewController, CLLocationManagerDelegate, UITable
 //        let image = info[UIImagePickerControllerOriginalImage] as UIImage
 //        let data = UIImagePNGRepresentation(image)
 //        data.writeToFile(localPath, atomically: true)
-//        
 //        let imageData = NSData(contentsOfFile: localPath)!
 //        let photoURL = NSURL(fileURLWithPath: localPath)
 //        let imageWithData = UIImage(data: imageData)!
