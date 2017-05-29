@@ -59,6 +59,7 @@ class FeedTableViewCell: UITableViewCell, MKMapViewDelegate {
         dName = (populate["firstname"] as? String)! + " " + (populate["lastname"] as? String)!
         imageString = populate["userpicture"] as! String;
         let url = URL(string: populate["userpicture"] as! String)
+        print(populate["userpicture"] as! String)
         let data = try? Data(contentsOf: url!)
         
         profileImage.image = UIImage(data: data!);

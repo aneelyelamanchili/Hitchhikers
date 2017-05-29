@@ -14,9 +14,9 @@ class Client: NSObject, WebSocketDelegate {
     
     var json: [String: Any]?
     //ws://hhbackend5.herokuapp.com/ws
-//    var socket = WebSocket(url: URL(string: "ws://hhbackend5.herokuapp.com/ws")!)
-//    var socket = WebSocket(url: URL(string: "ws://localhost:8080/ws")!)
-    var socket = WebSocket(url: URL(string: "ws://13.58.122.58:8080/ws")!)
+    var socket = WebSocket(url: URL(string: "ws://hhbackend5.herokuapp.com/ws")!) // Heroku connection string
+//    var socket = WebSocket(url: URL(string: "ws://localhost:8080/ws")!)   // Localhost connection string
+//    var socket = WebSocket(url: URL(string: "ws://13.58.122.58:8080/ws")!) // AWS connection String
     
     // MARK: Websocket Delegate Methods.
     
