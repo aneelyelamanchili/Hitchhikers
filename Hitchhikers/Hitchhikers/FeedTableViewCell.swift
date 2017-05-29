@@ -52,7 +52,7 @@ class FeedTableViewCell: UITableViewCell, MKMapViewDelegate {
     // Read in from the database to configure the cell. Database json will be passed into this function
     // and will be used to set up the cell's properties and stored values
     func configureCell(feed: String, populate: [String: Any]) {
-
+//        print(populate);
         cellID = populate["rideid"] as! String
         
         

@@ -59,11 +59,14 @@ class LoginViewController: UIViewController {
         json.setValue(username.text, forKey: "email")
         json.setValue(password.text, forKey: "password")
         let jsonData = try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
-        let jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
-        //print(jsonString)
+        var jsonString = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)! as String
+//        jsonString += "\n\n"
+        print(jsonString)
+        print(jsonData)
         
         Client.sharedInstance.socket.write(data: jsonData as Data)
-        
+//        Client.sharedInstance.socket.write(string: jsonString)
+        print("HERE")
         
     }
     

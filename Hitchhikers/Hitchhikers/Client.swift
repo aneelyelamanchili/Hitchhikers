@@ -13,8 +13,10 @@ class Client: NSObject, WebSocketDelegate {
     static let sharedInstance = Client()
     
     var json: [String: Any]?
-    
-    var socket = WebSocket(url: URL(string: "ws://4bedb43b.ngrok.io/HitchhikersBackend/ws")!)
+    //ws://hhbackend5.herokuapp.com/ws
+//    var socket = WebSocket(url: URL(string: "ws://hhbackend5.herokuapp.com/ws")!)
+//    var socket = WebSocket(url: URL(string: "ws://localhost:8080/ws")!)
+    var socket = WebSocket(url: URL(string: "ws://13.58.122.58:8080/ws")!)
     
     // MARK: Websocket Delegate Methods.
     
@@ -35,7 +37,7 @@ class Client: NSObject, WebSocketDelegate {
     }
     
     func websocketDidReceiveData(socket: WebSocket, data: Data) {
-        //print("Received data: \(data)")
+        print("Received data: \(data)")
         
         if let str = String(data: data, encoding: String.Encoding.utf8) {
             json = convertToDictionary(text: str)
